@@ -1,0 +1,418 @@
+{
+  "categorias": {
+    "gestion": "Instrumentos de gestión",
+    "planes": "Planes de trabajo",
+    "manuales": "Manuales institucionales",
+    "egresados": "Egresados y empleabilidad",
+    "riesgo": "Gestión del riesgo de desastres",
+    "convenios-empresas": "Convenios con empresas",
+    "convenios-universidades": "Convenios con universidades",
+    "horarios": "Horarios de laboratorios",
+    "formatos": "Formatos de trámite",
+    "tasas": "Tasas y derechos"
+  },
+  "orden": [
+    "gestion",
+    "planes",
+    "manuales",
+    "formatos",
+    "tasas",
+    "egresados",
+    "riesgo",
+    "convenios-universidades",
+    "convenios-empresas",
+    "horarios"
+  ],
+  "documentos": [
+    {
+      "id": "rd-174-2026",
+      "titulo": "Aprobación del Plan Anual de Trabajo 2026",
+      "categoria": "gestion",
+      "estado": "vigente",
+      "periodo": "2026",
+      "fecha": "2026-08-12",
+      "resolucion": "Resolución Directoral N.° 174-2026-DG-IESTP “MAC”",
+      "descripcion": "Aprueba en vía de regularización el Plan Anual de Trabajo del periodo lectivo 2026 y dispone su publicación en la web institucional.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/resolucion-directoral-174-2026-plan-anual-de-trabajo.pdf",
+      "paginas": 1,
+      "destinos": [
+        "documentos-gestion"
+      ]
+    },
+    {
+      "id": "rd-175-2026",
+      "titulo": "Aprobación del Plan de Seguimiento de Egresados 2026–2032",
+      "categoria": "egresados",
+      "estado": "vigente",
+      "periodo": "2026–2032",
+      "fecha": "2026-08-13",
+      "resolucion": "Resolución Directoral N.° 175-2026-DG-IESTP “MAC”",
+      "descripcion": "Aprueba en vía de regularización el Plan de Seguimiento de Egresados del año lectivo 2026–2032, a propuesta de la Unidad de Bienestar y Empleabilidad.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/resolucion-directoral-175-2026-plan-seguimiento-egresados.pdf",
+      "paginas": 1,
+      "destinos": [
+        "documentos-gestion",
+        "bolsa-laboral"
+      ]
+    },
+    {
+      "id": "pse-2026-2032",
+      "titulo": "Plan de Seguimiento de Egresados 2026–2032",
+      "categoria": "egresados",
+      "estado": "vigente",
+      "periodo": "2026–2032",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Objetivos, estrategias y matriz de actividades para conocer la inserción y la trayectoria laboral de los egresados de los tres programas de estudios.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/plan-seguimiento-egresados-2026-2032.pdf",
+      "paginas": 21,
+      "destinos": [
+        "documentos-gestion",
+        "bolsa-laboral"
+      ]
+    },
+    {
+      "id": "insercion-2025-2030",
+      "titulo": "Plan de Intermediación e Inserción Laboral 2025–2030",
+      "categoria": "egresados",
+      "estado": "vigente",
+      "periodo": "2025–2030",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Actividades, cronograma y presupuesto del área “Oportunidades de Inserción Laboral”, con la bolsa de trabajo y la gestión de convenios de prácticas.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/plan-intermediacion-insercion-laboral-2025-2030.pdf",
+      "paginas": 24,
+      "destinos": [
+        "documentos-gestion",
+        "bolsa-laboral"
+      ]
+    },
+    {
+      "id": "plan-bienestar-2026",
+      "titulo": "Plan Anual de Trabajo de la Unidad de Bienestar y Empleabilidad 2026",
+      "categoria": "planes",
+      "estado": "vigente",
+      "periodo": "2026",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Plan de la unidad a cargo de la jefatura correspondiente.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/plan-trabajo-unidad-bienestar-empleabilidad-2026.pdf",
+      "paginas": 50,
+      "destinos": [
+        "documentos-gestion",
+        "bolsa-laboral",
+        "servicios-educacionales"
+      ]
+    },
+    {
+      "id": "plan-calidad-2026",
+      "titulo": "Plan Anual de Trabajo de la Coordinación del Área de Calidad 2026",
+      "categoria": "planes",
+      "estado": "vigente",
+      "periodo": "2026",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Objetivos, matriz de actividades, indicadores y plan de mejora continua. Vigencia indicada en el plan: del 1 de abril al 31 de diciembre de 2026.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/plan-trabajo-coordinacion-calidad-2026.pdf",
+      "paginas": 30,
+      "destinos": [
+        "documentos-gestion"
+      ]
+    },
+    {
+      "id": "plan-investigacion-2026",
+      "titulo": "Plan de Trabajo de la Unidad de Investigación 2026",
+      "categoria": "planes",
+      "estado": "vigente",
+      "periodo": "2026",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Plan a cargo de la jefatura correspondiente. Incluye proyectos de investigación aplicada, trabajos de aplicación profesional y la revista institucional.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/plan-trabajo-unidad-investigacion-2026.pdf",
+      "paginas": 10,
+      "destinos": [
+        "documentos-gestion"
+      ]
+    },
+    {
+      "id": "plan-formacion-continua-2026",
+      "titulo": "Plan de Trabajo de la Unidad de Formación Continua 2026",
+      "categoria": "planes",
+      "estado": "vigente",
+      "periodo": "Abril a diciembre de 2026",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Plan a cargo de la jefatura correspondiente. Cursos cortos de actualización para docentes, estudiantes y egresados.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/plan-trabajo-unidad-formacion-continua-2026.pdf",
+      "paginas": 5,
+      "destinos": [
+        "documentos-gestion"
+      ]
+    },
+    {
+      "id": "plan-secretaria-2026",
+      "titulo": "Plan de Trabajo de la Secretaría Académica 2026",
+      "categoria": "planes",
+      "estado": "vigente",
+      "periodo": "2026",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Plan anual de las actividades de Secretaría Académica para el año académico 2026.",
+      "nota": null,
+      "archivo": "transparencia/vigentes/plan-trabajo-secretaria-academica-2026.pdf",
+      "paginas": 12,
+      "destinos": [
+        "documentos-gestion"
+      ]
+    },
+    {
+      "id": "mpp-2026-2032",
+      "titulo": "Manual de Perfil de Puestos 2026–2032",
+      "categoria": "manuales",
+      "estado": "vigente",
+      "periodo": "2026–2032",
+      "fecha": "2025-12-31",
+      "resolucion": "Resolución Directoral N.° 313-2025-DG-IESTP “MAC”",
+      "descripcion": "El archivo abre con la resolución que aprueba, junto con el PEI y el Manual de Procesos Académicos, los instrumentos del periodo 2026–2032.",
+      "nota": null,
+      "archivo": "normativa/vigentes/manual-perfil-puestos-2026-2032.pdf",
+      "paginas": 65,
+      "destinos": [
+        "documentos-gestion"
+      ]
+    },
+    {
+      "id": "mpa-2026-2032",
+      "titulo": "Manual de Procesos Académicos 2026–2032",
+      "categoria": "manuales",
+      "estado": "vigente",
+      "periodo": "2026–2032",
+      "fecha": "2025-12-31",
+      "resolucion": "Resolución Directoral N.° 313-2025-DG-IESTP “MAC”",
+      "descripcion": "Procesos académicos de los programas de Desarrollo de Sistemas de Información, Industrias de Alimentos y Bebidas y Enfermería Técnica.",
+      "nota": null,
+      "archivo": "normativa/vigentes/manual-procesos-academicos-2026-2032.pdf",
+      "paginas": 99,
+      "destinos": [
+        "documentos-gestion",
+        "mesa-de-partes",
+        "tupa"
+      ]
+    },
+    {
+      "id": "riesgo-2025",
+      "titulo": "Plan de Trabajo Anual de Gestión del Riesgo de Desastres 2025",
+      "categoria": "riesgo",
+      "estado": "no_vigente",
+      "periodo": "2025",
+      "fecha": "2025-09-12",
+      "resolucion": "Resolución Directoral N.° 200-2025-DG.IESTP “MAC”, remitida con el Oficio N.° 346-2025-DG.IESTP “MAC”-VIRTUAL",
+      "descripcion": "Plan del periodo 2025. Su periodo de aplicación ya concluyó.",
+      "nota": "Archivo de gran tamaño; la descarga puede tardar.",
+      "archivo": "transparencia/no-vigentes/plan-gestion-riesgo-desastres-2025.pdf",
+      "paginas": 88,
+      "destinos": [
+        "documentos-gestion"
+      ]
+    },
+    {
+      "id": "convenio-d-julia",
+      "titulo": "Inversiones D Julia E.I.R.L.",
+      "categoria": "convenios-empresas",
+      "estado": "vigente",
+      "periodo": "Tres años desde el 24 de mayo de 2024",
+      "fecha": "2024-05-24",
+      "resolucion": "Convenio específico de cooperación educativa",
+      "descripcion": "Experiencias Formativas en Situaciones Reales de Trabajo del programa de Industrias Alimentarias y publicación de ofertas en la bolsa de trabajo. La empresa otorga media beca de matrícula a sus trabajadores durante 2 años.",
+      "nota": "Vigencia de tres años desde la firma, renovable por acuerdo de las partes: hasta mayo de 2027.",
+      "archivo": "transparencia/convenios/vigentes/convenio-inversiones-d-julia.pdf",
+      "paginas": 3,
+      "destinos": [
+        "convenios",
+        "efsrt",
+        "industria-alimentos"
+      ]
+    },
+    {
+      "id": "convenio-dominicos",
+      "titulo": "Inversiones Panadería y Pastelería Dominicos E.I.R.L.",
+      "categoria": "convenios-empresas",
+      "estado": "vigente",
+      "periodo": "Tres años desde el 24 de mayo de 2024",
+      "fecha": "2024-05-24",
+      "resolucion": "Convenio específico de cooperación educativa",
+      "descripcion": "Experiencias Formativas en Situaciones Reales de Trabajo del programa de Industrias Alimentarias y publicación de ofertas en la bolsa de trabajo. La empresa otorga media beca de matrícula a sus trabajadores durante 2 años.",
+      "nota": "Vigencia de tres años desde la firma, renovable por acuerdo de las partes: hasta mayo de 2027.",
+      "archivo": "transparencia/convenios/vigentes/convenio-panaderia-dominicos.pdf",
+      "paginas": 3,
+      "destinos": [
+        "convenios",
+        "efsrt",
+        "industria-alimentos"
+      ]
+    },
+    {
+      "id": "convenio-psp",
+      "titulo": "PSP Contratistas Generales S.A.C.",
+      "categoria": "convenios-empresas",
+      "estado": "vigente",
+      "periodo": "Tres años desde el 24 de mayo de 2024",
+      "fecha": "2024-05-24",
+      "resolucion": "Convenio específico de cooperación educativa",
+      "descripcion": "Experiencias Formativas en Situaciones Reales de Trabajo del programa de Industrias Alimentarias y publicación de ofertas en la bolsa de trabajo. La empresa otorga media beca de matrícula a sus trabajadores durante 2 años.",
+      "nota": "Vigencia de tres años desde la firma, renovable por acuerdo de las partes: hasta mayo de 2027.",
+      "archivo": "transparencia/convenios/vigentes/convenio-psp-contratistas.pdf",
+      "paginas": 3,
+      "destinos": [
+        "convenios",
+        "efsrt",
+        "industria-alimentos"
+      ]
+    },
+    {
+      "id": "convenio-la-casita",
+      "titulo": "Chicharronería La Casita V&VV E.I.R.L.",
+      "categoria": "convenios-empresas",
+      "estado": "vigente",
+      "periodo": "Tres años desde el 24 de mayo de 2024",
+      "fecha": "2024-05-24",
+      "resolucion": "Convenio específico de cooperación educativa",
+      "descripcion": "Experiencias Formativas en Situaciones Reales de Trabajo del programa de Industrias Alimentarias y publicación de ofertas en la bolsa de trabajo. La empresa otorga media beca de matrícula a sus trabajadores durante 2 años.",
+      "nota": "Vigencia de tres años desde la firma, renovable por acuerdo de las partes: hasta mayo de 2027.",
+      "archivo": "transparencia/convenios/vigentes/convenio-chicharroneria-la-casita.pdf",
+      "paginas": 3,
+      "destinos": [
+        "convenios",
+        "efsrt",
+        "industria-alimentos"
+      ]
+    },
+    {
+      "id": "convenio-parathon",
+      "titulo": "Inversiones Parathon S.A.C.",
+      "categoria": "convenios-empresas",
+      "estado": "vigente",
+      "periodo": "Tres años desde el 24 de mayo de 2024",
+      "fecha": "2024-05-24",
+      "resolucion": "Convenio específico de cooperación educativa",
+      "descripcion": "Experiencias Formativas en Situaciones Reales de Trabajo del programa de Industrias Alimentarias y publicación de ofertas en la bolsa de trabajo. La empresa otorga media beca de matrícula a sus trabajadores durante 2 años.",
+      "nota": "Vigencia de tres años desde la firma, renovable por acuerdo de las partes: hasta mayo de 2027.",
+      "archivo": "transparencia/convenios/vigentes/convenio-inversiones-parathon.pdf",
+      "paginas": 3,
+      "destinos": [
+        "convenios",
+        "efsrt",
+        "industria-alimentos"
+      ]
+    },
+    {
+      "id": "convenio-padilla",
+      "titulo": "Compañía de Licores Padilla E.I.R.L.",
+      "categoria": "convenios-empresas",
+      "estado": "vigente",
+      "periodo": "Tres años desde el 19 de octubre de 2024",
+      "fecha": "2024-10-19",
+      "resolucion": "Convenio específico de cooperación educativa",
+      "descripcion": "Experiencias Formativas en Situaciones Reales de Trabajo del programa de Industrias Alimentarias y publicación de ofertas en la bolsa de trabajo. La empresa otorga media beca de matrícula a sus trabajadores durante 2 años.",
+      "nota": "Vigencia de tres años desde la firma, renovable por acuerdo de las partes: hasta octubre de 2027.",
+      "archivo": "transparencia/convenios/vigentes/convenio-compania-de-licores-padilla.pdf",
+      "paginas": 3,
+      "destinos": [
+        "convenios",
+        "efsrt",
+        "industria-alimentos"
+      ]
+    },
+    {
+      "id": "convenio-unas",
+      "titulo": "Universidad Nacional Agraria de la Selva (UNAS)",
+      "categoria": "convenios-universidades",
+      "estado": "vigente",
+      "periodo": "Aprobado en 2024",
+      "fecha": "2024-08-14",
+      "resolucion": "Resolución N.° 348-2024-CU-R-UNAS",
+      "descripcion": "Convenio mutuo de cooperación interinstitucional para capacitación, proyectos, investigación, desarrollo tecnológico e innovación.",
+      "nota": "El archivo no incluye las cláusulas tercera a sexta ni la fecha de firma. La vigencia debe confirmarse con el original.",
+      "archivo": "transparencia/convenios/vigentes/convenio-unas-universidad-nacional-agraria-de-la-selva.pdf",
+      "paginas": 4,
+      "destinos": [
+        "convenios",
+        "efsrt"
+      ]
+    },
+    {
+      "id": "horario-lab-diurno",
+      "titulo": "Horario de laboratorios, turno diurno",
+      "categoria": "horarios",
+      "estado": "vigente",
+      "periodo": "No indicado en el archivo",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Distribución semanal de los laboratorios 01 a 05 por ciclo y unidad didáctica del programa de Desarrollo de Sistemas de Información.",
+      "nota": null,
+      "archivo": "academico/horarios/vigentes/horario-laboratorios-turno-diurno.pdf",
+      "paginas": 1,
+      "destinos": [
+        "desarrollo-sistemas"
+      ]
+    },
+    {
+      "id": "horario-lab-noche",
+      "titulo": "Horario de laboratorios, turno noche",
+      "categoria": "horarios",
+      "estado": "vigente",
+      "periodo": "No indicado en el archivo",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Distribución semanal de los laboratorios 01 a 05 por ciclo y unidad didáctica del programa de Desarrollo de Sistemas de Información.",
+      "nota": null,
+      "archivo": "academico/horarios/vigentes/horario-laboratorios-turno-noche.pdf",
+      "paginas": 1,
+      "destinos": [
+        "desarrollo-sistemas"
+      ]
+    },
+    {
+      "id": "fut-2026",
+      "titulo": "Formato Único de Trámite (FUT)",
+      "categoria": "formatos",
+      "estado": "vigente",
+      "periodo": "2026–2032",
+      "fecha": null,
+      "resolucion": "Anexo 1 del Manual de Procesos Académicos 2026–2032",
+      "descripcion": "Solicitud con carácter de declaración jurada que el Manual de Procesos Académicos exige como requisito en la mayoría de trámites ante Mesa de Partes.",
+      "nota": null,
+      "archivo": "tramites/vigentes/formato-unico-de-tramite.pdf",
+      "paginas": 1,
+      "destinos": [
+        "mesa-de-partes",
+        "tupa"
+      ]
+    },
+    {
+      "id": "tasas-2025",
+      "titulo": "Relación de diversas tasas de recaudación, ejercicio 2025",
+      "categoria": "tasas",
+      "estado": "no_vigente",
+      "periodo": "Ejercicio 2025",
+      "fecha": null,
+      "resolucion": "Anexo 2 del Manual de Procesos Académicos 2026–2032",
+      "descripcion": "Conceptos y montos de tasas del instituto publicados para el ejercicio 2025.",
+      "nota": "Corresponde al ejercicio 2025. Confirma el monto vigente con el instituto antes de realizar cualquier pago.",
+      "archivo": "tramites/no-vigentes/tasas-de-recaudacion-2025.pdf",
+      "paginas": 2,
+      "destinos": [
+        "tupa",
+        "mesa-de-partes"
+      ]
+    }
+  ]
+}

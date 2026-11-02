@@ -1,0 +1,69 @@
+{
+  "vigentes": [
+    {
+      "cargo": "Director General",
+      "nombre": "Por designar",
+      "periodo": "2026",
+      "fuente": "Resolución Directoral N.° 174-2026-DG-IESTP “MAC” (12 de agosto de 2026) y N.° 175-2026 (13 de agosto de 2026)",
+      "documento": "transparencia/vigentes/resolucion-directoral-174-2026-plan-anual-de-trabajo.pdf"
+    },
+    {
+      "cargo": "Jefa de la Unidad de Bienestar y Empleabilidad",
+      "nombre": "Por designar",
+      "periodo": "2026",
+      "fuente": "Plan Anual de Trabajo de la Unidad de Bienestar y Empleabilidad 2026",
+      "documento": "transparencia/vigentes/plan-trabajo-unidad-bienestar-empleabilidad-2026.pdf"
+    },
+    {
+      "cargo": "Jefa (e) de la Unidad de Investigación",
+      "nombre": "Por designar",
+      "periodo": "2026",
+      "fuente": "Plan de Trabajo de la Unidad de Investigación 2026",
+      "documento": "transparencia/vigentes/plan-trabajo-unidad-investigacion-2026.pdf"
+    },
+    {
+      "cargo": "Jefe de la Unidad de Formación Continua",
+      "nombre": "Por designar",
+      "periodo": "2026",
+      "fuente": "Plan de Trabajo de la Unidad de Formación Continua 2026, que indica que la jefatura se asume por función",
+      "documento": "transparencia/vigentes/plan-trabajo-unidad-formacion-continua-2026.pdf"
+    }
+  ],
+  "anteriores": [
+    {
+      "cargo": "Director General",
+      "nombre": "Por designar",
+      "periodo": "2025",
+      "fuente": "Resolución Directoral N.° 313-2025-DG-IESTP “MAC” (31 de diciembre de 2025) y Oficio N.° 346-2025-DG.IESTP “MAC”-VIRTUAL (12 de septiembre de 2025)",
+      "documento": "normativa/vigentes/manual-perfil-puestos-2026-2032.pdf"
+    },
+    {
+      "cargo": "Jefa de Unidad Académica",
+      "nombre": "Por designar",
+      "periodo": "2025",
+      "fuente": "Plan de Gestión del Riesgo de Desastres 2025 (página 6), aprobado por R. D. N.° 200-2025-DG-IESTP “MAC”",
+      "documento": "transparencia/no-vigentes/plan-gestion-riesgo-desastres-2025.pdf"
+    },
+    {
+      "cargo": "Coordinador de Área de Calidad",
+      "nombre": "Por designar",
+      "periodo": "2025",
+      "fuente": "Informe N.° 65-2025-IESTP “MAC”/CAC y N.° 66-2025-IESTP “MAC”/CAC en el Manual de Perfil de Puestos 2026–2032 (página 65) y Manual de Procesos Académicos 2026–2032 (página 99)",
+      "documento": "normativa/vigentes/manual-perfil-puestos-2026-2032.pdf"
+    },
+    {
+      "cargo": "Jefa de Bienestar y Empleabilidad",
+      "nombre": "Por designar",
+      "periodo": "2025",
+      "fuente": "Plan de Intermediación e Inserción Laboral 2025–2030",
+      "documento": "transparencia/vigentes/plan-intermediacion-insercion-laboral-2025-2030.pdf"
+    },
+    {
+      "cargo": "Directora General (e)",
+      "nombre": "Por designar",
+      "periodo": "2024",
+      "fuente": "Convenios firmados entre mayo y octubre de 2024, con encargatura de la Dirección según RJ N.° 00039-2024-MINEDU/VMGI-DRELM/DIR-OAD",
+      "documento": "transparencia/convenios/vigentes/convenio-inversiones-d-julia.pdf"
+    }
+  ]
+}
