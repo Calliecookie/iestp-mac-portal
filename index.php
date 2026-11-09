@@ -17,7 +17,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
 <main id="contenido" tabindex="-1">
   <section class="portada" aria-labelledby="portada-titulo">
     <div class="portada-fondo">
-      <?= mac_imagen('recursos/imagenes/instituto/banner-principal', [960, 1600, 2560], 2000, 620, 'Banner institucional «Forjando profesionales de éxito 2026»: fachada del instituto con el nombre pintado en el muro, estudiantes en el laboratorio de cómputo, en una práctica de enfermería y en el taller de alimentos, junto al logo MAC', '(max-width: 959px) 175vw, 100vw', ['carga' => 'eager', 'prioridad' => true]) ?>
+      <?= mac_imagen('recursos/imagenes/instituto/banner-principal', [960, 1600, 2560], 2000, 620, 'Banner institucional «Forjando profesionales de éxito 2026»: fachada del instituto con el nombre pintado en el muro, estudiantes en el laboratorio de cómputo, en una práctica de enfermería y en el taller de alimentos, junto al logo MAC', '(max-width: 679px) 166vw, (max-width: 1179px) 135vw, 112vw', ['carga' => 'eager', 'prioridad' => true]) ?>
     </div>
     <div class="contenedor portada-contenido">
       <div class="portada-texto">
@@ -40,7 +40,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
         <p class="seccion-intro">Tres carreras profesionales técnicas, presenciales, en turno mañana (08:00 a 16:00) y turno noche (16:00 a 22:00).</p>
       </div>
       <ul class="programas">
-<?php foreach ($programas as $indice => [$nombre, $descripcion, $destino, $imagen, $alt, $icono]): ?>
+<?php foreach ($programas as [$nombre, $descripcion, $destino, $imagen, $alt, $icono]): ?>
         <li class="programa">
           <a href="<?= mac_url($destino) ?>">
             <span class="programa-foto"><?= mac_imagen_o_ilustracion($imagen, [600, 900], 1194, 1600, $alt, '(max-width: 679px) min(100vw, 26rem), (max-width: 1179px) 33vw, 25rem', $icono) ?></span>
@@ -124,6 +124,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
           <p>Las actividades del día a día se publican en la página oficial de Facebook. Cuando el instituto publique noticias en este portal, aparecerán aquí.</p>
 <?php endif; ?>
           <a class="boton boton-contorno" href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('facebook') ?>Ver en Facebook<?= mac_externo() ?></a>
+          <button type="button" class="boton-texto" data-comunicados-abrir aria-haspopup="dialog">Ver los comunicados recientes</button>
         </aside>
       </div>
     </div>
@@ -213,6 +214,10 @@ $publicacionesRecientes = mac_publicaciones_html(4);
           </div>
         </div>
       </div>
+      <div class="acciones redes-acciones">
+        <a class="boton boton-contorno" href="<?= mac_url('paginas/otros/galeria-multimedia.php') ?>">Ver la galería de fotos y videos</a>
+        <button type="button" class="boton-texto" data-comunicados-abrir aria-haspopup="dialog">Ver los comunicados</button>
+      </div>
     </div>
   </section>
 
@@ -228,7 +233,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
           <li><?= mac_icono('reloj') ?><div><span class="datos-contacto-etiqueta">Horario de atención</span><?= mac_e(mac_dato('horario')) ?></div></li>
         </ul>
       </div>
-      <form class="formulario" action="<?= mac_url('paginas/contacto/contacto-envio.php') ?>" method="post" data-formulario>
+      <form class="formulario" action="<?= mac_url('paginas/contacto/contacto-envio.php') ?>" method="post" data-formulario data-correo="<?= mac_e(mac_dato('correo')) ?>">
         <h3 class="formulario-titulo">Envía tu consulta</h3>
         <div class="form-trampa" aria-hidden="true"><label>No completar este campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <input type="hidden" name="origen" value="portada">
@@ -245,4 +250,26 @@ $publicacionesRecientes = mac_publicaciones_html(4);
     </div>
   </section>
 </main>
+<dialog class="dialogo dialogo-comunicados" id="comunicados-dialogo" aria-labelledby="comunicados-titulo" aria-describedby="comunicados-descripcion" data-comunicados data-comunicados-auto>
+  <div class="dialogo-panel">
+    <button type="button" class="dialogo-cerrar" data-comunicados-cerrar aria-label="Cerrar comunicados"><?= mac_icono('cerrar') ?></button>
+    <header class="comunicados-cabeza">
+      <img class="comunicados-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="84" height="96" alt="Emblema del IESTP Manuel Arévalo Cáceres">
+      <div>
+        <p class="comunicados-sigla">IESTP Manuel Arévalo Cáceres</p>
+        <h2 id="comunicados-titulo">COMUNICADOS</h2>
+      </div>
+    </header>
+    <p id="comunicados-descripcion" class="comunicados-intro">Últimas publicaciones de la página oficial de Facebook del instituto.</p>
+    <div class="consentimiento" data-consentimiento>
+      <p>Las publicaciones se cargan desde Facebook solo si lo autorizas. Al mostrarlas, Facebook puede recibir datos técnicos de tu navegador.</p>
+      <div class="acciones"><button type="button" class="boton" data-consent-external>Mostrar comunicados</button><button type="button" class="boton-texto" data-open-privacy-settings>Más opciones</button></div>
+    </div>
+    <div class="fb-marco" data-fb data-fb-alto="560"></div>
+    <div class="comunicados-pie">
+      <a class="enlace" href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('facebook') ?>Abrir en Facebook<?= mac_externo() ?></a>
+      <a class="enlace" href="<?= mac_url('paginas/otros/comunicados.php') ?>">Ver todos los comunicados</a>
+    </div>
+  </div>
+</dialog>
 <?php require __DIR__ . '/plantillas/pie.php'; ?>

@@ -1,0 +1,143 @@
+{
+  "_fuente": "Páginas de cada programa de estudios publicadas en iestp-mac.edu.pe (revisadas el 9 de noviembre de 2026). Se corrigieron solo erratas de ortografía.",
+  "programas": {
+    "sistemas": {
+      "titulo": "Profesional Técnico en Desarrollo de Sistemas de Información",
+      "perfil": {
+        "intro": "El profesional técnico egresado del programa de estudios de Desarrollo de Sistemas de Información:",
+        "items": [
+          "Desarrolla la construcción de sistemas de información y las pruebas integrales de sistemas de información y servicios de TI en la fase de implantación.",
+          "Realiza la puesta en producción de sistemas de información y servicios de TI, y administra el diseño funcional de los sistemas de información, de acuerdo con la demanda del negocio, el diseño funcional, las buenas prácticas y las políticas de seguridad de la organización.",
+          "Se comunica de manera asertiva, aplicando principios de responsabilidad y ética profesional en el manejo de información, y es capaz de comunicarse e interpretar en idioma inglés la información relacionada con las actividades de la profesión.",
+          "Desarrolla procedimientos innovadores de mejora de procesos, productos o servicios que responden a un problema, e identifica nuevas oportunidades de proyectos o negocios que generen valor y sean sostenibles."
+        ]
+      },
+      "competencias": {
+        "intro": "Desarrollarás soluciones para la automatización de la información con una base científica y tecnológica sólida, y realizarás actividades de análisis, diseño y gestión de proyectos y tecnologías.",
+        "items": [
+          "Desarrollar la construcción de programas de los sistemas de información, de acuerdo con el diseño funcional, los estándares internacionales de TI, las buenas prácticas de programación y las políticas de seguridad de la organización.",
+          "Desarrollar las pruebas integrales de los sistemas de información y servicios de TI en la fase de implantación, de acuerdo con el diseño funcional, las buenas prácticas de TI y las políticas de seguridad de la organización.",
+          "Realizar la puesta en producción de los sistemas de información o servicios de TI, de acuerdo con la planificación efectuada.",
+          "Administrar el diseño funcional de los sistemas de información, de acuerdo con las demandas del negocio que forman parte del alcance de la arquitectura de sistemas vigente."
+        ]
+      },
+      "ambitos": {
+        "intro": "",
+        "items": [
+          "Empresas de desarrollo de software.",
+          "Áreas de auditoría y control de sistemas de información.",
+          "Empresas dedicadas a la instalación, mantenimiento y configuración de equipos de cómputo.",
+          "Organizaciones del sector de redes y comunicaciones.",
+          "Implementación de plataformas web para comercio electrónico.",
+          "Desarrollo independiente de soluciones informáticas."
+        ]
+      },
+      "empleabilidad": [
+        "Soporte técnico y mesa de ayuda.",
+        "Calidad de software.",
+        "Consultoría y capacitación en TI.",
+        "Desarrollo y mantenimiento de sistemas de información.",
+        "Innovación tecnológica.",
+        "Administración y análisis de datos.",
+        "Seguridad de la información.",
+        "Soporte en auditorías de TI."
+      ],
+      "salidas": [
+        "Analista de sistemas de información.",
+        "Jefe de proyectos informáticos.",
+        "Desarrollador de software.",
+        "Auditor de sistemas de información.",
+        "Docente."
+      ]
+    },
+    "enfermeria": {
+      "titulo": "Profesional Técnico en Enfermería Técnica",
+      "perfil": {
+        "intro": "El profesional técnico egresado del programa de estudios de Enfermería Técnica será capaz de:",
+        "items": [
+          "Brindar atención de enfermería al individuo, la familia y la comunidad, considerando el proceso de enfermería y el proceso salud-enfermedad, con énfasis en la atención primaria.",
+          "Participar en campañas de prevención de enfermedades transmisibles o infectocontagiosas, incluida la vacunación.",
+          "Desarrollar acciones de educación para la salud, con énfasis en saneamiento ambiental y en la problemática de salud de la comunidad.",
+          "Efectuar acciones concretas de saneamiento ambiental, como la organización de la comunidad, la recolección y eliminación de residuos y la orientación en la construcción y el mantenimiento de letrinas.",
+          "Valorar el estado del paciente mediante el control de signos vitales, y la interpretación, el registro y el informe de los datos hallados.",
+          "Realizar el examen básico de salud bucal y acciones preventivas y promocionales.",
+          "Brindar apoyo psicológico al paciente, a su familia y a las personas que lo requieran, con buen trato en su actuar profesional.",
+          "Administrar medicamentos por vía oral y parenteral, siguiendo las técnicas específicas y la prescripción médica.",
+          "Atender al niño sano, colaborar en la valoración de su crecimiento y desarrollo, y proteger su salud mediante inmunizaciones y otras medidas indicadas.",
+          "Brindar atención de enfermería en nutrición y dietética, identificando requerimientos dietéticos y educando en el consumo de nutrientes propios de la localidad.",
+          "Atender a la mujer con afecciones gineco-obstétricas, siguiendo las técnicas pertinentes y las indicaciones médicas y de enfermería."
+        ]
+      },
+      "competencias": {
+        "intro": "Analizarás y resolverás problemas del cuidado de la salud de pacientes en distintas etapas de la vida y con patologías agudas o crónicas. Podrás desempeñarte en distintos niveles de atención, con un cuidado centrado en el paciente, cálido y ético.",
+        "items": []
+      },
+      "ambitos": {
+        "intro": "Instituciones públicas y privadas de salud, entre ellas:",
+        "items": [
+          "Hospitales del Minsa.",
+          "EsSalud.",
+          "Sanidad de las Fuerzas Armadas y Policiales.",
+          "Unidades de rescate y ambulancias.",
+          "Clínicas.",
+          "Organizaciones sociales, centros comunales y ONG.",
+          "Centros del adulto mayor.",
+          "Centros de ayuda infantil."
+        ]
+      },
+      "empleabilidad": [
+        "Trabajo en hospitales, centros de salud, clínicas, ONG y entidades públicas y privadas.",
+        "Atención particular en enfermería.",
+        "Atención al niño, al joven, al adulto y al adulto mayor.",
+        "Implementación de un centro asistencial o tópico propio.",
+        "Preparación para desarrollarse profesionalmente en el extranjero."
+      ],
+      "salidas": [
+        "Licenciatura en Enfermería.",
+        "Docencia."
+      ]
+    },
+    "alimentos": {
+      "titulo": "Profesional Técnico en Industria de Alimentos y Bebidas",
+      "perfil": {
+        "intro": "El profesional técnico egresado del programa de estudios de Industria de Alimentos y Bebidas:",
+        "items": [
+          "Planifica, dirige y controla los recursos de una industria con procedimientos científicos y técnicos para fabricar productos alimenticios de origen agrícola y pecuario, con mayor valor agregado y calidad comprobada.",
+          "Selecciona con criterios técnicos las maquinarias, equipos, herramientas y materiales necesarios para el funcionamiento de plantas industriales alimentarias.",
+          "Aplica conocimientos científicos y tecnológicos en la conservación de productos alimenticios.",
+          "Usa técnicas de gestión empresarial para ejecutar proyectos de industria de alimentos y bebidas en el ámbito local, zonal y regional.",
+          "Aplica técnicas de procesamiento con el uso adecuado de conservantes, saborizantes, colorantes y antioxidantes.",
+          "Asesora, controla y supervisa al personal a su cargo para garantizar el funcionamiento de la empresa.",
+          "Aplica conocimientos de higiene industrial para mantener en estado óptimo el equipo productivo.",
+          "Lee, comprende, redacta y traduce información técnica en inglés, y se comunica oralmente en ese idioma.",
+          "Utiliza herramientas informáticas y de ofimática para procesar la información de su entorno laboral.",
+          "Aplica normas de ética y trabaja en equipo dentro de la organización."
+        ]
+      },
+      "competencias": {
+        "intro": "",
+        "items": [
+          "Operador de procesos en la industria alimentaria.",
+          "Planificador industrial."
+        ]
+      },
+      "ambitos": {
+        "intro": "Cuenta con destrezas para la producción de alimentos mediante procesos artesanales e industriales, desarrolla sistemas de seguridad e inocuidad alimentaria con planes BPM y HACCP, y cumple con las exigencias de calidad y productividad. Puede desempeñarse en empresas del sector industrial de alimentos y bebidas, entre otras.",
+        "items": []
+      },
+      "empleabilidad": [
+        "Tecnólogo en fábricas de la industria alimentaria.",
+        "Tecnólogo en fábricas de conservas.",
+        "Analista químico de materias primas, insumos e ingredientes para la fabricación de alimentos.",
+        "Formación de una microempresa de productos alimenticios.",
+        "Asistente de ingeniería de alimentos."
+      ],
+      "salidas": [
+        "Dirección y gestión del planeamiento y control de la producción industrial.",
+        "Dirección y gestión de la calidad e inocuidad de los alimentos.",
+        "Especialización en gastronomía industrial.",
+        "Docencia."
+      ]
+    }
+  }
+}

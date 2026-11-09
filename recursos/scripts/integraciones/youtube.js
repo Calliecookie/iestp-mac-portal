@@ -5,7 +5,7 @@
   const lista = doc.querySelector('[data-youtube-videos]');
   if (!lista) return;
   const meta = doc.querySelector('meta[name="youtube-channel-id"]');
-  const CANAL = meta && meta.content ? meta.content : 'UCBA-mup6OyVOdByyVFDueQw';
+  const CANAL = meta && /^UC[A-Za-z0-9_-]{22}$/.test(meta.content) ? meta.content : '';
   const respaldo = doc.querySelector('[data-youtube-respaldo]');
   const cantidad = parseInt(lista.getAttribute('data-cantidad'), 10) || 4;
 
@@ -26,7 +26,7 @@
     lista.innerHTML = '';
     lista.hidden = true;
     lista.removeAttribute('aria-busy');
-    if (!respaldo) return;
+    if (!respaldo || !CANAL) return;
     respaldo.hidden = false;
     const marco = respaldo.querySelector('[data-youtube-marco]');
     if (marco && !marco.querySelector('iframe')) {
@@ -41,6 +41,29 @@
     }
   };
 
+  const reproducir = (li, video) => {
+    const tituloTexto = (video.title || 'Video del canal oficial').trim();
+    const contenedor = doc.createElement('div');
+    contenedor.className = 'video-reproductor';
+    const marco = doc.createElement('span');
+    marco.className = 'video-miniatura es-reproduciendo';
+    const iframe = doc.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(video.id) + '?autoplay=1&rel=0&playsinline=1&modestbranding=1';
+    iframe.title = tituloTexto;
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    marco.appendChild(iframe);
+    const titulo = doc.createElement('span');
+    titulo.className = 'video-titulo';
+    titulo.textContent = tituloTexto;
+    contenedor.appendChild(marco);
+    contenedor.appendChild(titulo);
+    li.replaceChildren(contenedor);
+    li.classList.add('esta-reproduciendo');
+    iframe.focus();
+  };
+
   const pintar = (videos) => {
     const validos = videos.filter((v) => v && /^[A-Za-z0-9_-]{11}$/.test(String(v.id || ''))).slice(0, cantidad);
     if (!validos.length) throw new Error('sin videos');
@@ -52,8 +75,8 @@
       li.style.setProperty('--i', String(i));
       const enlace = doc.createElement('a');
       enlace.href = 'https://www.youtube.com/watch?v=' + encodeURIComponent(video.id);
-      enlace.target = '_blank';
       enlace.rel = 'noopener noreferrer';
+      enlace.setAttribute('data-sin-carga', '');
       const marco = doc.createElement('span');
       marco.className = 'video-miniatura';
       const imagen = doc.createElement('img');
@@ -70,10 +93,15 @@
       titulo.textContent = (video.title || 'Video del canal oficial').trim();
       const aviso = doc.createElement('span');
       aviso.className = 'sr';
-      aviso.textContent = ' (se abre YouTube en una pestaña nueva)';
+      aviso.textContent = ' (reproducir en esta página)';
       titulo.appendChild(aviso);
       enlace.appendChild(marco);
       enlace.appendChild(titulo);
+      enlace.addEventListener('click', (e) => {
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        reproducir(li, video);
+      });
       li.appendChild(enlace);
       lista.appendChild(li);
     });

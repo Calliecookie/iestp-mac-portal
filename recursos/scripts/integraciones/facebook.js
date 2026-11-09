@@ -3,10 +3,15 @@
   const doc = document;
   const raizSitio = doc.currentScript && doc.currentScript.src ? new URL('../../../', doc.currentScript.src).toString() : doc.baseURI;
   const meta = doc.querySelector('meta[name="facebook-page-url"]');
-  const PAGINA = meta && meta.content ? meta.content : 'https://www.facebook.com/iestpmanuelarevalocaceres/';
+  const PAGINA = meta && /^https:\/\//.test(meta.content) ? meta.content : '';
+  if (!PAGINA) return;
 
+  const enDialogoCerrado = (contenedor) => {
+    const dialogo = contenedor.closest('dialog');
+    return Boolean(dialogo && !dialogo.open);
+  };
   const montar = (contenedor) => {
-    if (contenedor.querySelector('iframe')) return;
+    if (contenedor.querySelector('iframe') || enDialogoCerrado(contenedor)) return;
     const ancho = Math.round(Math.max(240, Math.min(500, contenedor.clientWidth || 420)));
     const alto = Math.round(Math.max(360, Math.min(800, parseInt(contenedor.getAttribute('data-fb-alto'), 10) || 560)));
     const marco = doc.createElement('iframe');
@@ -30,11 +35,21 @@
 
   const contenedores = Array.from(doc.querySelectorAll('[data-fb]'));
   contenedores.forEach(montar);
+  window.macFb = (contenedor) => {
+    const marco = contenedor.querySelector('iframe');
+    const nuevo = Math.round(Math.max(240, Math.min(500, contenedor.clientWidth || 420)));
+    const actual = parseInt(contenedor.dataset.fbAncho, 10) || 0;
+    if (marco && Math.abs(nuevo - actual) < 40) return;
+    if (marco) marco.remove();
+    montar(contenedor);
+  };
+  doc.dispatchEvent(new window.CustomEvent('mac:facebook-listo'));
   let espera = 0;
   window.addEventListener('resize', () => {
     window.clearTimeout(espera);
     espera = window.setTimeout(() => {
       contenedores.forEach((contenedor) => {
+        if (enDialogoCerrado(contenedor)) return;
         const nuevo = Math.round(Math.max(240, Math.min(500, contenedor.clientWidth || 420)));
         const actual = parseInt(contenedor.dataset.fbAncho, 10) || nuevo;
         if (Math.abs(nuevo - actual) < 40) return;
@@ -48,7 +63,7 @@
   const rejilla = doc.querySelector('[data-fotos-fb]');
   if (!rejilla) return;
   fetch(new URL('redes-sociales/fotos-facebook.php', raizSitio).toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' })
-    .then((r) => r.json())
+    .then((r) => (r.ok ? r.json() : null))
     .then((datos) => {
       if (!datos || datos.configured !== true || !Array.isArray(datos.photos)) return;
       datos.photos.slice(0, 6).forEach((foto, i) => {

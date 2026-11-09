@@ -2,21 +2,41 @@
 declare(strict_types=1);
 require_once dirname(__DIR__) . '/configuracion/arranque.php';
 
+mac_exigir_metodo(['GET']);
+
 $channelId = trim((string) mac_config('youtube_channel_id', ''));
+if ($channelId === '') {
+    mac_json_response(200, ['configured' => false, 'videos' => []]);
+}
 if (!preg_match('/^UC[A-Za-z0-9_-]{22}$/', $channelId)) {
-    mac_json_response(500, ['configured' => false, 'videos' => [], 'message' => 'El identificador del canal de YouTube no es válido.']);
+    error_log('IESTP MAC: YOUTUBE_CHANNEL_ID no tiene un formato válido.');
+    mac_json_response(500, ['configured' => false, 'error' => 'configuracion', 'videos' => [], 'message' => 'La integración con YouTube no está configurada correctamente.']);
 }
 
 $cacheKey = 'youtube-videos-' . substr(hash('sha256', $channelId), 0, 12);
-$cached = mac_cache_read($cacheKey);
-$cachedVideos = is_array($cached['payload']['videos'] ?? null) ? $cached['payload']['videos'] : [];
-$isNegativeCache = !empty($cached['payload']['negative']);
-if ($cached && time() - $cached['saved_at'] < ($isNegativeCache ? 180 : 900)) {
-    if ($isNegativeCache && !$cachedVideos) {
-        mac_json_response(502, ['configured' => true, 'channelId' => $channelId, 'videos' => [], 'message' => 'No se pudo consultar el feed de YouTube en este momento.']);
+$vigente = static fn (?array $cache): bool => $cache !== null
+    && time() - $cache['saved_at'] < (!empty($cache['payload']['negative']) ? 180 : 900);
+$responderCache = static function (array $cache, bool $vencido) use ($channelId): never {
+    $videos = is_array($cache['payload']['videos'] ?? null) ? $cache['payload']['videos'] : [];
+    if (!$videos) {
+        mac_json_response(502, ['configured' => true, 'error' => 'proveedor', 'channelId' => $channelId, 'videos' => [], 'message' => 'No se pudo consultar el feed de YouTube en este momento.']);
     }
-    mac_json_response(200, ['configured' => true, 'channelId' => $channelId, 'videos' => $cachedVideos, 'cached' => true]);
+    $respuesta = ['configured' => true, 'channelId' => $channelId, 'videos' => $videos, 'cached' => true];
+    if ($vencido) $respuesta['stale'] = true;
+    mac_json_response(200, $respuesta);
+};
+
+$cached = mac_cache_read($cacheKey);
+if ($vigente($cached)) $responderCache($cached, false);
+
+$bloqueo = mac_cache_bloquear($cacheKey, false);
+if ($bloqueo === false) {
+    if (!empty($cached['payload']['videos'])) $responderCache($cached, true);
+    $bloqueo = mac_cache_bloquear($cacheKey, true);
+    $cached = mac_cache_read($cacheKey);
+    if ($vigente($cached)) $responderCache($cached, false);
 }
+$cachedVideos = is_array($cached['payload']['videos'] ?? null) ? $cached['payload']['videos'] : [];
 
 $feedUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . rawurlencode($channelId);
 $response = mac_http_get($feedUrl, [], 5);
@@ -78,7 +98,7 @@ if (!$videos) {
         mac_json_response(200, ['configured' => true, 'channelId' => $channelId, 'videos' => $cachedVideos, 'cached' => true, 'stale' => true]);
     }
     mac_cache_write($cacheKey, ['videos' => [], 'negative' => true]);
-    mac_json_response(502, ['configured' => true, 'channelId' => $channelId, 'videos' => [], 'message' => 'No se pudo consultar el feed de YouTube en este momento.']);
+    mac_json_response(502, ['configured' => true, 'error' => 'proveedor', 'channelId' => $channelId, 'videos' => [], 'message' => 'No se pudo consultar el feed de YouTube en este momento.']);
 }
 
 $result = ['videos' => array_slice($videos, 0, 12)];

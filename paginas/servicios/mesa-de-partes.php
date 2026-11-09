@@ -15,6 +15,11 @@ $tramites = [
 ];
 ?>
 <?= mac_aviso('Antes de pagar', 'Este portal no publica instrucciones de pago verificadas. Confirma con el instituto el canal de recepción de expedientes, la tasa vigente y el comprobante que corresponde.', 'alerta') ?>
+<div class="panel">
+  <h2 class="panel-titulo">Mesa de partes virtual</h2>
+  <p>El instituto recibe solicitudes y documentos en línea mediante un formulario. Adjunta tu FUT y los requisitos del trámite en PDF, y guarda la confirmación de envío.</p>
+  <div class="acciones"><a class="boton" href="<?= mac_e(mac_dato('mesa_partes_virtual')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('bandeja') ?>Ir a la mesa de partes virtual<?= mac_externo() ?></a></div>
+</div>
 <h2>Formato y documentos para tus trámites</h2>
 <p>La mayoría de trámites académicos se inicia con una solicitud en el Formato Único de Trámite (FUT), que se presenta por Mesa de Partes junto con los requisitos de cada caso.</p>
 <?php mac_documentos_mostrar('mesa-de-partes', $raiz, ['titulo' => 'Documentos vigentes']); ?>

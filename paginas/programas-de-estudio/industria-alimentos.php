@@ -13,7 +13,11 @@ mac_pagina_abrir();
   <?= mac_ficha_programa('Coordinación de Área Académica de Industrias Alimentarias') ?>
   <?= mac_recorte('recursos/imagenes/carreras/recortes/industria_alimentos_corte', 'Estudiante con mandil, cofia, mascarilla y guantes corta una fruta con un cuchillo', '(max-width: 679px) 52vw, 16.5rem', 'con-recorte-figura') ?>
 </div>
-<?= mac_aviso('Plan de estudios', 'La duración, los créditos, las unidades didácticas, el título y las competencias del programa se publicarán según la malla curricular aprobada. Mientras tanto, solicítalos a la coordinación del programa.') ?>
+<?= mac_aviso('Plan de estudios', 'La duración, los créditos y las unidades didácticas del plan vigente se publicarán según la malla curricular aprobada. Mientras tanto, solicítalos a la coordinación del programa.') ?>
+<?= mac_programa_detalle('alimentos') ?>
+<h2 id="plan-de-estudios">Plan de estudios</h2>
+<p>Plan curricular publicado por el instituto. El plan del modelo vigente se publicará cuando esté disponible; mientras tanto, solicítalo a la coordinación del programa.</p>
+<?php mac_documentos_mostrar('plan-alimentos', $raiz, ['titulo' => 'Plan vigente']); ?>
 <h2>Clases y prácticas</h2>
 <div class="con-recorte con-recorte-autoclave">
   <div class="ficha">
@@ -40,6 +44,7 @@ mac_pagina_abrir();
 <h2>Convenios para experiencias formativas</h2>
 <p>El instituto firmó convenios específicos de cooperación educativa con empresas para las experiencias formativas en situaciones reales de trabajo de este programa y para publicar ofertas en la bolsa de trabajo.</p>
 <?php mac_documentos_mostrar('industria-alimentos', $raiz, ['titulo' => 'Convenios vigentes']); ?>
+<?= mac_programa_docentes('alimentos', 'Industria de Alimentos y Bebidas') ?>
 <div class="acciones">
   <a class="boton" href="efsrt.php">Experiencias formativas (EFSRT)</a>
   <a class="boton boton-contorno" href="../admision-y-matricula/admision.php">Requisitos de admisión</a>

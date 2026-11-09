@@ -12,6 +12,12 @@ $enlaces = [
     ['Dirección Regional de Educación de Lima Metropolitana', 'Portal institucional de la DRELM', mac_dato('drelm')],
     ['Plataforma académica', 'Servicio externo del instituto; verifica el dominio antes de ingresar credenciales', mac_dato('intranet')],
     ['Biblioteca virtual Digitalia', 'Plataforma de libros electrónicos', mac_dato('digitalia')],
+    ['Sistema de matrícula en línea', 'Registro de matrícula del instituto; verifica el dominio antes de ingresar credenciales', mac_dato('sistema_matricula')],
+    ['Mesa de partes virtual', 'Formulario en línea del instituto para enviar solicitudes y documentos', mac_dato('mesa_partes_virtual')],
+    ['Catálogo de la biblioteca institucional', 'Consulta de títulos disponibles en la biblioteca del instituto', mac_dato('biblioteca_catalogo')],
+    ['Libro de reclamaciones virtual', 'Servicio del instituto; su conexión no está cifrada (HTTP), revisa la dirección antes de enviar datos', mac_dato('reclamaciones')],
+    ['Bolsa laboral del instituto', 'Ofertas de empleo para estudiantes y egresados; su conexión no está cifrada (HTTP)', mac_dato('bolsa_laboral')],
+    ['Portal del instituto en la DRELM', 'Página institucional alojada por la DRELM; su conexión no está cifrada (HTTP)', mac_dato('portal_drelm')],
 ];
 ?>
 <ul class="lista-enlaces">

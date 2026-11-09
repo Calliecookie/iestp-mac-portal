@@ -47,6 +47,9 @@
       <ul class="pie-redes">
         <li><a href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('facebook') ?>Facebook<span class="sr">(se abre en una pestaña nueva)</span></a></li>
         <li><a href="<?= mac_e((string) mac_config('youtube_channel_url')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('youtube') ?>YouTube<span class="sr">(se abre en una pestaña nueva)</span></a></li>
+        <li><a href="<?= mac_e(mac_dato('tiktok')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('tiktok') ?>TikTok<span class="sr">(se abre en una pestaña nueva)</span></a></li>
+        <li><a href="<?= mac_e(mac_dato('x')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('x') ?>X<span class="sr">(se abre en una pestaña nueva)</span></a></li>
+        <li><a href="<?= mac_e(mac_dato('whatsapp_enlace')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('whatsapp') ?>WhatsApp<span class="sr"> <?= mac_e(mac_dato('whatsapp')) ?> (se abre en una pestaña nueva)</span></a></li>
       </ul>
     </div>
     <div class="pie-legal">

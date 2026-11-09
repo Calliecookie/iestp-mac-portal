@@ -26,7 +26,7 @@ mac_pagina_abrir();
 </div>
 <div>
 <h2 class="titulo-bloque">Déjanos tu mensaje</h2>
-<form class="formulario" id="form-contacto" action="contacto-envio.php" method="post" data-formulario>
+<form class="formulario" id="form-contacto" action="contacto-envio.php" method="post" data-formulario data-correo="<?= mac_e(mac_dato('correo')) ?>">
   <div class="form-trampa" aria-hidden="true"><label>No completar este campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
   <input type="hidden" name="origen" value="contacto">
   <input type="hidden" name="csrf_token" value="<?= mac_e($csrfToken) ?>">

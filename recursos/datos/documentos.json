@@ -9,7 +9,8 @@
     "convenios-universidades": "Convenios con universidades",
     "horarios": "Horarios de laboratorios",
     "formatos": "Formatos de trámite",
-    "tasas": "Tasas y derechos"
+    "tasas": "Tasas y derechos",
+    "planes-estudio": "Planes de estudio"
   },
   "orden": [
     "gestion",
@@ -21,6 +22,7 @@
     "riesgo",
     "convenios-universidades",
     "convenios-empresas",
+    "planes-estudio",
     "horarios"
   ],
   "documentos": [
@@ -412,6 +414,70 @@
       "destinos": [
         "tupa",
         "mesa-de-partes"
+      ]
+    },
+    {
+      "id": "itinerario-dsi",
+      "titulo": "Itinerario formativo de Desarrollo de Sistemas de Información",
+      "categoria": "planes-estudio",
+      "estado": "vigente",
+      "periodo": "No indicado en el archivo",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Módulos, unidades de competencia, competencias para la empleabilidad, créditos y horas por periodo académico del programa.",
+      "nota": "Publicado en el portal institucional como plan de estudios DSI 2024 y 2025.",
+      "archivo": "academico/planes-de-estudio/vigentes/itinerario-formativo-desarrollo-sistemas.pdf",
+      "paginas": 1,
+      "destinos": [
+        "plan-sistemas"
+      ]
+    },
+    {
+      "id": "plan-2010-computacion",
+      "titulo": "Plan curricular de Computación e Informática",
+      "categoria": "planes-estudio",
+      "estado": "no_vigente",
+      "periodo": "Modelo 2010",
+      "fecha": null,
+      "resolucion": "D. S. N.° 004-2010-ED y R. D. N.° 0411-2010-ED",
+      "descripcion": "Módulos, unidades didácticas y horas semanales por semestre de la carrera que antecedió al programa de Desarrollo de Sistemas de Información.",
+      "nota": "Plan curricular del modelo anterior (D. S. N.° 004-2010-ED). Se conserva como referencia; confirma el plan vigente con la coordinación del programa.",
+      "archivo": "academico/planes-de-estudio/no-vigentes/plan-curricular-computacion-informatica-2010.pdf",
+      "paginas": 1,
+      "destinos": [
+        "plan-sistemas"
+      ]
+    },
+    {
+      "id": "plan-2010-enfermeria",
+      "titulo": "Plan curricular de Enfermería Técnica",
+      "categoria": "planes-estudio",
+      "estado": "no_vigente",
+      "periodo": "Modelo 2010",
+      "fecha": null,
+      "resolucion": "D. S. N.° 004-2010-ED y R. D. N.° 0411-2010-ED",
+      "descripcion": "Módulos, unidades didácticas y horas semanales por semestre de la carrera de Enfermería Técnica.",
+      "nota": "Plan curricular del modelo anterior (D. S. N.° 004-2010-ED). Se conserva como referencia; confirma el plan vigente con la coordinación del programa.",
+      "archivo": "academico/planes-de-estudio/no-vigentes/plan-curricular-enfermeria-tecnica-2010.pdf",
+      "paginas": 1,
+      "destinos": [
+        "plan-enfermeria"
+      ]
+    },
+    {
+      "id": "plan-2010-alimentarias",
+      "titulo": "Plan curricular de Industrias Alimentarias",
+      "categoria": "planes-estudio",
+      "estado": "no_vigente",
+      "periodo": "Modelo 2010",
+      "fecha": null,
+      "resolucion": "D. S. N.° 004-2010-ED y R. D. N.° 0411-2010-ED",
+      "descripcion": "Módulos, unidades didácticas y horas semanales por semestre de la carrera que antecedió al programa de Industria de Alimentos y Bebidas.",
+      "nota": "Plan curricular del modelo anterior (D. S. N.° 004-2010-ED). Se conserva como referencia; confirma el plan vigente con la coordinación del programa.",
+      "archivo": "academico/planes-de-estudio/no-vigentes/plan-curricular-industrias-alimentarias-2010.pdf",
+      "paginas": 2,
+      "destinos": [
+        "plan-alimentos"
       ]
     }
   ]

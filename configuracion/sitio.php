@@ -22,6 +22,16 @@ $GLOBALS['MAC_SITIO'] = [
     'digitalia' => 'https://www.digitaliapublishing.com/login',
     'drelm' => 'https://www.drelm.gob.pe/',
     'minedu' => 'https://www.gob.pe/minedu',
+    'whatsapp' => '+51 994 474 544',
+    'whatsapp_enlace' => 'https://wa.me/51994474544',
+    'x' => 'https://x.com/iestpmac',
+    'tiktok' => 'https://www.tiktok.com/@iestpmaac',
+    'mesa_partes_virtual' => 'https://docs.google.com/forms/d/e/1FAIpQLScRP3QvzOlYs6itDd1KWZBmKnB0nOGfLpn3sNxI_z87ntf6Lw/viewform',
+    'sistema_matricula' => 'https://matricula.iestp-mac.edu.pe/',
+    'biblioteca_catalogo' => 'https://biblioteca.iestp-mac.edu.pe/',
+    'reclamaciones' => 'http://reclamaciones.iestp-mac.edu.pe/',
+    'bolsa_laboral' => 'http://bolsalaboral.iestp-mac.edu.pe/login.php',
+    'portal_drelm' => 'http://institutomanuelarevalo.drelm.edu.pe/',
     'mpa' => 'normativa/vigentes/manual-procesos-academicos-2026-2032.pdf',
     'mpp' => 'normativa/vigentes/manual-perfil-puestos-2026-2032.pdf',
 ];
@@ -67,6 +77,7 @@ $GLOBALS['MAC_NAV'] = [
     'publicaciones' => ['Noticias', [
         ['noticias', 'Noticias', 'paginas/otros/noticias.php'],
         ['comunicados', 'Comunicados', 'paginas/otros/comunicados.php'],
+        ['galeria', 'Galería de fotos y videos', 'paginas/otros/galeria-multimedia.php'],
         ['convocatoria', 'Convocatoria de personal', 'paginas/otros/convocatoria-personal.php'],
     ]],
     'contacto' => ['Contacto', [
@@ -173,6 +184,9 @@ if (!function_exists('mac_icono')) {
             'maletin' => 'M4 8h16v11H4zM9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M4 13h16',
             'alimentos' => 'M7 15h10v5H7zM7 15v-2.6A3.5 3.5 0 0 1 8.4 6a4 4 0 0 1 7.2 0A3.5 3.5 0 0 1 17 12.4V15M10 18h4',
             'salud' => 'M9 4h6v5h5v6h-5v5H9v-5H4V9h5z',
+            'x' => 'M4 4h4.5L20 20h-4.5zM19.5 4l-6.2 7M4.5 20l6.2-7',
+            'tiktok' => 'M13.5 3.5v11.25a3.25 3.25 0 1 1-3.25-3.25M13.5 3.5a4.5 4.5 0 0 0 4.5 4.5',
+            'whatsapp' => 'M4.5 20l1.3-3.9A8 8 0 1 1 8.6 18.8zM9.2 8.3c-.4 2.9 3 6.4 5.9 6l.9-1.5-2-1-.9.8a4.4 4.4 0 0 1-2.2-2.2l.8-.9-1-2z',
         ];
         $d = $trazos[$nombre] ?? $trazos['info'];
         return '<svg class="' . mac_e($clase) . '" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="' . $d . '"/></svg>';
@@ -435,7 +449,7 @@ if (!function_exists('mac_noticias_html')) {
             $titulo = mac_e(trim((string) $noticia['titulo']));
             $enlace = trim((string) ($noticia['enlace'] ?? ''));
             $externo = (bool) preg_match('~^https://~', $enlace);
-            $valido = $externo || ($enlace !== '' && !str_contains($enlace, '..') && !preg_match('~^[a-z]+:~i', $enlace));
+            $valido = $externo || ($enlace !== '' && !str_contains($enlace, '..') && !str_starts_with($enlace, '//') && !str_contains($enlace, '\\') && !preg_match('~^[a-z]+:~i', $enlace));
             $html .= '<li class="noticia"><article>';
             $imagen = trim((string) ($noticia['imagen'] ?? ''));
             $rutaImagen = 'recursos/imagenes/noticias/' . basename($imagen);

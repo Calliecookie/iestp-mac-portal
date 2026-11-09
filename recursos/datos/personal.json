@@ -1,0 +1,580 @@
+{
+  "_instrucciones": "Directorio del personal. Para publicar una fotografía, copie el archivo (JPG o WEBP, proporción 4:5, mínimo 480 x 600 px) en recursos/imagenes/personal/ y escriba su ruta en fotoUrl, por ejemplo \"recursos/imagenes/personal/nombre-apellido.jpg\". Si fotoUrl está vacío o el archivo no existe, se muestra la imagen provisional. Un nombre vacío muestra el cargo como «Por designar».",
+  "actualizado": "2026-11-09",
+  "fuente": "Estructura de ejemplo: los nombres y las fotografías se completan con los datos oficiales del instituto",
+  "carreras": {
+    "sistemas": "Desarrollo de Sistemas de Información",
+    "enfermeria": "Enfermería Técnica",
+    "alimentos": "Industria de Alimentos y Bebidas",
+    "transversal": "Formación transversal"
+  },
+  "directorio_telefonico": [
+    {
+      "area": "Dirección General",
+      "responsable": "",
+      "anexo": "2506"
+    },
+    {
+      "area": "Secretaría de Dirección",
+      "responsable": "",
+      "anexo": "2506"
+    },
+    {
+      "area": "Unidad Académica",
+      "responsable": "",
+      "anexo": ""
+    },
+    {
+      "area": "Área de Administración",
+      "responsable": "",
+      "anexo": "2505"
+    },
+    {
+      "area": "Secretaría Académica",
+      "responsable": "",
+      "anexo": ""
+    },
+    {
+      "area": "Oficina de Bienestar y Empleabilidad",
+      "responsable": "",
+      "anexo": ""
+    },
+    {
+      "area": "Vigilancia",
+      "responsable": "",
+      "anexo": ""
+    }
+  ],
+  "personal": [
+    {
+      "id": "persona-01",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Director General",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-02",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Jefa de la Unidad Académica",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-03",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Secretario Académico",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-04",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Jefa (e) de la Unidad de Investigación",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-05",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Jefa de la Unidad de Bienestar y Empleabilidad",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-06",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Jefe de la Unidad de Formación Continua",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-07",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Jefe(a) de la Unidad Administrativa",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-08",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Coordinador(a) del Área de Calidad",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-09",
+      "grupo": "direccion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Secretaria de Dirección",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-10",
+      "grupo": "coordinacion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Coordinador(a) de Área Académica de Desarrollo de Sistemas de Información",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-11",
+      "grupo": "coordinacion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Coordinador(a) de Área Académica de Enfermería Técnica",
+      "carrera": "enfermeria",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-12",
+      "grupo": "coordinacion",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Coordinador(a) de Área Académica de Industria de Alimentos y Bebidas",
+      "carrera": "alimentos",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-13",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-14",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-15",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-16",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-17",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-18",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-19",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-20",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-21",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "sistemas",
+      "funcion": "Jefe de la Unidad de Formación Continua",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-22",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "enfermeria",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-23",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "enfermeria",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-24",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "enfermeria",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-25",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "enfermeria",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-26",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "enfermeria",
+      "funcion": "Jefa de la Unidad de Bienestar y Empleabilidad",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-27",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "enfermeria",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-28",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "alimentos",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-29",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "alimentos",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-30",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "alimentos",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-31",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "alimentos",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-32",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "alimentos",
+      "funcion": "Jefa (e) de la Unidad de Investigación",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-33",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "alimentos",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-34",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "transversal",
+      "funcion": "Jefa de la Unidad Académica",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-35",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "transversal",
+      "funcion": "Secretario Académico",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-36",
+      "grupo": "docente",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Docente",
+      "carrera": "transversal",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-37",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-38",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-39",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-40",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-41",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-42",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-43",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-44",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-45",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-46",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-47",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-48",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-49",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-50",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-51",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-52",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    },
+    {
+      "id": "persona-53",
+      "grupo": "administrativo",
+      "nombre": "",
+      "grado": "",
+      "cargo": "Personal administrativo",
+      "carrera": "",
+      "funcion": "",
+      "fotoUrl": ""
+    }
+  ]
+}

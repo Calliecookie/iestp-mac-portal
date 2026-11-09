@@ -73,16 +73,17 @@
     });
 
     const fondo = () => Array.from(doc.body.children).filter((el) => el !== cabecera && !el.matches('script, dialog'));
+    const ubicarPanel = () => {
+      const barra = cabecera.querySelector('.barra');
+      const borde = barra ? barra.getBoundingClientRect().bottom : 0;
+      nav.style.setProperty('--nav-top', Math.max(0, Math.round(borde)) + 'px');
+    };
     const menu = (abierto) => {
       if (!boton) return;
       boton.setAttribute('aria-expanded', String(abierto));
       if (textoBoton) textoBoton.textContent = abierto ? 'Cerrar' : 'Menú';
       boton.setAttribute('aria-label', abierto ? 'Cerrar el menú' : 'Abrir el menú');
-      if (abierto) {
-        const barra = cabecera.querySelector('.barra');
-        const borde = barra ? barra.getBoundingClientRect().bottom : 0;
-        nav.style.setProperty('--nav-top', Math.max(0, Math.round(borde)) + 'px');
-      }
+      if (abierto) ubicarPanel();
       nav.classList.toggle('abierta', abierto);
       html.classList.toggle('menu-abierto', abierto);
       fondo().forEach((el) => { if (abierto) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
@@ -103,6 +104,9 @@
       if (escritorio.matches && !e.target.closest('[data-submenu]')) cerrarTodos();
     });
     alCambiar(escritorio, () => { menu(false); cerrarTodos(); });
+    const reubicar = () => { if (nav.classList.contains('abierta')) ubicarPanel(); };
+    if (typeof window.ResizeObserver === 'function') new window.ResizeObserver(reubicar).observe(cabecera);
+    else window.addEventListener('resize', reubicar, { passive: true });
   };
 
   const desplazamiento = () => {
@@ -343,8 +347,8 @@
   };
 
   const formularios = () => {
-    const correo = 'informes@iestp-mac.edu.pe';
     doc.querySelectorAll('form[data-formulario]').forEach((form) => {
+      const correo = (form.getAttribute('data-correo') || '').trim();
       const estado = form.querySelector('[data-form-estado]');
       const enviar = form.querySelector('button[type="submit"]');
       const textoEnviar = enviar ? enviar.textContent : '';
@@ -353,7 +357,7 @@
         estado.className = 'form-estado' + (tipo ? ' es-' + tipo : '');
         estado.textContent = mensaje;
         if (animado()) reiniciar(estado, 'es-nuevo');
-        if (alternativa) {
+        if (alternativa && correo) {
           estado.append(' ');
           const enlace = doc.createElement('a');
           enlace.href = 'mailto:' + correo + '?subject=' + encodeURIComponent(alternativa.asunto) + '&body=' + encodeURIComponent(alternativa.cuerpo);
@@ -396,7 +400,7 @@
             } else if (respuesta.status === 403) {
               mostrar('error', 'La sesión del formulario venció. Recarga la página y envía la consulta otra vez.');
             } else if (respuesta.status === 429) {
-              mostrar('error', 'Alcanzaste el límite de envíos de esta sesión. Espera unos minutos e inténtalo de nuevo.');
+              mostrar('error', 'Alcanzaste el límite de envíos de esta sesión. Espera unos minutos o escríbenos directamente.', alternativa);
             } else if (respuesta.status === 422) {
               mostrar('error', 'Revisa que el nombre, el correo, el mensaje y la autorización estén completos.');
             } else {
@@ -612,6 +616,7 @@
       '.pagina-contenido > .ayuda', 'main .panel', 'main .registro-item', 'main .plana-direccion', 'main .plana-persona',
       'main .pasos > li', 'main .etapas > li', 'main .lista-enlaces > li', 'main .acordeon > details',
       'main .contacto-canal', 'main .definiciones > div', 'main .indice-tramites > li', 'main .fotos-sede > *',
+      'main .persona', '.pagina-contenido > .lista-marcada',
     ].join(', ');
     const candidatos = Array.from(doc.querySelectorAll(SELECTOR)).filter((el) => !(el.parentElement && el.parentElement.closest(SELECTOR)));
     const alto = window.innerHeight || html.clientHeight;
@@ -635,8 +640,97 @@
     window.addEventListener('beforeprint', () => fuera.forEach((el) => el.classList.add('es-visible')));
   };
 
+  const precarga = () => {
+    const capa = doc.querySelector('[data-precarga]');
+    const avisar = () => {
+      window.macPrecargaLista = true;
+      doc.dispatchEvent(new window.CustomEvent('mac:precarga-lista'));
+    };
+    if (!capa || !html.classList.contains('precargando')) {
+      if (capa) capa.remove();
+      html.classList.remove('precargando');
+      avisar();
+      return;
+    }
+    const inicio = window.performance.now();
+    const MINIMO = reducir.matches ? 250 : 1300;
+    const imagenesVisibles = Array.from(doc.images).filter((img) => !capa.contains(img) && img.loading !== 'lazy');
+    let cargado = doc.readyState === 'complete';
+    let progreso = 0;
+    let terminado = false;
+    const marcarCargado = () => { cargado = true; };
+    if (!cargado) window.addEventListener('load', marcarCargado, { once: true });
+    const seguro = window.setTimeout(marcarCargado, 7000);
+    const terminar = () => {
+      if (terminado) return;
+      terminado = true;
+      window.clearTimeout(seguro);
+      capa.style.setProperty('--p', '1');
+      try { window.sessionStorage.setItem('mac_precarga_v1', '1'); } catch (error) { }
+      const retirar = () => {
+        html.classList.remove('precargando');
+        capa.remove();
+        avisar();
+      };
+      if (!animado() || !html.classList.contains('precargando')) { retirar(); return; }
+      window.setTimeout(() => {
+        capa.classList.add('saliendo');
+        window.setTimeout(retirar, 560);
+      }, 260);
+    };
+    const paso = (ahora) => {
+      if (terminado) return;
+      if (!html.classList.contains('precargando')) { terminar(); return; }
+      const tiempo = Math.min(1, (ahora - inicio) / MINIMO);
+      const listas = imagenesVisibles.filter((img) => img.complete).length;
+      const proporcion = imagenesVisibles.length ? listas / imagenesVisibles.length : 1;
+      const objetivo = cargado ? tiempo : Math.min(0.9, Math.min(tiempo, 0.35 + proporcion * 0.55));
+      progreso += (objetivo - progreso) * (reducir.matches ? 1 : 0.14);
+      capa.style.setProperty('--p', progreso.toFixed(4));
+      if (cargado && tiempo >= 1 && progreso > 0.985) { terminar(); return; }
+      window.requestAnimationFrame(paso);
+    };
+    window.requestAnimationFrame(paso);
+  };
+
+  const comunicados = () => {
+    const dialogo = doc.querySelector('[data-comunicados]');
+    if (!dialogo || typeof dialogo.showModal !== 'function') return;
+    const CLAVE = 'mac_comunicados_visto_v1';
+    const cerrarBoton = dialogo.querySelector('[data-comunicados-cerrar]');
+    const montarFacebook = () => {
+      if (typeof window.macFb !== 'function') return;
+      dialogo.querySelectorAll('[data-fb]').forEach((contenedor) => window.macFb(contenedor));
+    };
+    const abrir = () => {
+      if (dialogo.open) return;
+      if (html.classList.contains('menu-abierto')) return;
+      const otro = doc.querySelector('dialog[open]');
+      if (otro) return;
+      dialogo.showModal();
+      if (cerrarBoton) cerrarBoton.focus();
+      window.requestAnimationFrame(montarFacebook);
+      try { window.sessionStorage.setItem(CLAVE, '1'); } catch (error) { }
+    };
+    const cerrar = () => { if (dialogo.open) dialogo.close(); };
+    if (cerrarBoton) cerrarBoton.addEventListener('click', cerrar);
+    dialogo.addEventListener('click', (e) => { if (e.target === dialogo) cerrar(); });
+    doc.addEventListener('mac:facebook-listo', () => { if (dialogo.open) montarFacebook(); });
+    doc.querySelectorAll('[data-comunicados-abrir]').forEach((boton) => boton.addEventListener('click', (e) => {
+      e.preventDefault();
+      abrir();
+    }));
+    if (!dialogo.hasAttribute('data-comunicados-auto') || window.location.hash) return;
+    let visto = null;
+    try { visto = window.sessionStorage.getItem(CLAVE); } catch (error) { visto = null; }
+    if (visto) return;
+    const lanzar = () => window.setTimeout(abrir, reducir.matches ? 0 : 280);
+    if (window.macPrecargaLista) lanzar();
+    else doc.addEventListener('mac:precarga-lista', lanzar, { once: true });
+  };
+
   const iniciar = () => {
-    [imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar].forEach((fn) => {
+    [precarga, imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar, comunicados].forEach((fn) => {
       try { fn(); } catch (error) { if (window.console) window.console.error(error); }
     });
   };

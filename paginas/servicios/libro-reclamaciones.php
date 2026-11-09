@@ -20,7 +20,7 @@ mac_pagina_abrir();
   <div class="contacto-canal"><?= mac_icono('ubicacion') ?><div><h3>Dirección</h3><p><?= mac_e(mac_dato('direccion')) ?>, <?= mac_e(mac_dato('distrito')) ?>. <a href="<?= mac_url(mac_dato('mapa')) ?>" target="_blank" rel="noopener noreferrer">Ver en el mapa<?= mac_externo() ?></a></p></div></div>
 </div>
 <h2>Envía una consulta</h2>
-<form class="formulario" action="../contacto/contacto-envio.php" method="post" data-formulario>
+<form class="formulario" action="../contacto/contacto-envio.php" method="post" data-formulario data-correo="<?= mac_e(mac_dato('correo')) ?>">
   <div class="form-trampa" aria-hidden="true"><label>No completar este campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
   <input type="hidden" name="origen" value="atencion-ciudadana">
   <input type="hidden" name="csrf_token" value="<?= mac_e($csrfToken) ?>">

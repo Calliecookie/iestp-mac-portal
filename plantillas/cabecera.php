@@ -143,11 +143,21 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
     <link rel="preload" href="<?= mac_url('recursos/fuentes/rotulo_negrita.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="<?= mac_url('recursos/fuentes/texto_regular.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="<?= mac_recurso('recursos/estilos/sitio.css') ?>">
-    <script>(function(h){h.classList.add('js');try{if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches)h.classList.add('anim');if(!('CSSViewTransitionRule' in window))h.classList.add('sin-vt');}catch(e){}})(document.documentElement);</script>
+    <script>(function(h){h.classList.add('js');try{if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches)h.classList.add('anim');if(!('CSSViewTransitionRule' in window))h.classList.add('sin-vt');}catch(e){}try{if(!window.sessionStorage.getItem('mac_precarga_v1')){h.classList.add('precargando');window.setTimeout(function(){h.classList.remove('precargando');},9000);}}catch(e){}})(document.documentElement);</script>
     <script src="<?= mac_recurso('recursos/scripts/sitio.js') ?>" defer></script>
     <script type="application/ld+json"><?= json_encode($macStructuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
   </head>
   <body class="<?= $activo === 'inicio' ? 'es-portada' : 'es-interior' ?>">
+    <div class="precarga" data-precarga aria-hidden="true">
+      <div class="precarga-centro">
+        <div class="precarga-logo">
+          <img class="precarga-gris" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?>" width="168" height="192" alt="">
+          <img class="precarga-color" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?>" width="168" height="192" alt="">
+        </div>
+        <span class="precarga-barra"><span></span></span>
+        <p class="precarga-nombre">Manuel Arévalo Cáceres</p>
+      </div>
+    </div>
     <a class="saltar" href="#contenido">Saltar al contenido principal</a>
     <header class="cabecera" data-cabecera>
       <div class="franja">

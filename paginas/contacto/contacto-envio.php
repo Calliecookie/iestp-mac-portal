@@ -8,9 +8,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 
 header('X-Content-Type-Options: nosniff');
 
-function mb_strlen_safe(string $text): int
+function mac_longitud(string $texto): int
 {
-    return function_exists('mb_strlen') ? mb_strlen($text, 'UTF-8') : strlen($text);
+    return function_exists('mb_strlen') ? mb_strlen($texto, 'UTF-8') : strlen($texto);
 }
 
 $status = 'info';
@@ -18,7 +18,7 @@ $title = 'Formulario de consulta';
 $message = 'Para enviar una consulta, completa el formulario de la página de contacto.';
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
-    $name = trim((string) ($_POST['nombre'] ?? ''));
+    $name = trim(preg_replace('/[\x00-\x1F\x7F]+/u', ' ', (string) ($_POST['nombre'] ?? '')) ?? '');
     $email = trim((string) ($_POST['correo'] ?? ''));
     $body = trim((string) ($_POST['mensaje'] ?? ''));
     $origin = trim((string) ($_POST['origen'] ?? 'formulario web'));
@@ -35,9 +35,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
         $status = 'error';
         $title = 'La sesión del formulario venció';
         $message = 'Por seguridad, vuelve al formulario institucional y envía tu consulta nuevamente.';
-    } elseif ($name === '' || mb_strlen_safe($name) > 120 || !filter_var($email, FILTER_VALIDATE_EMAIL)
-        || mb_strlen_safe($email) > 180 || $body === ''
-        || mb_strlen_safe($body) > 3000 || !$consent) {
+    } elseif ($name === '' || mac_longitud($name) > 120 || !filter_var($email, FILTER_VALIDATE_EMAIL)
+        || mac_longitud($email) > 180 || $body === ''
+        || mac_longitud($body) > 3000 || !$consent) {
         http_response_code(422);
         $status = 'error';
         $title = 'Revisa los datos enviados';
@@ -91,7 +91,6 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 'Reply-To: ' . $safeReplyTo,
                 'MIME-Version: 1.0',
                 'Content-Type: text/plain; charset=UTF-8',
-                'X-Mailer: PHP/' . PHP_VERSION,
             ];
             $sent = @mail($to, $subject, $mailBody, implode("\r\n", $headers));
             if ($sent) {

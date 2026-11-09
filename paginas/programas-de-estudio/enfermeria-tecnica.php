@@ -13,13 +13,18 @@ mac_pagina_abrir();
   <?= mac_ficha_programa('Coordinación de Área Académica de Enfermería Técnica') ?>
   <?= mac_recorte('recursos/imagenes/carreras/recortes/enfermeria_tecnica', 'Profesional con uniforme azul de enfermería atiende a un paciente recostado en una camilla', '(max-width: 679px) 52vw, 18rem', 'con-recorte-figura') ?>
 </div>
-<?= mac_aviso('Plan de estudios', 'La duración, los créditos, las unidades didácticas, el título y las competencias del programa se publicarán según la malla curricular aprobada. Mientras tanto, solicítalos a la coordinación del programa.') ?>
+<?= mac_aviso('Plan de estudios', 'La duración, los créditos y las unidades didácticas del plan vigente se publicarán según la malla curricular aprobada. Mientras tanto, solicítalos a la coordinación del programa.') ?>
+<?= mac_programa_detalle('enfermeria') ?>
+<h2 id="plan-de-estudios">Plan de estudios</h2>
+<p>Plan curricular publicado por el instituto. El plan del modelo vigente se publicará cuando esté disponible; mientras tanto, solicítalo a la coordinación del programa.</p>
+<?php mac_documentos_mostrar('plan-enfermeria', $raiz, ['titulo' => 'Plan vigente']); ?>
 <h2>Prácticas del programa</h2>
 <p>Las experiencias formativas en situaciones reales de trabajo complementan las competencias de cada módulo. Revisa los requisitos y el procedimiento para realizarlas.</p>
 <figure class="foto foto-ancha">
   <?= mac_imagen('recursos/imagenes/carreras/enfermeria-tecnica', [800, 1280], 1280, 960, 'Estudiantes de Enfermería Técnica con uniforme blanco atienden una exposición en un auditorio', '(max-width: 959px) 100vw, 52rem') ?>
   <figcaption>Charla sobre las experiencias formativas en situaciones reales de trabajo.</figcaption>
 </figure>
+<?= mac_programa_docentes('enfermeria', 'Enfermería Técnica') ?>
 <div class="acciones">
   <a class="boton" href="efsrt.php">Experiencias formativas (EFSRT)</a>
   <a class="boton boton-contorno" href="../admision-y-matricula/admision.php">Requisitos de admisión</a>

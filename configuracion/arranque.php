@@ -96,6 +96,16 @@ if (!function_exists('mac_json_response')) {
     }
 }
 
+if (!function_exists('mac_exigir_metodo')) {
+    function mac_exigir_metodo(array $permitidos): void
+    {
+        $metodo = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
+        if (in_array($metodo, $permitidos, true)) return;
+        header('Allow: ' . implode(', ', $permitidos));
+        mac_json_response(405, ['error' => 'metodo_no_permitido', 'message' => 'Método no permitido.']);
+    }
+}
+
 if (!function_exists('mac_http_get')) {
     function mac_http_get(string $url, array $headers = [], int $timeout = 8): array
     {
@@ -103,7 +113,7 @@ if (!function_exists('mac_http_get')) {
             return ['status' => 0, 'body' => ''];
         }
         $headers[] = 'Accept: application/json, application/atom+xml, application/xml, text/xml;q=0.9, */*;q=0.5';
-        $headers[] = 'User-Agent: IESTP-MAC-Web/1.0 (+institutional website)';
+        $headers[] = 'User-Agent: IESTP-MAC-Web/1.0 (+sitio web institucional)';
 
         if (function_exists('curl_init')) {
             $ch = curl_init($url);
@@ -119,30 +129,12 @@ if (!function_exists('mac_http_get')) {
             ]);
             $body = curl_exec($ch);
             $status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-            curl_close($ch);
+            unset($ch);
             return ['status' => $body === false ? 0 : $status, 'body' => is_string($body) ? $body : ''];
         }
 
-        if (!filter_var(ini_get('allow_url_fopen'), FILTER_VALIDATE_BOOLEAN)) {
-            return ['status' => 0, 'body' => ''];
-        }
-        $context = stream_context_create([
-            'http' => [
-                'method' => 'GET',
-                'timeout' => $timeout,
-                'ignore_errors' => true,
-                'header' => implode("\r\n", $headers) . "\r\n",
-            ],
-            'ssl' => ['verify_peer' => true, 'verify_peer_name' => true],
-        ]);
-        $body = @file_get_contents($url, false, $context);
-        $status = 0;
-        foreach (($http_response_header ?? []) as $headerLine) {
-            if (preg_match('/^HTTP\/\S+\s+(\d{3})/', $headerLine, $match)) {
-                $status = (int) $match[1];
-            }
-        }
-        return ['status' => $body === false ? $status : ($status ?: 200), 'body' => is_string($body) ? $body : ''];
+        error_log('IESTP MAC: la extensión curl de PHP no está disponible; no se pueden consultar servicios externos.');
+        return ['status' => 0, 'body' => ''];
     }
 }
 
@@ -192,6 +184,19 @@ if (!function_exists('mac_cache_write')) {
         }
         if (is_file($temp)) @unlink($temp);
         return $ok;
+    }
+}
+
+if (!function_exists('mac_cache_bloquear')) {
+    function mac_cache_bloquear(string $key, bool $esperar): mixed
+    {
+        $dir = mac_storage_path('temporal');
+        if (!is_dir($dir) && !@mkdir($dir, 0750, true) && !is_dir($dir)) return null;
+        $manejador = @fopen(substr(mac_cache_file($key), 0, -5) . '.lock', 'c');
+        if ($manejador === false) return null;
+        if (flock($manejador, $esperar ? LOCK_EX : LOCK_EX | LOCK_NB)) return $manejador;
+        fclose($manejador);
+        return false;
     }
 }
 
@@ -463,3 +468,4 @@ if (!function_exists('mac_rate_limit_contact')) {
 
 require_once __DIR__ . '/sitio.php';
 require_once __DIR__ . '/documentos.php';
+require_once __DIR__ . '/personal.php';
