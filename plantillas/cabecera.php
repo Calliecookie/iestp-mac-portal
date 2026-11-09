@@ -151,8 +151,8 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
     <div class="precarga" data-precarga aria-hidden="true">
       <div class="precarga-centro">
         <div class="precarga-logo">
-          <img class="precarga-gris" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?>" width="168" height="192" alt="">
-          <img class="precarga-color" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?>" width="168" height="192" alt="">
+          <img class="precarga-gris" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?>" width="162" height="192" alt="">
+          <img class="precarga-color" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?>" width="162" height="192" alt="">
         </div>
         <span class="precarga-barra"><span></span></span>
         <p class="precarga-nombre">Manuel Arévalo Cáceres</p>
@@ -174,7 +174,7 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
       <div class="barra">
         <div class="contenedor barra-in">
           <a class="marca" href="<?= mac_url('index.php') ?>"<?= $activo === 'inicio' ? ' aria-current="page"' : '' ?>>
-            <img class="marca-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="84" height="96" alt="">
+            <img class="marca-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="81" height="96" alt="">
             <span class="marca-texto"><span class="marca-sigla">IESTP</span><span class="marca-nombre">Manuel Arévalo Cáceres</span><span class="sr">, ir a la página de inicio</span></span>
           </a>
           <button class="menu-boton" type="button" aria-expanded="false" aria-controls="navegacion" data-menu-boton>

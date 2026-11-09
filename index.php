@@ -196,7 +196,8 @@ $publicacionesRecientes = mac_publicaciones_html(4);
             <div class="acciones"><button type="button" class="boton" data-consent-external>Mostrar publicaciones</button><button type="button" class="boton-texto" data-open-privacy-settings>Más opciones</button></div>
           </div>
           <div class="fotos-fb" data-fotos-fb></div>
-          <div class="fb-marco" data-fb data-fb-alto="620"></div>
+          <div class="fb-marco" data-fb data-fb-alto="620" data-fb-cantidad="4"></div>
+          <p class="estado-red fb-ayuda" data-fb-ayuda hidden>¿No ves las publicaciones? Algunos navegadores bloquean el contenido de Facebook insertado en otras páginas. <a href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer">Ábrelas directamente en Facebook<?= mac_externo() ?></a>.</p>
         </div>
         <div class="red">
           <div class="red-cabeza">
@@ -254,7 +255,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
   <div class="dialogo-panel">
     <button type="button" class="dialogo-cerrar" data-comunicados-cerrar aria-label="Cerrar comunicados"><?= mac_icono('cerrar') ?></button>
     <header class="comunicados-cabeza">
-      <img class="comunicados-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="84" height="96" alt="Emblema del IESTP Manuel Arévalo Cáceres">
+      <img class="comunicados-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="81" height="96" alt="Emblema del IESTP Manuel Arévalo Cáceres">
       <div>
         <p class="comunicados-sigla">IESTP Manuel Arévalo Cáceres</p>
         <h2 id="comunicados-titulo">COMUNICADOS</h2>
@@ -265,7 +266,8 @@ $publicacionesRecientes = mac_publicaciones_html(4);
       <p>Las publicaciones se cargan desde Facebook solo si lo autorizas. Al mostrarlas, Facebook puede recibir datos técnicos de tu navegador.</p>
       <div class="acciones"><button type="button" class="boton" data-consent-external>Mostrar comunicados</button><button type="button" class="boton-texto" data-open-privacy-settings>Más opciones</button></div>
     </div>
-    <div class="fb-marco" data-fb data-fb-alto="560"></div>
+    <div class="fb-marco" data-fb data-fb-alto="560" data-fb-cantidad="5"></div>
+    <p class="estado-red fb-ayuda" data-fb-ayuda hidden>¿No ves las publicaciones? Algunos navegadores bloquean el contenido de Facebook insertado en otras páginas. <a href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer">Ábrelas directamente en Facebook<?= mac_externo() ?></a>.</p>
     <div class="comunicados-pie">
       <a class="enlace" href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('facebook') ?>Abrir en Facebook<?= mac_externo() ?></a>
       <a class="enlace" href="<?= mac_url('paginas/otros/comunicados.php') ?>">Ver todos los comunicados</a>
