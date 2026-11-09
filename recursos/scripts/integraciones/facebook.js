@@ -80,6 +80,13 @@
       li.appendChild(enlace);
       lista.appendChild(li);
     });
+    if (contenedor.hasAttribute('data-fb-sin-plugin')) {
+      const subtitulo = doc.createElement('p');
+      subtitulo.className = 'comunicados-subtitulo';
+      subtitulo.textContent = 'Publicaciones recientes en Facebook';
+      contenedor.replaceChildren(subtitulo, lista);
+      return;
+    }
     contenedor.replaceChildren(lista);
   };
   const montarPlugin = (contenedor) => {
@@ -113,8 +120,13 @@
     contenedor.classList.add('esta-cargado', 'esta-cargando');
     obtenerPublicaciones().then((posts) => {
       if (posts.length) { pintarPublicaciones(contenedor, posts); return; }
-      delete contenedor.dataset.fbModo;
       contenedor.classList.remove('esta-cargando');
+      if (contenedor.hasAttribute('data-fb-sin-plugin')) {
+        contenedor.classList.remove('esta-cargado');
+        contenedor.dataset.fbModo = 'vacio';
+        return;
+      }
+      delete contenedor.dataset.fbModo;
       montarPlugin(contenedor);
     });
   };

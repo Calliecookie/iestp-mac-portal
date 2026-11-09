@@ -1,0 +1,59 @@
+{
+  "_instrucciones": "Comunicados de la ventana emergente de la portada y de la página Comunicados. Se muestran en el orden de esta lista: agregue los nuevos al inicio. Copie la imagen en recursos/imagenes/comunicados/ (JPG; opcionalmente una versión .webp y otra -480.webp) y escriba en «imagen» la ruta sin extensión. «fecha» (AAAA-MM-DD) es opcional; «enlace» puede apuntar a la publicación en Facebook.",
+  "comunicados": [
+    {
+      "id": "entrega-titulos-2026-1",
+      "titulo": "Entrega de títulos de profesional técnico",
+      "fecha": "2026-10-28",
+      "resumen": "Los egresados de Computación e Informática, Enfermería Técnica e Industrias Alimentarias que rindieron el Examen de Suficiencia en el periodo 2026-I pueden recoger su título en Secretaría Académica a partir del 28 de octubre, de 8:30 a. m. a 12:30 p. m. y de 2:30 p. m. a 9:30 p. m., con su DNI original.",
+      "imagen": "recursos/imagenes/comunicados/entrega-titulos-2026-1",
+      "alt": "Comunicado de Secretaría Académica sobre la entrega de títulos a los egresados del periodo 2026-I, con requisitos, fecha y horario de atención",
+      "enlace": ""
+    },
+    {
+      "id": "festidanza-arevalina-2026",
+      "titulo": "Festidanza Arevalina 2026",
+      "fecha": "2026-10-16",
+      "resumen": "Concurso de danzas de los tres programas de estudio. Inscripciones del 14 de setiembre al 12 de octubre en la Oficina de Administración; eliminatoria y final el 16 de octubre a las 4:00 p. m.",
+      "imagen": "recursos/imagenes/comunicados/festidanza-arevalina-2026",
+      "alt": "Afiche de la Festidanza Arevalina 2026 con parejas de danza en el patio del instituto, fechas de inscripción y de la final",
+      "enlace": ""
+    },
+    {
+      "id": "reencuentro-exalumnos-2026",
+      "titulo": "Gran reencuentro de exalumnos",
+      "fecha": "2026-10-07",
+      "resumen": "Encuentro de exalumnos en el auditorio principal y el campus del instituto, el miércoles 7 de octubre a las 7:00 p. m., con música en vivo y reconocimientos.",
+      "imagen": "recursos/imagenes/comunicados/reencuentro-exalumnos-2026",
+      "alt": "Afiche del Gran reencuentro de exalumnos del IESTP Manuel Arévalo Cáceres, el miércoles 7 de octubre de 2026 a las 7:00 p. m.",
+      "enlace": ""
+    },
+    {
+      "id": "juegos-deportivos-2026",
+      "titulo": "Juegos deportivos de alumnos y exalumnos",
+      "fecha": "2026-09-25",
+      "resumen": "Inauguración el viernes 25 de setiembre a las 2:00 p. m. Partidos de fútbol y vóley entre los programas de estudio, de lunes a viernes de 2:00 a 5:00 p. m. y los domingos desde las 10:00 a. m.",
+      "imagen": "recursos/imagenes/comunicados/juegos-deportivos-2026",
+      "alt": "Afiche de la inauguración de los juegos deportivos de alumnos y exalumnos, con horarios de competencia y de partidos dominicales",
+      "enlace": ""
+    },
+    {
+      "id": "fixture-juegos-deportivos-2026",
+      "titulo": "Fixture de fútbol de los juegos deportivos",
+      "fecha": "2026-09-30",
+      "resumen": "Programación de las fechas de fútbol 5 en turno diurno, de lunes a viernes y los domingos, por programa de estudios.",
+      "imagen": "recursos/imagenes/comunicados/fixture-juegos-deportivos-2026",
+      "alt": "Tabla con el fixture de fútbol 5 de los juegos deportivos interáreas 2026, por fechas, horarios y equipos",
+      "enlace": ""
+    },
+    {
+      "id": "biblioteca-virtual-digitalia",
+      "titulo": "Acceso a la biblioteca virtual Digitalia",
+      "fecha": "",
+      "resumen": "Ingresa a la biblioteca virtual Digitalia con tu correo electrónico institucional como usuario y tu número de DNI como contraseña.",
+      "imagen": "recursos/imagenes/comunicados/biblioteca-virtual-digitalia",
+      "alt": "Afiche de bienvenida a la biblioteca virtual Arevalina con las instrucciones de acceso a Digitalia",
+      "enlace": "https://www.digitaliapublishing.com/login"
+    }
+  ]
+}

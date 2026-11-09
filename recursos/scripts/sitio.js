@@ -616,7 +616,7 @@
       '.pagina-contenido > .ayuda', 'main .panel', 'main .registro-item', 'main .plana-direccion', 'main .plana-persona',
       'main .pasos > li', 'main .etapas > li', 'main .lista-enlaces > li', 'main .acordeon > details',
       'main .contacto-canal', 'main .definiciones > div', 'main .indice-tramites > li', 'main .fotos-sede > *',
-      'main .persona', '.pagina-contenido > .lista-marcada',
+      'main .persona', '.pagina-contenido > .lista-marcada', 'main .comunicado',
     ].join(', ');
     const candidatos = Array.from(doc.querySelectorAll(SELECTOR)).filter((el) => !(el.parentElement && el.parentElement.closest(SELECTOR)));
     const alto = window.innerHeight || html.clientHeight;

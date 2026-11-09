@@ -3,11 +3,16 @@ $titulo = 'Comunicados';
 $activo = 'publicaciones';
 $pagina = 'comunicados';
 $raiz = '../../';
-$lead = 'Vista previa de las publicaciones más recientes de la página oficial de Facebook del instituto.';
+$lead = 'Avisos y actividades del instituto, del más reciente al más antiguo, y publicaciones de su página oficial de Facebook.';
 $descripcion = 'Comunicados y publicaciones oficiales del IESTP Manuel Arévalo Cáceres.';
 require dirname(__DIR__, 2) . '/plantillas/cabecera.php';
 mac_pagina_abrir();
 ?>
+<?php $macComunicados = mac_comunicados_html(0, 'h3'); if ($macComunicados !== ''): ?>
+<h2 id="comunicados-recientes">Comunicados recientes</h2>
+<p>Selecciona un comunicado para verlo completo.</p>
+<?= $macComunicados ?>
+<?php endif; ?>
 <section class="red" aria-labelledby="comunicados-fb">
   <div class="red-cabeza">
     <h2 class="red-titulo" id="comunicados-fb"><?= mac_icono('facebook') ?>Publicaciones en Facebook</h2>

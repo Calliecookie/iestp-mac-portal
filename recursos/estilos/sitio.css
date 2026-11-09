@@ -1030,3 +1030,28 @@ html.precargando{overflow:hidden}
 .fb-ayuda{margin-top:.75rem}
 .fb-ayuda a{color:var(--verde-800);font-weight:700}
 @media (max-width:679px){.fb-publicacion a{grid-template-columns:5rem minmax(0,1fr);gap:.75rem;padding:.7rem}}
+
+/* Comunicados publicados en el propio portal */
+.comunicados-lista{display:grid;gap:.85rem;list-style:none}
+.comunicado{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;align-items:start;padding:.85rem;background:#fff;border:1px solid var(--linea);border-left:3px solid var(--ocre);border-radius:var(--r)}
+.comunicado-imagen{position:relative;display:block;overflow:hidden;border-radius:2px;background:var(--verde-100)}
+.comunicado-imagen img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.comunicado-ampliar{position:absolute;right:.35rem;bottom:.35rem;display:grid;place-items:center;width:1.9rem;height:1.9rem;background:rgba(11,46,38,.82);border-radius:50%;color:#fff}
+.comunicado-ampliar .icono{width:1rem;height:1rem}
+.comunicado-cuerpo{display:grid;gap:.3rem;min-width:0}
+.comunicado-fecha{margin:0;font:700 var(--t-xs)/1.3 var(--f-texto);color:var(--verde-800)}
+.comunicado-titulo{font:700 1.3rem/1.05 var(--f-rotulo);color:var(--verde-950)}
+.comunicado-texto{margin:0;font:400 var(--t-s)/1.5 var(--f-texto);color:var(--tinta-2)}
+.comunicado-acciones{display:flex;flex-wrap:wrap;gap:.35rem 1rem;margin:.15rem 0 0}
+.comunicado-acciones a{font:700 var(--t-xs)/1.3 var(--f-texto);color:var(--verde-800);text-underline-offset:.2em}
+.comunicado-acciones .icono-externo{width:.75em;height:.75em}
+@media (hover:hover){
+  .comunicado-imagen img{transition:transform .7s var(--curva)}
+  .comunicado-imagen:hover img{transform:scale(1.04)}
+}
+.comunicados-cuerpo{display:grid;gap:1rem}
+.comunicados-cuerpo .fb-marco:not(.esta-cargado):not(.con-publicaciones){display:none}
+.comunicados-subtitulo{margin:.25rem 0 .75rem;font:700 var(--t-s)/1.3 var(--f-texto);color:var(--verde-800)}
+.pagina-contenido>.comunicados-lista{max-width:50rem}
+@media (min-width:960px){.pagina-contenido>.comunicados-lista .comunicado{grid-template-columns:10rem minmax(0,1fr);gap:1.25rem;padding:1rem}}
+@media (max-width:679px){.comunicado{grid-template-columns:5.5rem minmax(0,1fr);gap:.75rem;padding:.7rem}.comunicado-titulo{font-size:1.15rem}}

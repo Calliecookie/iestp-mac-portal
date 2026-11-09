@@ -251,6 +251,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
     </div>
   </section>
 </main>
+<?php if (mac_comunicados()): ?>
 <dialog class="dialogo dialogo-comunicados" id="comunicados-dialogo" aria-labelledby="comunicados-titulo" aria-describedby="comunicados-descripcion" data-comunicados data-comunicados-auto>
   <div class="dialogo-panel">
     <button type="button" class="dialogo-cerrar" data-comunicados-cerrar aria-label="Cerrar comunicados"><?= mac_icono('cerrar') ?></button>
@@ -261,17 +262,16 @@ $publicacionesRecientes = mac_publicaciones_html(4);
         <h2 id="comunicados-titulo">COMUNICADOS</h2>
       </div>
     </header>
-    <p id="comunicados-descripcion" class="comunicados-intro">Últimas publicaciones de la página oficial de Facebook del instituto.</p>
-    <div class="consentimiento" data-consentimiento>
-      <p>Las publicaciones se cargan desde Facebook solo si lo autorizas. Al mostrarlas, Facebook puede recibir datos técnicos de tu navegador.</p>
-      <div class="acciones"><button type="button" class="boton" data-consent-external>Mostrar comunicados</button><button type="button" class="boton-texto" data-open-privacy-settings>Más opciones</button></div>
+    <p id="comunicados-descripcion" class="comunicados-intro">Avisos y actividades recientes del instituto.</p>
+    <div class="comunicados-cuerpo">
+      <?= mac_comunicados_html(4) ?>
+      <div class="fb-marco" data-fb data-fb-sin-plugin data-fb-cantidad="4"></div>
     </div>
-    <div class="fb-marco" data-fb data-fb-alto="560" data-fb-cantidad="5"></div>
-    <p class="estado-red fb-ayuda" data-fb-ayuda hidden>¿No ves las publicaciones? Algunos navegadores bloquean el contenido de Facebook insertado en otras páginas. <a href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer">Ábrelas directamente en Facebook<?= mac_externo() ?></a>.</p>
     <div class="comunicados-pie">
       <a class="enlace" href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('facebook') ?>Abrir en Facebook<?= mac_externo() ?></a>
       <a class="enlace" href="<?= mac_url('paginas/otros/comunicados.php') ?>">Ver todos los comunicados</a>
     </div>
   </div>
 </dialog>
+<?php endif; ?>
 <?php require __DIR__ . '/plantillas/pie.php'; ?>

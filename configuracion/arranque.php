@@ -469,3 +469,4 @@ if (!function_exists('mac_rate_limit_contact')) {
 require_once __DIR__ . '/sitio.php';
 require_once __DIR__ . '/documentos.php';
 require_once __DIR__ . '/personal.php';
+require_once __DIR__ . '/comunicados.php';
