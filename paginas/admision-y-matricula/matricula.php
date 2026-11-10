@@ -41,7 +41,7 @@ $cronogramas = [
 <p class="fuente">Fuente: <?= mac_mpa_enlace(16, 'Manual de Procesos Académicos 2026–2032, páginas 14 y 15') ?>, que incluye la tabla de costos de matrícula.</p>
 <?= mac_aviso('Cómo se paga', 'Según el manual, el pago se realiza por depósito o transferencia a la cuenta bancaria institucional de la DRELM, y el comprobante se presenta al asistente administrativo del instituto. No se aceptan pagos en efectivo dentro de la institución. Confirma el monto y la cuenta antes de pagar.', 'alerta') ?>
 <h2 id="calendario">Calendario académico-administrativo 2026</h2>
-<p>Actividades y fechas del año académico 2026: admisión, matrícula, inicio y fin de clases, y trámites por Mesa de Partes.</p>
+<p>Actividades y fechas del año académico 2026: admisión, matrícula, inicio y fin de clases, y trámites por Mesa de Partes. También puedes consultarlas en el <a href="calendario.php">calendario cívico-académico interactivo</a>.</p>
 <?= mac_figura_zoom('recursos/imagenes/instituto/calendario-academico-2026', 636, 880, 'Calendario académico-administrativo 2026 con 38 actividades y sus fechas', 'Calendario académico-administrativo 2026' . ($hoy > '2026-12-31' ? ', correspondiente a un año concluido' : '') . '. Selecciona la imagen para ampliarla.') ?>
 <h2>Cronogramas de matrícula 2026</h2>
 <p>Si encuentras fechas distintas entre los cronogramas y el calendario, confirma la fecha correcta con Secretaría Académica.</p>
@@ -53,8 +53,8 @@ $cronogramas = [
 <h2>Plataforma de matrícula</h2>
 <div class="panel">
   <p>El registro se realiza en la plataforma externa del instituto. Verifica que el periodo que muestra corresponda al ciclo en curso antes de iniciar el trámite.</p>
-<?php if (mac_dato('matricula') !== ''): ?>
-  <div class="acciones"><a class="boton" href="<?= mac_url(mac_dato('matricula')) ?>" target="_blank" rel="noopener noreferrer">Abrir la plataforma de matrícula<?= mac_externo() ?></a></div>
+<?php if (mac_dato('sistema_matricula') !== ''): ?>
+  <div class="acciones"><a class="boton" href="<?= mac_url(mac_dato('sistema_matricula')) ?>" target="_blank" rel="noopener noreferrer">Abrir la plataforma de matrícula<?= mac_externo() ?></a></div>
 <?php else: ?>
   <div class="acciones"><a class="boton" href="registro-matricula.php">Ver los pasos del registro</a><a class="boton boton-contorno" href="../contacto/contacto.php">Consultar a Secretaría Académica</a></div>
 <?php endif; ?>

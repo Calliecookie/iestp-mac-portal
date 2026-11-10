@@ -21,9 +21,8 @@ mac_pagina_abrir();
 </div>
 <h2>Envía una consulta</h2>
 <form class="formulario" action="../contacto/contacto-envio.php" method="post" data-formulario data-correo="<?= mac_e(mac_dato('correo')) ?>">
-  <div class="form-trampa" aria-hidden="true"><label>No completar este campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <?= mac_escudo_html($csrfToken) ?>
   <input type="hidden" name="origen" value="atencion-ciudadana">
-  <input type="hidden" name="csrf_token" value="<?= mac_e($csrfToken) ?>">
   <div class="formulario-fila">
     <div class="campo"><label for="atencion-nombre">Nombre y apellidos</label><input id="atencion-nombre" name="nombre" autocomplete="name" required maxlength="120"></div>
     <div class="campo"><label for="atencion-correo">Correo electrónico</label><input id="atencion-correo" name="correo" type="email" autocomplete="email" required maxlength="180" inputmode="email"></div>

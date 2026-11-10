@@ -8,9 +8,9 @@ $descripcion = 'Comunicados y publicaciones oficiales del IESTP Manuel Arévalo 
 require dirname(__DIR__, 2) . '/plantillas/cabecera.php';
 mac_pagina_abrir();
 ?>
-<?php $macComunicados = mac_comunicados_html(0, 'h3'); if ($macComunicados !== ''): ?>
+<?php $macComunicados = mac_comunicados_html(0, 'h3', true); if ($macComunicados !== ''): ?>
 <h2 id="comunicados-recientes">Comunicados recientes</h2>
-<p>Selecciona un comunicado para verlo completo.</p>
+<p>Busca por palabra o filtra por categoría. Selecciona un comunicado para verlo completo.</p>
 <?= $macComunicados ?>
 <?php endif; ?>
 <section class="red" aria-labelledby="comunicados-fb">

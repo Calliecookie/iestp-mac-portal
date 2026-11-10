@@ -5,6 +5,7 @@ $pagina = 'admision';
 $raiz = '../../';
 $lead = 'Modalidades y requisitos de admisión establecidos en el Manual de Procesos Académicos 2026–2032.';
 $descripcion = 'Modalidades y requisitos de admisión del IESTP Manuel Arévalo Cáceres.';
+$scripts = ['modulos/admision.js'];
 require dirname(__DIR__, 2) . '/plantillas/cabecera.php';
 mac_pagina_abrir();
 $pago = 'Pago por derecho de admisión que corresponde a la modalidad.';
@@ -36,6 +37,15 @@ $requisitos = [
   <div><dt>Por exoneración</dt><dd>Contempla la admisión de deportistas calificados, estudiantes talentosos y quienes cumplen servicio militar voluntario, de conformidad con la normativa vigente.</dd></div>
   <div><dt>Ingreso extraordinario</dt><dd>Lo autoriza el Minedu y se implementa para becas y programas conforme a la normativa vigente.</dd></div>
 </dl>
+<section class="asistente" aria-labelledby="asistente-titulo" data-asistente hidden>
+  <div class="asistente-cabeza">
+    <p class="asistente-sobre">Herramienta interactiva</p>
+    <h2 class="asistente-titulo" id="asistente-titulo">Arma tu expediente de postulación</h2>
+    <p>Elige tu modalidad y marca cada documento cuando lo tengas listo. Tu avance se guarda solo en este navegador.</p>
+  </div>
+  <div class="asistente-cuerpo" data-asistente-cuerpo></div>
+  <script type="application/json" data-asistente-datos><?= json_encode($requisitos, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+</section>
 <h2 id="requisitos">Requisitos por modalidad</h2>
 <div class="acordeon">
 <?php $primero = true; foreach ($requisitos as $modalidad => $grupos): ?>

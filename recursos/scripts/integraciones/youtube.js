@@ -12,18 +12,22 @@
   const esqueletos = () => {
     lista.hidden = false;
     lista.setAttribute('aria-busy', 'true');
-    lista.innerHTML = '';
+    lista.replaceChildren();
     for (let i = 0; i < cantidad; i += 1) {
       const li = doc.createElement('li');
       li.className = 'video';
       li.setAttribute('aria-hidden', 'true');
-      li.innerHTML = '<span class="esqueleto esqueleto-video"></span><span class="esqueleto esqueleto-linea"></span>';
+      ['esqueleto esqueleto-video', 'esqueleto esqueleto-linea'].forEach((clase) => {
+        const hueso = doc.createElement('span');
+        hueso.className = clase;
+        li.appendChild(hueso);
+      });
       lista.appendChild(li);
     }
   };
 
   const mostrarRespaldo = () => {
-    lista.innerHTML = '';
+    lista.replaceChildren();
     lista.hidden = true;
     lista.removeAttribute('aria-busy');
     if (!respaldo || !CANAL) return;
@@ -67,7 +71,7 @@
   const pintar = (videos) => {
     const validos = videos.filter((v) => v && /^[A-Za-z0-9_-]{11}$/.test(String(v.id || ''))).slice(0, cantidad);
     if (!validos.length) throw new Error('sin videos');
-    lista.innerHTML = '';
+    lista.replaceChildren();
     lista.removeAttribute('aria-busy');
     validos.forEach((video, i) => {
       const li = doc.createElement('li');
@@ -108,7 +112,7 @@
   };
 
   esqueletos();
-  fetch(new URL('redes-sociales/videos-youtube.php', raizSitio).toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' })
+  fetch(new URL('api/youtube-videos.php', raizSitio).toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' })
     .then((r) => r.json().catch(() => ({})).then((datos) => {
       if (!r.ok || !datos || datos.configured !== true || !Array.isArray(datos.videos)) throw new Error('sin datos');
       return datos.videos;

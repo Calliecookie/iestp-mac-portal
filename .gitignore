@@ -1,0 +1,10 @@
+/configuracion/local.php
+/almacenamiento/privado/*
+/almacenamiento/temporal/*
+!/almacenamiento/privado/.htaccess
+!/almacenamiento/temporal/.htaccess
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.tmp

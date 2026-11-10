@@ -1,8 +1,9 @@
 Options -Indexes
 DirectoryIndex index.php
 ErrorDocument 404 /pagina_no_encontrada.php
+AddDefaultCharset UTF-8
 
-<FilesMatch "(?i)^(\.(htaccess|htpasswd|gitignore|gitattributes|DS_Store|env|editorconfig)|(README|LEEME|CHANGELOG|LICENSE)(\.md|\.txt)?|MANUAL_TECNICO_INSTITUCIONAL\.pdf|composer\.(json|lock)|package(-lock)?\.json|.*\.(md|key|pem|crt|cer|p12|pfx|conf|cfg|yml|yaml|zip|rar|7z|tar|gz|tgz|bz2|bak|backup|old|orig|save|swp|swo|tmp|temp|dist|sql|sqlite|sqlite3|ini|log|lock|sh|bat|ps1|cmd|map|env)|.*~)$">
+<FilesMatch "(?i)^(\.(htaccess|htpasswd|gitignore|gitattributes|DS_Store|env|editorconfig|user\.ini)|(README|LEEME|CHANGELOG|LICENSE)(\.md|\.txt)?|MANUAL_TECNICO_INSTITUCIONAL\.pdf|composer\.(json|lock)|package(-lock)?\.json|php\.ini|error_log|.*\.(md|key|pem|crt|cer|p12|pfx|conf|cfg|yml|yaml|zip|rar|7z|tar|gz|tgz|bz2|bak|backup|old|orig|save|swp|swo|tmp|temp|dist|sql|sqlite|sqlite3|ini|log|lock|sh|bat|ps1|cmd|map|env|inc|phar|phtml)|.*~)$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
@@ -12,12 +13,28 @@ ErrorDocument 404 /pagina_no_encontrada.php
 </FilesMatch>
 
 <IfModule mod_alias.c>
-    RedirectMatch 404 (?i)/\.(git|svn|hg|env|vscode|idea)(/|$)
-    RedirectMatch 403 (?i)^/(almacenamiento|configuracion|plantillas|recursos/datos|documentacion)(/.*)?$
+    RedirectMatch 404 (?i)(^|/)\.(?!well-known(/|$))
+    RedirectMatch 403 (?i)^/(almacenamiento|configuracion|nucleo|componentes|plantillas|recursos/datos|documentacion)(/.*)?$
 </IfModule>
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    RewriteCond %{REQUEST_METHOD} !^(GET|HEAD|POST)$ [NC]
+    RewriteRule ^ - [R=405,L]
+
+    RewriteCond %{HTTP_USER_AGENT} (sqlmap|nikto|acunetix|nessus|openvas|masscan|zgrab|wpscan|dirbuster|gobuster|havij|fimap|netsparker|w3af|jorgee|morfeus|nuclei|httpx|feroxbuster) [NC]
+    RewriteRule ^ - [F,L]
+
+    RewriteCond %{THE_REQUEST} (\.\./|\.\.%2f|%2e%2e|%00|%0a|%0d) [NC,OR]
+    RewriteCond %{QUERY_STRING} (<|%3c)[^>]*(script|iframe|object|embed|svg|img)[^>]*(>|%3e) [NC,OR]
+    RewriteCond %{QUERY_STRING} (javascript|vbscript)(:|%3a) [NC,OR]
+    RewriteCond %{QUERY_STRING} (union(\s|%20|\+|/\*)+(all(\s|%20|\+)+)?select|insert(\s|%20|\+)+into|drop(\s|%20|\+)+table|information_schema|load_file\(|into(\s|%20|\+)+outfile|benchmark\(|sleep\() [NC,OR]
+    RewriteCond %{QUERY_STRING} (base64_(en|de)code|eval\(|phpinfo\(|GLOBALS(=|\[|%5b)|_REQUEST(=|\[|%5b)|etc/passwd|proc/self/environ|(php|expect|file|zip|phar|data)://) [NC]
+    RewriteRule ^ - [F,L]
+
+    RewriteRule (^|/)(wp-admin|wp-login\.php|wp-content|wp-includes|xmlrpc\.php|phpmyadmin|pma|adminer|vendor/phpunit|cgi-bin)(/|$) - [F,NC,L]
+    RewriteRule ^(recursos|almacenamiento)/.*\.(php\d?|phtml|phar|pl|py|cgi)$ - [F,NC,L]
 
     RewriteRule ^ - [E=MAC_ESQUEMA:https,E=MAC_HOST:%{HTTP_HOST}]
     RewriteCond %{HTTP_HOST} ^www\.iestp-mac\.edu\.pe$ [NC]
@@ -55,6 +72,9 @@ ErrorDocument 404 /pagina_no_encontrada.php
     RewriteRule ^otros_convocatoria_personal\.php$ %{ENV:MAC_ESQUEMA}://%{ENV:MAC_HOST}/paginas/otros/convocatoria-personal.php [R=301,L]
     RewriteRule ^otros_enlaces\.php$ %{ENV:MAC_ESQUEMA}://%{ENV:MAC_HOST}/paginas/otros/otros-enlaces.php [R=301,L]
     RewriteRule ^contacto\.php$ %{ENV:MAC_ESQUEMA}://%{ENV:MAC_HOST}/paginas/contacto/contacto.php [R=301,L]
+    RewriteRule ^redes-sociales/videos-youtube\.php$ %{ENV:MAC_ESQUEMA}://%{ENV:MAC_HOST}/api/youtube-videos.php [R=301,L]
+    RewriteRule ^redes-sociales/fotos-facebook\.php$ %{ENV:MAC_ESQUEMA}://%{ENV:MAC_HOST}/api/facebook-fotos.php [R=301,L]
+    RewriteRule ^redes-sociales/publicaciones-facebook\.php$ %{ENV:MAC_ESQUEMA}://%{ENV:MAC_HOST}/api/facebook-publicaciones.php [R=301,L]
 
     RewriteCond %{HTTP_HOST} ^www\.iestp-mac\.edu\.pe$ [NC]
     RewriteRule ^ https://iestp-mac.edu.pe%{REQUEST_URI} [R=301,L]
@@ -69,34 +89,48 @@ ErrorDocument 404 /pagina_no_encontrada.php
     AddType font/woff2 .woff2
     AddType image/webp .webp
     AddType image/svg+xml .svg
-    AddCharset utf-8 .css .js .xml .txt
+    AddType text/calendar .ics
+    AddCharset utf-8 .css .js .xml .txt .svg .ics
+</IfModule>
+
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml text/calendar application/xml application/javascript text/javascript application/json image/svg+xml
 </IfModule>
 
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript text/javascript application/json image/svg+xml
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/calendar application/xml application/javascript text/javascript application/json image/svg+xml
 </IfModule>
 
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresDefault "access plus 1 hour"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType image/webp "access plus 1 month"
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
     ExpiresByType image/x-icon "access plus 1 month"
     ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
     ExpiresByType application/pdf "access plus 1 week"
 </IfModule>
 
 <IfModule mod_headers.c>
+    Header unset X-Powered-By
+    Header always unset X-Powered-By
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), browsing-topics=()"
     Header always set X-Permitted-Cross-Domain-Policies "none"
     Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
-    Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'sha256-+Fy8CmXTvgz1dHO0JpL4XeQW6GPVMGWnOlCQr3cq18M='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; frame-src 'self' https://www.facebook.com https://www.youtube-nocookie.com https://www.youtube.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+    Header always set Cross-Origin-Resource-Policy "same-site"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-pzQxp92WRzx/SeV1Np9xCqSFFOzBryjU2LRh2fTPosg='; style-src 'self'; font-src 'self'; img-src 'self' data: https:; frame-src https://www.facebook.com https://www.youtube-nocookie.com; connect-src 'self'; media-src 'self'; manifest-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; require-trusted-types-for 'script'; trusted-types mac-recursos"
     Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+    <FilesMatch "(?i)\.(css|js|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
 </IfModule>

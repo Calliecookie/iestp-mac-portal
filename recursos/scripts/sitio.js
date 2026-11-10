@@ -7,6 +7,26 @@
   const escritorio = window.matchMedia('(min-width: 1180px)');
   const puntero = window.matchMedia('(hover: hover) and (pointer: fine)');
 
+  const raizScripts = new URL('./', urlScript).toString();
+  const politica = window.trustedTypes && typeof window.trustedTypes.createPolicy === 'function'
+    ? window.trustedTypes.createPolicy('mac-recursos', {
+      createScriptURL: (valor) => {
+        const destino = new URL(valor, doc.baseURI);
+        if (destino.origin !== window.location.origin || destino.toString().indexOf(raizScripts) !== 0) throw new TypeError('Recurso no permitido');
+        return destino.toString();
+      },
+    })
+    : null;
+  const urlSegura = (valor) => (politica ? politica.createScriptURL(valor) : valor);
+  const nodo = (etiqueta, clase, hijos) => {
+    const el = doc.createElement(etiqueta);
+    if (clase) el.className = clase;
+    if (typeof hijos === 'string') el.textContent = hijos;
+    else if (Array.isArray(hijos)) hijos.forEach((hijo) => { if (hijo) el.appendChild(hijo); });
+    return el;
+  };
+  window.macNodo = nodo;
+
   const animado = () => html.classList.contains('anim') && !reducir.matches;
   const reiniciar = (el, clase) => {
     el.classList.remove(clase);
@@ -296,7 +316,9 @@
       const caja = registro.querySelector('[data-registro-buscar]');
       const resumen = registro.querySelector('[data-registro-resumen]');
       const filtros = Array.from(registro.querySelectorAll('[data-filtro]'));
-      const items = Array.from(registro.querySelectorAll('.registro-item'));
+      const items = Array.from(registro.querySelectorAll('.registro-item, [data-registro-item]'));
+      const singular = registro.getAttribute('data-registro-singular') || 'documento';
+      const plural = registro.getAttribute('data-registro-plural') || 'documentos';
       const grupos = Array.from(registro.querySelectorAll('.registro-grupo'));
       const archivo = registro.querySelector('.registro-archivo');
       if (!caja && !filtros.length) return;
@@ -317,7 +339,7 @@
             if (archivo && archivo.contains(item)) enArchivo += 1;
           }
         });
-        grupos.forEach((grupo) => { grupo.hidden = !grupo.querySelector('.registro-item:not([hidden])'); });
+        grupos.forEach((grupo) => { grupo.hidden = !grupo.querySelector('.registro-item:not([hidden]), [data-registro-item]:not([hidden])'); });
         if (nuevos.length && animado()) {
           nuevos.forEach((item) => item.classList.remove('es-filtrado'));
           void registro.offsetWidth;
@@ -331,8 +353,8 @@
         if (!resumen) return;
         const previo = resumen.textContent;
         if (!filtrando) resumen.textContent = '';
-        else if (visibles === 0) resumen.textContent = 'Ningún documento coincide. Prueba con otra palabra o elige «Todos».';
-        else resumen.textContent = visibles === 1 ? '1 documento coincide con tu búsqueda.' : visibles + ' documentos coinciden con tu búsqueda.';
+        else if (visibles === 0) resumen.textContent = 'Sin coincidencias entre los ' + plural + '. Prueba con otra palabra o quita el filtro.';
+        else resumen.textContent = visibles === 1 ? '1 ' + singular + ' coincide con tu búsqueda.' : visibles + ' ' + plural + ' coinciden con tu búsqueda.';
         if (resumen.textContent !== previo && animado()) reiniciar(resumen, 'es-nuevo');
       };
       if (caja) caja.addEventListener('input', aplicar);
@@ -454,7 +476,7 @@
         const script = doc.createElement('script');
         const destino = new URL(archivo, urlScript);
         destino.search = new URL(urlScript).search;
-        script.src = destino.toString();
+        script.src = urlSegura(destino.toString());
         script.async = true;
         script.addEventListener('error', () => {
           doc.querySelectorAll('[data-consentimiento]').forEach((el) => { el.hidden = false; });
@@ -556,12 +578,15 @@
     let capa = null;
     let espera = 0;
     let seguro = 0;
-    const repetir = (n, clase) => Array.from({ length: n }, () => '<span class="esqueleto ' + clase + '"></span>').join('');
-    const plantilla = (portada) => portada
-      ? '<div class="carga-muro"><div class="contenedor">' + repetir(2, 'esq-titulo') + repetir(1, 'esq-texto') + '</div></div>'
-        + '<div class="contenedor carga-cuerpo">' + Array.from({ length: 3 }, () => '<div class="carga-contenido"><span class="esqueleto esq-bloque"></span>' + repetir(3, 'esq-linea') + '</div>').join('') + '</div>'
-      : '<div class="carga-muro"><div class="contenedor">' + repetir(1, 'esq-migas') + repetir(1, 'esq-titulo') + repetir(1, 'esq-texto') + '</div></div>'
-        + '<div class="contenedor carga-cuerpo"><div class="carga-lateral">' + repetir(5, '') + '</div><div class="carga-contenido"><span class="esqueleto esq-bloque"></span>' + repetir(8, 'esq-linea') + '</div></div>';
+    const esqueletos = (n, clase) => Array.from({ length: n }, () => nodo('span', ('esqueleto ' + clase).trim()));
+    const plantilla = (portada) => [
+      nodo('div', 'carga-muro', [nodo('div', 'contenedor', portada
+        ? esqueletos(2, 'esq-titulo').concat(esqueletos(1, 'esq-texto'))
+        : esqueletos(1, 'esq-migas').concat(esqueletos(1, 'esq-titulo'), esqueletos(1, 'esq-texto')))]),
+      nodo('div', 'contenedor carga-cuerpo', portada
+        ? Array.from({ length: 3 }, () => nodo('div', 'carga-contenido', [nodo('span', 'esqueleto esq-bloque')].concat(esqueletos(3, 'esq-linea'))))
+        : [nodo('div', 'carga-lateral', esqueletos(5, '')), nodo('div', 'carga-contenido', [nodo('span', 'esqueleto esq-bloque')].concat(esqueletos(8, 'esq-linea')))]),
+    ];
     const limpiar = () => {
       window.clearTimeout(espera);
       window.clearTimeout(seguro);
@@ -581,7 +606,7 @@
         capa.className = 'carga-pagina' + (portada ? ' carga-portada' : '');
         capa.setAttribute('aria-hidden', 'true');
         capa.style.setProperty('--carga-top', borde + 'px');
-        capa.innerHTML = plantilla(portada);
+        capa.replaceChildren(...plantilla(portada));
         doc.body.appendChild(capa);
         const principal = doc.getElementById('contenido');
         if (principal) principal.setAttribute('aria-busy', 'true');
@@ -616,7 +641,7 @@
       '.pagina-contenido > .ayuda', 'main .panel', 'main .registro-item', 'main .plana-direccion', 'main .plana-persona',
       'main .pasos > li', 'main .etapas > li', 'main .lista-enlaces > li', 'main .acordeon > details',
       'main .contacto-canal', 'main .definiciones > div', 'main .indice-tramites > li', 'main .fotos-sede > *',
-      'main .persona', '.pagina-contenido > .lista-marcada', 'main .comunicado',
+      'main .persona', '.pagina-contenido > .lista-marcada', 'main .comunicado', 'main .bento-celda', 'main .calendario-mes', 'main .proximos', 'main .asistente',
     ].join(', ');
     const candidatos = Array.from(doc.querySelectorAll(SELECTOR)).filter((el) => !(el.parentElement && el.parentElement.closest(SELECTOR)));
     const alto = window.innerHeight || html.clientHeight;
@@ -653,7 +678,7 @@
       return;
     }
     const inicio = window.performance.now();
-    const MINIMO = reducir.matches ? 250 : 1300;
+    const MINIMO = reducir.matches ? 200 : 800;
     const imagenesVisibles = Array.from(doc.images).filter((img) => !capa.contains(img) && img.loading !== 'lazy');
     let cargado = doc.readyState === 'complete';
     let progreso = 0;
@@ -729,8 +754,105 @@
     else doc.addEventListener('mac:precarga-lista', lanzar, { once: true });
   };
 
+  const tema = () => {
+    const boton = doc.querySelector('[data-tema-boton]');
+    if (!boton) return;
+    const CLAVE = 'mac_tema_v1';
+    const sistema = window.matchMedia('(prefers-color-scheme: dark)');
+    const actual = () => html.getAttribute('data-tema') || (sistema.matches ? 'oscuro' : 'claro');
+    const pintar = () => {
+      const oscuro = actual() === 'oscuro';
+      boton.setAttribute('aria-pressed', String(oscuro));
+      boton.title = oscuro ? 'Cambiar al tema claro' : 'Cambiar al tema oscuro';
+    };
+    boton.hidden = false;
+    const aplicar = (siguiente) => {
+      html.setAttribute('data-tema', siguiente);
+      try { window.localStorage.setItem(CLAVE, siguiente); } catch (error) { }
+      pintar();
+    };
+    boton.addEventListener('click', () => {
+      const siguiente = actual() === 'oscuro' ? 'claro' : 'oscuro';
+      if (!animado() || typeof doc.startViewTransition !== 'function') { aplicar(siguiente); return; }
+      const caja = boton.getBoundingClientRect();
+      const x = caja.left + caja.width / 2;
+      const y = caja.top + caja.height / 2;
+      const radio = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+      html.classList.add('tema-cambiando');
+      const transicion = doc.startViewTransition(() => aplicar(siguiente));
+      transicion.ready.then(() => {
+        html.animate({ clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + radio + 'px at ' + x + 'px ' + y + 'px)'] }, { duration: 620, easing: 'cubic-bezier(.16,1,.3,1)', pseudoElement: '::view-transition-new(root)' });
+      }).catch(() => {});
+      transicion.finished.finally(() => html.classList.remove('tema-cambiando'));
+    });
+    alCambiar(sistema, pintar);
+    pintar();
+  };
+
+  const buscador = () => {
+    const dialogo = doc.querySelector('[data-buscador]');
+    if (!dialogo || typeof dialogo.showModal !== 'function') return;
+    const entrada = dialogo.querySelector('[data-buscador-entrada]');
+    const estado = dialogo.querySelector('[data-buscador-estado]');
+    let carga = null;
+    const cargar = () => {
+      if (!carga) {
+        carga = new Promise((resolver, rechazar) => {
+          const script = doc.createElement('script');
+          const destino = new URL('modulos/buscador.js', urlScript);
+          destino.search = new URL(urlScript).search;
+          script.src = urlSegura(destino.toString());
+          script.addEventListener('load', resolver, { once: true });
+          script.addEventListener('error', rechazar, { once: true });
+          doc.body.appendChild(script);
+        });
+      }
+      return carga;
+    };
+    const abrir = () => {
+      if (dialogo.open || html.classList.contains('precargando')) return;
+      doc.querySelectorAll('dialog[open]').forEach((otro) => otro.close());
+      dialogo.showModal();
+      if (entrada) entrada.focus();
+      cargar()
+        .then(() => { if (typeof window.macBuscadorIniciar === 'function') window.macBuscadorIniciar(dialogo); })
+        .catch(() => { carga = null; if (estado) estado.textContent = 'No se pudo cargar el buscador. Inténtalo otra vez.'; });
+    };
+    doc.querySelectorAll('[data-buscador-abrir]').forEach((boton) => {
+      boton.hidden = false;
+      boton.addEventListener('click', abrir);
+    });
+    const cerrar = dialogo.querySelector('[data-buscador-cerrar]');
+    if (cerrar) cerrar.addEventListener('click', () => dialogo.close());
+    dialogo.addEventListener('click', (e) => { if (e.target === dialogo) dialogo.close(); });
+    doc.addEventListener('keydown', (e) => {
+      const enCampo = e.target instanceof Element && e.target.closest('input, textarea, select, [contenteditable="true"]');
+      if ((e.key === 'k' || e.key === 'K') && (e.ctrlKey || e.metaKey) && !e.altKey) { e.preventDefault(); abrir(); }
+      else if (e.key === '/' && !enCampo && !e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault(); abrir(); }
+    });
+  };
+
+  const foco = () => {
+    if (!puntero.matches) return;
+    doc.querySelectorAll('[data-foco]').forEach((zona) => {
+      let pendiente = false;
+      zona.addEventListener('pointermove', (e) => {
+        if (pendiente) return;
+        pendiente = true;
+        window.requestAnimationFrame(() => {
+          pendiente = false;
+          const tarjeta = e.target instanceof Element ? e.target.closest('.bento-celda') : null;
+          if (!tarjeta) return;
+          const caja = tarjeta.getBoundingClientRect();
+          tarjeta.style.setProperty('--fx', Math.round(e.clientX - caja.left) + 'px');
+          tarjeta.style.setProperty('--fy', Math.round(e.clientY - caja.top) + 'px');
+        });
+      }, { passive: true });
+    });
+  };
+
   const iniciar = () => {
-    [precarga, imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar, comunicados].forEach((fn) => {
+    [precarga, tema, buscador, foco, imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar, comunicados].forEach((fn) => {
       try { fn(); } catch (error) { if (window.console) window.console.error(error); }
     });
   };

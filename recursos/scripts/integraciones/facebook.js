@@ -13,7 +13,7 @@
   let consulta = null;
   const obtenerPublicaciones = () => {
     if (!consulta) {
-      consulta = fetch(new URL('redes-sociales/publicaciones-facebook.php', raizSitio).toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' })
+      consulta = fetch(new URL('api/facebook-publicaciones.php', raizSitio).toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' })
         .then((r) => (r.ok ? r.json() : null))
         .then((datos) => (datos && datos.configured === true && Array.isArray(datos.posts) ? datos.posts : []))
         .catch(() => []);
@@ -162,7 +162,7 @@
 
   const rejilla = doc.querySelector('[data-fotos-fb]');
   if (!rejilla) return;
-  fetch(new URL('redes-sociales/fotos-facebook.php', raizSitio).toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' })
+  fetch(new URL('api/facebook-fotos.php', raizSitio).toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' })
     .then((r) => (r.ok ? r.json() : null))
     .then((datos) => {
       if (!datos || datos.configured !== true || !Array.isArray(datos.photos)) return;

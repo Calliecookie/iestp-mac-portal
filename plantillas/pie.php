@@ -94,6 +94,17 @@
     </div>
   </div>
 </dialog>
+<dialog class="dialogo buscador" id="buscador" aria-label="Buscar en el portal" data-buscador>
+  <div class="buscador-panel">
+    <div class="buscador-cabeza">
+      <label class="buscador-campo"><?= mac_icono('buscar') ?><span class="sr">Buscar en el portal</span><input type="search" placeholder="Trámites, documentos, fechas o personas" autocomplete="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="true" aria-controls="buscador-resultados" aria-autocomplete="list" data-buscador-entrada></label>
+      <button type="button" class="dialogo-cerrar" data-buscador-cerrar aria-label="Cerrar el buscador"><?= mac_icono('cerrar') ?></button>
+    </div>
+    <p class="buscador-estado" role="status" aria-live="polite" data-buscador-estado></p>
+    <ul class="buscador-resultados" id="buscador-resultados" role="listbox" aria-label="Resultados" data-buscador-resultados></ul>
+    <p class="buscador-ayuda" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> moverte <kbd>Enter</kbd> abrir <kbd>Esc</kbd> cerrar</p>
+  </div>
+</dialog>
 <dialog class="visor" id="visor" aria-label="Imagen ampliada" data-visor>
   <button type="button" class="dialogo-cerrar" data-visor-cerrar aria-label="Cerrar imagen"><?= mac_icono('cerrar') ?></button>
   <img alt="" data-visor-imagen>

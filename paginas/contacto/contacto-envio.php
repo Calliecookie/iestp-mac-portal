@@ -24,13 +24,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     $origin = trim((string) ($_POST['origen'] ?? 'formulario web'));
     $consent = (string) ($_POST['acepta'] ?? '') === '1';
     $csrfValid = mac_csrf_is_valid($_POST['csrf_token'] ?? null);
-    $honeypot = trim((string) ($_POST['website'] ?? ''));
+    $escudo = mac_escudo_evaluar($_POST);
 
-    if ($honeypot !== '') {
+    if ($escudo === 'bot') {
         $status = 'success';
         $title = 'Consulta recibida';
         $message = 'Gracias. Si corresponde, nos comunicaremos contigo por los datos proporcionados.';
-    } elseif (!$csrfValid) {
+    } elseif (!$csrfValid || $escudo === 'vencido') {
         http_response_code(403);
         $status = 'error';
         $title = 'La sesión del formulario venció';

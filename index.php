@@ -33,6 +33,8 @@ $publicacionesRecientes = mac_publicaciones_html(4);
 
   <?= mac_perfiles_html() ?>
 
+  <?= mac_accesos_html() ?>
+
   <section class="seccion" id="programas" aria-labelledby="programas-titulo">
     <div class="contenedor">
       <div class="seccion-cabeza">
@@ -83,7 +85,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
       <div class="banda-matricula">
         <h3 class="banda-matricula-titulo">Si ya eres estudiante</h3>
         <ul>
-          <li><a href="<?= mac_url('paginas/admision-y-matricula/matricula.php') ?>#calendario"><?= mac_icono('calendario') ?>Calendario académico 2026</a></li>
+          <li><a href="<?= mac_url('paginas/admision-y-matricula/calendario.php') ?>"><?= mac_icono('calendario') ?>Calendario académico 2026</a></li>
           <li><a href="<?= mac_url('paginas/admision-y-matricula/matricula.php') ?>"><?= mac_icono('matricula') ?>Procesos de matrícula</a></li>
           <li><a href="<?= mac_url('paginas/admision-y-matricula/registro-matricula.php') ?>"><?= mac_icono('pantalla') ?>Registro de matrícula</a></li>
           <li><a href="<?= mac_url('paginas/admision-y-matricula/becas.php') ?>"><?= mac_icono('usuarios') ?>Becas</a></li>
@@ -236,9 +238,8 @@ $publicacionesRecientes = mac_publicaciones_html(4);
       </div>
       <form class="formulario" action="<?= mac_url('paginas/contacto/contacto-envio.php') ?>" method="post" data-formulario data-correo="<?= mac_e(mac_dato('correo')) ?>">
         <h3 class="formulario-titulo">Envía tu consulta</h3>
-        <div class="form-trampa" aria-hidden="true"><label>No completar este campo<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <?= mac_escudo_html($csrfToken) ?>
         <input type="hidden" name="origen" value="portada">
-        <input type="hidden" name="csrf_token" value="<?= mac_e($csrfToken) ?>">
         <div class="formulario-fila">
           <div class="campo"><label for="inicio-nombre">Nombre y apellidos</label><input id="inicio-nombre" name="nombre" autocomplete="name" required maxlength="120"></div>
           <div class="campo"><label for="inicio-correo">Correo electrónico</label><input id="inicio-correo" name="correo" type="email" autocomplete="email" required maxlength="180" inputmode="email"></div>

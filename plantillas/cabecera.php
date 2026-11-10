@@ -121,7 +121,7 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
     <meta name="robots" content="noindex, nofollow">
 <?php endif; ?>
     <meta name="theme-color" content="#0b2e26">
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="light dark">
     <meta name="facebook-page-url" content="<?= mac_e((string) mac_config('facebook_page_url')) ?>">
     <meta name="youtube-channel-id" content="<?= mac_e((string) mac_config('youtube_channel_id')) ?>">
     <link rel="canonical" href="<?= mac_e($macCanonicalUrl) ?>">
@@ -143,8 +143,11 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
     <link rel="preload" href="<?= mac_url('recursos/fuentes/rotulo_negrita.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="<?= mac_url('recursos/fuentes/texto_regular.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="<?= mac_recurso('recursos/estilos/sitio.css') ?>">
-    <script>(function(h){h.classList.add('js');try{if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches)h.classList.add('anim');if(!('CSSViewTransitionRule' in window))h.classList.add('sin-vt');}catch(e){}try{if(!window.sessionStorage.getItem('mac_precarga_v1')){h.classList.add('precargando');window.setTimeout(function(){h.classList.remove('precargando');},9000);}}catch(e){}})(document.documentElement);</script>
-    <script src="<?= mac_recurso('recursos/scripts/sitio.js') ?>" defer></script>
+    <script>(function(h){h.classList.add('js');try{if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches)h.classList.add('anim');if(!('CSSViewTransitionRule' in window))h.classList.add('sin-vt');}catch(e){}try{var t=window.localStorage.getItem('mac_tema_v1');if(t==='oscuro'||t==='claro')h.setAttribute('data-tema',t);}catch(e){}try{if(!window.sessionStorage.getItem('mac_precarga_v1')){h.classList.add('precargando');window.setTimeout(function(){h.classList.remove('precargando');},9000);}}catch(e){}})(document.documentElement);</script>
+    <script src="<?= mac_url('recursos/scripts/sitio.js') ?>?v=<?= mac_version_scripts() ?>" defer></script>
+<?php foreach ((array) ($scripts ?? []) as $macModulo): if (!preg_match('~^modulos/[a-z-]+\.js$~', (string) $macModulo)) continue; ?>
+    <script src="<?= mac_url('recursos/scripts/' . $macModulo) ?>?v=<?= mac_version_scripts() ?>" defer></script>
+<?php endforeach; ?>
     <script type="application/ld+json"><?= json_encode($macStructuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
   </head>
   <body class="<?= $activo === 'inicio' ? 'es-portada' : 'es-interior' ?>">
@@ -166,8 +169,10 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
           <ul class="franja-enlaces">
             <li><a href="tel:<?= mac_e(mac_dato('telefono_enlace')) ?>"><?= mac_icono('telefono') ?><?= mac_e(mac_dato('telefono')) ?></a></li>
             <li class="franja-correo"><a href="mailto:<?= mac_e(mac_dato('correo')) ?>"><?= mac_icono('correo') ?><?= mac_e(mac_dato('correo')) ?></a></li>
-            <li><a href="<?= mac_url('paginas/servicios/mesa-de-partes.php') ?>"><?= mac_icono('bandeja') ?>Mesa de partes</a></li>
-            <li><a href="<?= mac_url(mac_dato('intranet')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('pantalla') ?>Intranet<?= mac_externo() ?></a></li>
+            <li class="franja-mesa"><a href="<?= mac_url('paginas/servicios/mesa-de-partes.php') ?>"><?= mac_icono('bandeja') ?><span>Mesa de partes</span></a></li>
+            <li class="franja-intranet"><a href="<?= mac_url(mac_dato('intranet')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('pantalla') ?>Intranet<?= mac_externo() ?></a></li>
+            <li class="franja-buscar"><button type="button" class="buscar-boton" data-buscador-abrir aria-haspopup="dialog" aria-keyshortcuts="Control+K" hidden><?= mac_icono('buscar') ?><span>Buscar</span><kbd aria-hidden="true">Ctrl K</kbd></button></li>
+            <li class="franja-tema"><button type="button" class="tema-boton" data-tema-boton aria-pressed="false" hidden><?= mac_icono('luna', 'icono tema-luna') ?><?= mac_icono('sol', 'icono tema-sol') ?><span class="sr">Tema oscuro</span></button></li>
           </ul>
         </div>
       </div>

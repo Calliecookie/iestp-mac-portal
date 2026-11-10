@@ -19,12 +19,31 @@ if (!function_exists('mac_comunicados')) {
 }
 
 if (!function_exists('mac_comunicados_html')) {
-    function mac_comunicados_html(int $cantidad = 0, string $nivel = 'h3'): string
+    function mac_comunicados_html(int $cantidad = 0, string $nivel = 'h3', bool $conBuscador = false): string
     {
         $lista = mac_comunicados($cantidad);
         if (!$lista) return '';
         $raizDir = dirname(__DIR__) . '/';
-        $html = '<ul class="comunicados-lista">';
+        $categorias = mac_cargar_datos('comunicados.json')['categorias'] ?? [];
+        $categorias = is_array($categorias) ? $categorias : [];
+        $html = '';
+        if ($conBuscador) {
+            $usadas = [];
+            foreach ($lista as $c) $usadas[(string) ($c['categoria'] ?? '')] = true;
+            $html .= '<div class="registro" data-registro data-registro-singular="comunicado" data-registro-plural="comunicados">';
+            $html .= '<div class="registro-herramientas">';
+            $html .= '<label class="campo-busqueda"><span class="campo-etiqueta">Buscar en los comunicados</span>';
+            $html .= '<span class="campo-busqueda-caja">' . mac_icono('buscar') . '<input type="search" placeholder="Títulos, matrícula, actividades…" autocomplete="off" data-registro-buscar></span></label>';
+            $html .= '<div class="filtros" role="group" aria-label="Filtrar por categoría">';
+            $html .= '<button type="button" class="filtro" aria-pressed="true" data-filtro="todas">Todos</button>';
+            foreach ($categorias as $clave => $nombre) {
+                if (!isset($usadas[$clave])) continue;
+                $html .= '<button type="button" class="filtro" aria-pressed="false" data-filtro="' . mac_e((string) $clave) . '">' . mac_e((string) $nombre) . '</button>';
+            }
+            $html .= '</div></div>';
+            $html .= '<p class="registro-resumen" role="status" aria-live="polite" data-registro-resumen></p>';
+        }
+        $html .= '<ul class="comunicados-lista">';
         foreach ($lista as $i => $c) {
             $titulo = trim((string) $c['titulo']);
             $base = (string) $c['imagen'];
@@ -34,18 +53,20 @@ if (!function_exists('mac_comunicados_html')) {
             $dim = is_array($medidas) ? ' width="' . (int) $medidas[0] . '" height="' . (int) $medidas[1] . '"' : '';
             $fecha = mac_fecha_larga((string) ($c['fecha'] ?? ''));
             $enlace = trim((string) ($c['enlace'] ?? ''));
-            $html .= '<li class="comunicado">';
+            $categoria = (string) ($c['categoria'] ?? '');
+            $html .= '<li class="comunicado" data-registro-item data-categoria="' . mac_e($categoria) . '">';
             $html .= '<a class="comunicado-imagen" href="' . mac_url($grande) . '" data-zoom data-sin-carga aria-label="' . mac_e('Ampliar el comunicado: ' . $titulo) . '">';
             $html .= '<img src="' . mac_url($miniatura) . '"' . $dim . ' alt="' . mac_e((string) ($c['alt'] ?? $titulo)) . '" loading="' . ($i < 2 ? 'eager' : 'lazy') . '" decoding="async">';
             $html .= '<span class="comunicado-ampliar" aria-hidden="true">' . mac_icono('ampliar') . '</span></a>';
             $html .= '<div class="comunicado-cuerpo">';
-            if ($fecha !== '') $html .= '<p class="comunicado-fecha"><time datetime="' . mac_e((string) $c['fecha']) . '">' . mac_e($fecha) . '</time></p>';
+            $etiqueta = isset($categorias[$categoria]) ? '<span class="comunicado-categoria">' . mac_e((string) $categorias[$categoria]) . '</span>' : '';
+            if ($fecha !== '' || $etiqueta !== '') $html .= '<p class="comunicado-fecha">' . ($fecha !== '' ? '<time datetime="' . mac_e((string) $c['fecha']) . '">' . mac_e($fecha) . '</time>' : '') . $etiqueta . '</p>';
             $html .= '<' . $nivel . ' class="comunicado-titulo">' . mac_e($titulo) . '</' . $nivel . '>';
             if (!empty($c['resumen'])) $html .= '<p class="comunicado-texto">' . mac_e((string) $c['resumen']) . '</p>';
             $html .= '<p class="comunicado-acciones"><a href="' . mac_url($grande) . '" data-zoom data-sin-carga>Ver comunicado completo</a>';
             if (preg_match('~^https://~', $enlace)) $html .= '<a href="' . mac_e($enlace) . '" target="_blank" rel="noopener noreferrer">Más información' . mac_externo() . '</a>';
             $html .= '</p></div></li>';
         }
-        return $html . '</ul>';
+        return $html . '</ul>' . ($conBuscador ? '</div>' : '');
     }
 }
