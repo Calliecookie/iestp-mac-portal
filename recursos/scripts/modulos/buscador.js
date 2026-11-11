@@ -67,10 +67,12 @@
         enlace.appendChild(titulo);
         if (item.d) enlace.appendChild(nodo('span', 'buscador-detalle', item.d));
         enlace.addEventListener('click', () => dialogo.close());
+        enlace.id = 'buscador-opcion-' + i;
+        enlace.tabIndex = -1;
+        enlace.setAttribute('role', 'option');
+        enlace.setAttribute('aria-selected', 'false');
         const li = nodo('li', 'buscador-item', [enlace]);
-        li.id = 'buscador-opcion-' + i;
-        li.setAttribute('role', 'option');
-        li.setAttribute('aria-selected', 'false');
+        li.setAttribute('role', 'presentation');
         li.style.setProperty('--i', String(i));
         li.addEventListener('pointermove', () => { if (activo !== i) marcar(i); });
         lista.appendChild(li);
@@ -113,8 +115,7 @@
       if (e.key === 'ArrowDown') { e.preventDefault(); marcar(activo + 1); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); marcar(activo - 1); }
       else if (e.key === 'Enter') {
-        const opcion = lista.querySelectorAll('[role="option"]')[activo];
-        const enlace = opcion ? opcion.querySelector('a') : null;
+        const enlace = lista.querySelectorAll('[role="option"]')[activo];
         if (enlace) { e.preventDefault(); enlace.click(); }
       }
     });
