@@ -140,6 +140,9 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
     <link rel="icon" href="<?= mac_recurso('recursos/imagenes/identidad/favicon-192.png') ?>" type="image/png" sizes="192x192">
     <link rel="shortcut icon" href="<?= mac_recurso('recursos/imagenes/identidad/favicon.ico') ?>">
     <link rel="apple-touch-icon" href="<?= mac_recurso('recursos/imagenes/identidad/icono-apple-180.png') ?>">
+<?php if ($activo === 'inicio'): ?>
+    <link rel="preload" as="image" href="<?= mac_url('recursos/imagenes/instituto/banner-principal-1600.webp') ?>" imagesrcset="<?= mac_url('recursos/imagenes/instituto/banner-principal-960.webp') ?> 960w, <?= mac_url('recursos/imagenes/instituto/banner-principal-1600.webp') ?> 1600w, <?= mac_url('recursos/imagenes/instituto/banner-principal-2560.webp') ?> 2560w" imagesizes="(max-width: 679px) 166vw, (max-width: 1179px) 135vw, 112vw" fetchpriority="high">
+<?php endif; ?>
     <link rel="preload" href="<?= mac_url('recursos/fuentes/rotulo_negrita.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="<?= mac_url('recursos/fuentes/texto_regular.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="<?= mac_recurso('recursos/estilos/sitio.css') ?>">

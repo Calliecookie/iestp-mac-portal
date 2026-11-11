@@ -680,12 +680,17 @@
     const inicio = window.performance.now();
     const MINIMO = reducir.matches ? 200 : 800;
     const imagenesVisibles = Array.from(doc.images).filter((img) => !capa.contains(img) && img.loading !== 'lazy');
-    let cargado = doc.readyState === 'complete';
+    const principal = doc.querySelector('main img[fetchpriority="high"]');
+    let cargado = false;
     let progreso = 0;
     let terminado = false;
     const marcarCargado = () => { cargado = true; };
-    if (!cargado) window.addEventListener('load', marcarCargado, { once: true });
-    const seguro = window.setTimeout(marcarCargado, 7000);
+    if (!principal || principal.complete) marcarCargado();
+    else {
+      principal.addEventListener('load', marcarCargado, { once: true });
+      principal.addEventListener('error', marcarCargado, { once: true });
+    }
+    const seguro = window.setTimeout(marcarCargado, 2500);
     const terminar = () => {
       if (terminado) return;
       terminado = true;
@@ -698,10 +703,8 @@
         avisar();
       };
       if (!animado() || !html.classList.contains('precargando')) { retirar(); return; }
-      window.setTimeout(() => {
-        capa.classList.add('saliendo');
-        window.setTimeout(retirar, 560);
-      }, 260);
+      capa.classList.add('saliendo');
+      window.setTimeout(retirar, 380);
     };
     const paso = (ahora) => {
       if (terminado) return;
@@ -712,7 +715,7 @@
       const objetivo = cargado ? tiempo : Math.min(0.9, Math.min(tiempo, 0.35 + proporcion * 0.55));
       progreso += (objetivo - progreso) * (reducir.matches ? 1 : 0.14);
       capa.style.setProperty('--p', progreso.toFixed(4));
-      if (cargado && tiempo >= 1 && progreso > 0.985) { terminar(); return; }
+      if (cargado && tiempo >= 1) { terminar(); return; }
       window.requestAnimationFrame(paso);
     };
     window.requestAnimationFrame(paso);
