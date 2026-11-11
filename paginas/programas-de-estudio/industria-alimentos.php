@@ -13,11 +13,14 @@ mac_pagina_abrir();
   <?= mac_ficha_programa('Coordinación de Área Académica de Industrias Alimentarias') ?>
   <?= mac_recorte('recursos/imagenes/carreras/recortes/industria_alimentos_corte', 'Estudiante con mandil, cofia, mascarilla y guantes corta una fruta con un cuchillo', '(max-width: 679px) 52vw, 16.5rem', 'con-recorte-figura') ?>
 </div>
-<?= mac_aviso('Plan de estudios', 'La duración, los créditos y las unidades didácticas del plan vigente se publicarán según la malla curricular aprobada. Mientras tanto, solicítalos a la coordinación del programa.') ?>
+<?= mac_aviso('Plan de estudios', 'El plan curricular modular se publica más abajo con los periodos académicos III a VI; los periodos I y II se publicarán cuando el instituto los entregue. Mientras tanto, solicítalos a la coordinación del programa.') ?>
 <?= mac_programa_detalle('alimentos') ?>
 <h2 id="plan-de-estudios">Plan de estudios</h2>
-<p>Plan curricular publicado por el instituto. El plan del modelo vigente se publicará cuando esté disponible; mientras tanto, solicítalo a la coordinación del programa.</p>
+<p>Plan curricular modular del programa y plan curricular de la carrera de Industrias Alimentarias que lo antecedió.</p>
 <?php mac_documentos_mostrar('plan-alimentos', $raiz, ['titulo' => 'Plan vigente']); ?>
+<h2 id="horarios">Horarios de clases</h2>
+<p>Horario del IV periodo académico 2026-II, en turno diurno y turno nocturno.</p>
+<?php mac_documentos_mostrar('horarios-alimentos', $raiz, ['titulo' => 'Horarios publicados']); ?>
 <h2>Clases y prácticas</h2>
 <div class="con-recorte con-recorte-autoclave">
   <div class="ficha">

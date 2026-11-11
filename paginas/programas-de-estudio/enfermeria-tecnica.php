@@ -13,11 +13,14 @@ mac_pagina_abrir();
   <?= mac_ficha_programa('Coordinación de Área Académica de Enfermería Técnica') ?>
   <?= mac_recorte('recursos/imagenes/carreras/recortes/enfermeria_tecnica', 'Profesional con uniforme azul de enfermería atiende a un paciente recostado en una camilla', '(max-width: 679px) 52vw, 18rem', 'con-recorte-figura') ?>
 </div>
-<?= mac_aviso('Plan de estudios', 'La duración, los créditos y las unidades didácticas del plan vigente se publicarán según la malla curricular aprobada. Mientras tanto, solicítalos a la coordinación del programa.') ?>
+<?= mac_aviso('Plan de estudios', 'El plan curricular modular 2025 se publica más abajo con los periodos académicos I a IV; los periodos V y VI se publicarán cuando el instituto los entregue. Mientras tanto, solicítalos a la coordinación del programa.') ?>
 <?= mac_programa_detalle('enfermeria') ?>
 <h2 id="plan-de-estudios">Plan de estudios</h2>
-<p>Plan curricular publicado por el instituto. El plan del modelo vigente se publicará cuando esté disponible; mientras tanto, solicítalo a la coordinación del programa.</p>
+<p>Plan curricular modular 2025 del programa y plan curricular del modelo anterior.</p>
 <?php mac_documentos_mostrar('plan-enfermeria', $raiz, ['titulo' => 'Plan vigente']); ?>
+<h2 id="horarios">Horarios de clases</h2>
+<p>Horario por secciones del periodo académico 2026-II, en turno diurno y turno noche, con docentes, aulas y laboratorios.</p>
+<?php mac_documentos_mostrar('horarios-enfermeria', $raiz, ['titulo' => 'Horarios publicados']); ?>
 <h2>Prácticas del programa</h2>
 <p>Las experiencias formativas en situaciones reales de trabajo complementan las competencias de cada módulo. Revisa los requisitos y el procedimiento para realizarlas.</p>
 <figure class="foto foto-ancha">

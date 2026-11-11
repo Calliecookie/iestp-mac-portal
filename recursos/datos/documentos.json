@@ -10,7 +10,8 @@
     "horarios": "Horarios de laboratorios",
     "formatos": "Formatos de trámite",
     "tasas": "Tasas y derechos",
-    "planes-estudio": "Planes de estudio"
+    "planes-estudio": "Planes de estudio",
+    "horarios-clases": "Horarios de clases"
   },
   "orden": [
     "gestion",
@@ -23,6 +24,7 @@
     "convenios-universidades",
     "convenios-empresas",
     "planes-estudio",
+    "horarios-clases",
     "horarios"
   ],
   "documentos": [
@@ -478,6 +480,70 @@
       "paginas": 2,
       "destinos": [
         "plan-alimentos"
+      ]
+    },
+    {
+      "id": "plan-2025-enfermeria",
+      "titulo": "Plan curricular modular 2025 de Enfermería Técnica",
+      "categoria": "planes-estudio",
+      "estado": "vigente",
+      "periodo": "Plan 2025",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Unidades didácticas, créditos y horas de los periodos académicos I a IV, organizadas por módulo, con las experiencias formativas en situaciones reales de trabajo.",
+      "nota": "Los periodos académicos V y VI están pendientes de publicación.",
+      "archivo": "academico/planes-de-estudio/vigentes/plan-curricular-enfermeria-tecnica-2025.pdf",
+      "paginas": 1,
+      "destinos": [
+        "plan-enfermeria"
+      ]
+    },
+    {
+      "id": "plan-modular-alimentos",
+      "titulo": "Plan curricular modular de Industria de Alimentos y Bebidas",
+      "categoria": "planes-estudio",
+      "estado": "vigente",
+      "periodo": "No indicado en el archivo",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Unidades didácticas, créditos y horas de los periodos académicos III a VI, organizadas por módulo, con las experiencias formativas en situaciones reales de trabajo.",
+      "nota": "Los periodos académicos I y II están pendientes de publicación.",
+      "archivo": "academico/planes-de-estudio/vigentes/plan-curricular-industria-alimentos.pdf",
+      "paginas": 1,
+      "destinos": [
+        "plan-alimentos"
+      ]
+    },
+    {
+      "id": "horario-clases-enfermeria-2026-2",
+      "titulo": "Horario de clases 2026-II de Enfermería Técnica",
+      "categoria": "horarios-clases",
+      "estado": "vigente",
+      "periodo": "Periodo académico 2026-II",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Horario por secciones II, IV y VI en turno diurno y turno noche, con docentes, aulas y laboratorios.",
+      "nota": null,
+      "archivo": "academico/horarios/vigentes/horario-clases-enfermeria-tecnica-2026-2.pdf",
+      "paginas": 3,
+      "destinos": [
+        "horarios-enfermeria"
+      ]
+    },
+    {
+      "id": "horario-clases-alimentos-2026-2",
+      "titulo": "Horario de clases 2026-II de Industria de Alimentos y Bebidas",
+      "categoria": "horarios-clases",
+      "estado": "vigente",
+      "periodo": "Periodo académico 2026-II",
+      "fecha": null,
+      "resolucion": null,
+      "descripcion": "Horario del IV periodo académico en turno diurno y turno nocturno, en el aula 202 y el taller II de cárnicos e hidrobiológicos.",
+      "nota": null,
+      "archivo": "academico/horarios/vigentes/horario-clases-industria-alimentos-2026-2.pdf",
+      "paginas": 1,
+      "destinos": [
+        "horarios-alimentos"
       ]
     }
   ]

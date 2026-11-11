@@ -23,6 +23,21 @@ $tramites = [
 <h2>Formato y documentos para tus trámites</h2>
 <p>La mayoría de trámites académicos se inicia con una solicitud en el Formato Único de Trámite (FUT), que se presenta por Mesa de Partes junto con los requisitos de cada caso.</p>
 <?php mac_documentos_mostrar('mesa-de-partes', $raiz, ['titulo' => 'Documentos vigentes']); ?>
+<h2 id="titulacion">Requisitos para la titulación</h2>
+<p>Documentos que presenta el egresado por Mesa de Partes para obtener el título de profesional técnico.</p>
+<ol class="pasos">
+  <li><p>Copia de DNI por ambas caras, en un solo lado de la hoja.</p></li>
+  <li><p>Certificado de estudios superiores original, del I al VI semestre.</p></li>
+  <li><p>Certificado original de estudios de 1.° a 5.° de secundaria, expedido por la UGEL o con visación del director del colegio de procedencia.</p></li>
+  <li><p>Haber aprobado los módulos de experiencias formativas en situaciones reales de trabajo (EFSRT) del programa de estudios.</p></li>
+  <li><p>Constancia original de no adeudar a la institución.</p></li>
+  <li><p>Tres fotografías tamaño pasaporte, fondo blanco, con terno, en papel mate.</p></li>
+  <li><p>Constancia original de egresado.</p></li>
+  <li><p>Certificado de acreditación del idioma extranjero o de lengua nativa.</p></li>
+  <li><p>FUT solicitando ser declarado expedito para la titulación, con el recibo de pago del trámite.</p></li>
+  <li><p>FUT solicitando la emisión del título, con el recibo de pago de la emisión.</p></li>
+</ol>
+<p class="fuente">El procedimiento, los plazos y las modalidades de titulación figuran en el <?= mac_mpa_enlace(48, 'Manual de Procesos Académicos 2026–2032, página 48') ?>. Confirma el monto de cada pago antes de realizarlo.</p>
 <h2>Trámites regulados por el Manual de Procesos Académicos</h2>
 <p>Cada enlace abre el manual en la página donde empieza el trámite, con sus requisitos, costos y plazos.</p>
 <ul class="indice-tramites">
