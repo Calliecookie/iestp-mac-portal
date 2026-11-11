@@ -257,7 +257,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
   <div class="dialogo-panel">
     <button type="button" class="dialogo-cerrar" data-comunicados-cerrar aria-label="Cerrar comunicados"><?= mac_icono('cerrar') ?></button>
     <header class="comunicados-cabeza">
-      <img class="comunicados-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="81" height="96" alt="Emblema del IESTP Manuel Arévalo Cáceres">
+      <img class="comunicados-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="90" height="96" alt="Emblema del IESTP Manuel Arévalo Cáceres">
       <div>
         <p class="comunicados-sigla">IESTP Manuel Arévalo Cáceres</p>
         <h2 id="comunicados-titulo">COMUNICADOS</h2>

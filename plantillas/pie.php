@@ -2,7 +2,7 @@
   <div class="pie-zocalo" aria-hidden="true"></div>
   <div class="contenedor pie-in">
     <div class="pie-marca">
-      <img class="pie-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="81" height="96" alt="Emblema del IESTP Manuel Arévalo Cáceres" loading="lazy" decoding="async">
+      <img class="pie-logo" src="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-96.png') ?>" srcset="<?= mac_recurso('recursos/imagenes/identidad/logo-mac-192.png') ?> 2x" width="90" height="96" alt="Emblema del IESTP Manuel Arévalo Cáceres" loading="lazy" decoding="async">
       <div>
         <p class="pie-nombre">Manuel Arévalo Cáceres</p>
         <p>Instituto de Educación Superior Tecnológico Público creado el 13 de agosto de 1986 mediante la R. M. N.º 508-86-ED.</p>
