@@ -3,14 +3,20 @@ $titulo = 'Estadísticas';
 $activo = 'transparencia';
 $pagina = 'estadisticas';
 $raiz = '../../';
-$lead = 'Indicadores de la comunidad educativa, metas de atención por programa de estudio y dotación de plazas según los documentos oficiales publicados por el instituto.';
-$descripcion = 'Estadísticas de estudiantes, personal, infraestructura y plazas del IESTP Manuel Arévalo Cáceres con respaldo documental.';
+$lead = 'Resultados de admisión y matrícula, indicadores de la comunidad educativa, metas de atención por programa de estudio y dotación de plazas según los documentos oficiales del instituto.';
+$descripcion = 'Estadísticas de admisión, matrícula, estudiantes, personal, infraestructura y plazas del IESTP Manuel Arévalo Cáceres con respaldo documental.';
+$scripts = ['modulos/estadisticas.js'];
 require dirname(__DIR__, 2) . '/plantillas/cabecera.php';
 mac_pagina_abrir();
 $urlPgrd = mac_url('recursos/documentos/transparencia/no-vigentes/plan-gestion-riesgo-desastres-2025.pdf');
 $urlUbe = mac_url('recursos/documentos/transparencia/vigentes/plan-trabajo-unidad-bienestar-empleabilidad-2026.pdf');
 $urlMpp = mac_url('recursos/documentos/' . mac_dato('mpp'));
 ?>
+<?php $macEstadisticas = mac_estadisticas_html(); if ($macEstadisticas !== ''): ?>
+<h2 id="admision-y-matricula">Admisión y matrícula en cifras</h2>
+<p>Resultados de los procesos de admisión y de la matrícula regular. Pasa el cursor sobre un gráfico para ver el detalle; las tablas completas están al final de esta sección.</p>
+<?= $macEstadisticas ?>
+<?php endif; ?>
 <h2>Comunidad educativa e infraestructura</h2>
 <p>Datos de matrícula por turno, personal en funciones y ambientes físicos consignados en el diagnóstico institucional del Plan de Gestión del Riesgo de Desastres:</p>
 <div class="columnas-dos">

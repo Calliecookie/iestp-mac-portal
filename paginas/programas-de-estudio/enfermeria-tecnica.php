@@ -13,7 +13,7 @@ mac_pagina_abrir();
   <?= mac_ficha_programa('Coordinación de Área Académica de Enfermería Técnica') ?>
   <?= mac_recorte('recursos/imagenes/carreras/recortes/enfermeria_tecnica', 'Profesional con uniforme azul de enfermería atiende a un paciente recostado en una camilla', '(max-width: 679px) 52vw, 18rem', 'con-recorte-figura') ?>
 </div>
-<?= mac_aviso('Plan de estudios', 'El plan curricular modular 2025 se publica más abajo con los periodos académicos I a IV; los periodos V y VI se publicarán cuando el instituto los entregue. Mientras tanto, solicítalos a la coordinación del programa.') ?>
+<?= mac_aviso('Plan de estudios', 'El plan curricular modular 2025, con sus seis periodos académicos y tres módulos, se publica más abajo. Confirma con la coordinación del programa los cambios que se apliquen en el periodo en curso.') ?>
 <?= mac_programa_detalle('enfermeria') ?>
 <h2 id="plan-de-estudios">Plan de estudios</h2>
 <p>Plan curricular modular 2025 del programa y plan curricular del modelo anterior.</p>

@@ -71,10 +71,26 @@ if (!function_exists('mac_calendario_proximos')) {
 }
 
 if (!function_exists('mac_calendario_fecha_html')) {
-    function mac_calendario_fecha_html(array $evento): string
+    function mac_calendario_fecha_html(array $evento, string $estado = 'proximo'): string
     {
-        $partes = mac_fecha_partes($evento['fecha']);
-        return '<time class="evento-fecha" datetime="' . mac_e($evento['fecha']) . '"><span class="evento-dia">' . mac_e((string) ($partes['dia'] ?? '')) . '</span><span class="evento-mes">' . mac_e((string) ($partes['mes'] ?? '')) . '</span></time>';
+        $mostrar = $estado === 'en-curso' ? $evento['hasta'] : $evento['fecha'];
+        $partes = mac_fecha_partes($mostrar);
+        return '<time class="evento-fecha" datetime="' . mac_e($mostrar) . '" data-evento-caja><span class="evento-pre">hasta</span><span class="evento-dia">' . mac_e((string) ($partes['dia'] ?? '')) . '</span><span class="evento-mes">' . mac_e((string) ($partes['mes'] ?? '')) . '</span></time>';
+    }
+}
+
+if (!function_exists('mac_calendario_item_html')) {
+    function mac_calendario_item_html(array $evento, string $hoy, string $nivel, bool $filtrable, bool $oculto = false): string
+    {
+        $estado = mac_calendario_estado($evento, $hoy);
+        $html = '<li class="evento es-' . $estado . ' evento-' . mac_e($evento['tipo']) . '" data-evento data-desde="' . mac_e($evento['fecha']) . '" data-hasta="' . mac_e($evento['hasta']) . '"';
+        if ($filtrable) $html .= ' data-registro-item data-categoria="' . mac_e($evento['tipo']) . '"';
+        if ($oculto) $html .= ' hidden';
+        $html .= '>' . mac_calendario_fecha_html($evento, $estado);
+        $html .= '<div class="evento-cuerpo"><p class="evento-tipo">' . mac_e($evento['tipo_nombre']) . '<span class="evento-ahora">En curso</span></p>';
+        $html .= '<' . $nivel . ' class="evento-titulo">' . mac_e($evento['titulo']) . '</' . $nivel . '>';
+        $html .= '<p class="evento-rango">' . mac_e(mac_calendario_rango($evento)) . '</p></div></li>';
+        return $html;
     }
 }
 
@@ -104,17 +120,10 @@ if (!function_exists('mac_calendario_html')) {
         foreach ($porMes as $mes => $lista) {
             $nombreMes = $meses[((int) substr($mes, 5, 2)) - 1] . ' de ' . substr($mes, 0, 4);
             $actual = $mes === substr($hoy, 0, 7);
-            $html .= '<section class="registro-grupo calendario-mes' . ($actual ? ' es-actual' : '') . '" id="mes-' . mac_e($mes) . '" aria-labelledby="titulo-' . mac_e($mes) . '">';
-            $html .= '<h2 class="calendario-mes-titulo" id="titulo-' . mac_e($mes) . '">' . mac_e($nombreMes) . ($actual ? '<span class="sello sello-vigente">Mes actual</span>' : '') . '</h2>';
+            $html .= '<section class="registro-grupo calendario-mes' . ($actual ? ' es-actual' : '') . '" id="mes-' . mac_e($mes) . '" data-mes="' . mac_e($mes) . '" aria-labelledby="titulo-' . mac_e($mes) . '">';
+            $html .= '<h2 class="calendario-mes-titulo" id="titulo-' . mac_e($mes) . '">' . mac_e($nombreMes) . '<span class="sello sello-vigente">Mes actual</span></h2>';
             $html .= '<ol class="eventos">';
-            foreach ($lista as $evento) {
-                $estado = mac_calendario_estado($evento, $hoy);
-                $html .= '<li class="evento es-' . $estado . ' evento-' . mac_e($evento['tipo']) . '" data-registro-item data-categoria="' . mac_e($evento['tipo']) . '">';
-                $html .= mac_calendario_fecha_html($evento);
-                $html .= '<div class="evento-cuerpo"><p class="evento-tipo">' . mac_e($evento['tipo_nombre']) . ($estado === 'en-curso' ? '<span class="evento-ahora">En curso</span>' : '') . '</p>';
-                $html .= '<h3 class="evento-titulo">' . mac_e($evento['titulo']) . '</h3>';
-                $html .= '<p class="evento-rango">' . mac_e(mac_calendario_rango($evento)) . '</p></div></li>';
-            }
+            foreach ($lista as $evento) $html .= mac_calendario_item_html($evento, $hoy, 'h3', true);
             $html .= '</ol></section>';
         }
         return $html . '</div>';
@@ -124,17 +133,11 @@ if (!function_exists('mac_calendario_html')) {
 if (!function_exists('mac_calendario_proximos_html')) {
     function mac_calendario_proximos_html(int $cantidad = 4): string
     {
-        $proximos = mac_calendario_proximos($cantidad);
-        if (!$proximos) return '<p class="eventos-vacio">No quedan actividades programadas en el calendario vigente.</p>';
+        $candidatos = mac_calendario_proximos($cantidad + 8);
         $hoy = date('Y-m-d');
-        $html = '<ol class="eventos eventos-compactos">';
-        foreach ($proximos as $evento) {
-            $estado = mac_calendario_estado($evento, $hoy);
-            $html .= '<li class="evento es-' . $estado . '">' . mac_calendario_fecha_html($evento);
-            $html .= '<div class="evento-cuerpo"><p class="evento-tipo">' . mac_e($evento['tipo_nombre']) . ($estado === 'en-curso' ? '<span class="evento-ahora">En curso</span>' : '') . '</p>';
-            $html .= '<p class="evento-titulo">' . mac_e($evento['titulo']) . '</p>';
-            $html .= '<p class="evento-rango">' . mac_e(mac_calendario_rango($evento)) . '</p></div></li>';
-        }
-        return $html . '</ol>';
+        $html = '<ol class="eventos eventos-compactos" data-proximos data-cantidad="' . $cantidad . '">';
+        foreach ($candidatos as $i => $evento) $html .= mac_calendario_item_html($evento, $hoy, 'p', false, $i >= $cantidad);
+        $html .= '</ol><p class="eventos-vacio" data-proximos-vacio' . ($candidatos ? ' hidden' : '') . '>No quedan actividades programadas en el calendario vigente.</p>';
+        return $html;
     }
 }

@@ -11,7 +11,7 @@ mac_pagina_abrir();
 <section class="proximos" aria-labelledby="proximos-titulo">
   <div class="proximos-cabeza">
     <h2 class="proximos-titulo" id="proximos-titulo">Lo que viene</h2>
-    <p class="proximos-hoy">Hoy es <time datetime="<?= date('Y-m-d') ?>"><?= mac_e(mac_fecha_larga(date('Y-m-d'))) ?></time></p>
+    <p class="proximos-hoy">Hoy es <time datetime="<?= date('Y-m-d') ?>" data-hoy><?= mac_e(mac_fecha_larga(date('Y-m-d'))) ?></time></p>
   </div>
   <?= mac_calendario_proximos_html(4) ?>
   <div class="acciones">

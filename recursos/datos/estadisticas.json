@@ -1,0 +1,23 @@
+{
+  "_instrucciones": "Configuración de la página de estadísticas. Los datos están en admision.csv y matricula.csv (una fila por programa, turno y sección). Para agregar un proceso de admisión o un semestre nuevo, añada sus filas al CSV correspondiente: tarjetas, gráficos y tablas se recalculan solos. Los CSV pueden editarse en Excel y guardarse como CSV con coma o punto y coma.",
+  "fuente": "Resultados de admisión (modalidades ordinaria y exonerados) y estadística de matrícula regular del instituto",
+  "programas": {
+    "dsi": "Desarrollo de Sistemas de Información",
+    "et": "Enfermería Técnica",
+    "iab": "Industria de Alimentos y Bebidas",
+    "ia": "Industrias Alimentarias (plan anterior)"
+  },
+  "programas_cortos": {
+    "dsi": "Desarrollo de Sistemas",
+    "et": "Enfermería Técnica",
+    "iab": "Alimentos y Bebidas",
+    "ia": "Industrias Alimentarias"
+  },
+  "agrupar_en_graficos": {
+    "ia": "iab"
+  },
+  "turnos": {
+    "diurno": "Diurno",
+    "nocturno": "Nocturno"
+  }
+}

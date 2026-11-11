@@ -323,7 +323,7 @@
       const archivo = registro.querySelector('.registro-archivo');
       if (!caja && !filtros.length) return;
       const normalizar = (texto) => (texto || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-      const textos = items.map((item) => normalizar(item.textContent));
+      const textos = items.map((item) => normalizar(item.innerText || item.textContent));
       let categoria = 'todas';
       const aplicar = () => {
         const consulta = normalizar(caja ? caja.value.trim() : '');
@@ -641,7 +641,7 @@
       '.pagina-contenido > .ayuda', 'main .panel', 'main .registro-item', 'main .plana-direccion', 'main .plana-persona',
       'main .pasos > li', 'main .etapas > li', 'main .lista-enlaces > li', 'main .acordeon > details',
       'main .contacto-canal', 'main .definiciones > div', 'main .indice-tramites > li', 'main .fotos-sede > *',
-      'main .persona', '.pagina-contenido > .lista-marcada', 'main .comunicado', 'main .bento-celda', 'main .calendario-mes', 'main .proximos', 'main .asistente',
+      'main .persona', '.pagina-contenido > .lista-marcada', 'main .comunicado', 'main .bento-celda', 'main .grafico', 'main .cifra', 'main .calendario-mes', 'main .proximos', 'main .asistente',
     ].join(', ');
     const candidatos = Array.from(doc.querySelectorAll(SELECTOR)).filter((el) => !(el.parentElement && el.parentElement.closest(SELECTOR)));
     const alto = window.innerHeight || html.clientHeight;
@@ -854,8 +854,60 @@
     });
   };
 
+  const calendarioVivo = () => {
+    const eventos = Array.from(doc.querySelectorAll('[data-evento][data-desde][data-hasta]'));
+    const marcaHoy = doc.querySelectorAll('[data-hoy]');
+    const meses = doc.querySelectorAll('[data-mes]');
+    if (!eventos.length && !marcaHoy.length && !meses.length) return;
+    const MESES = ['ene.', 'feb.', 'mar.', 'abr.', 'may.', 'jun.', 'jul.', 'ago.', 'set.', 'oct.', 'nov.', 'dic.'];
+    const MESES_LARGOS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    const dos = (n) => (n < 10 ? '0' : '') + n;
+    let ultimo = '';
+    const actualizar = () => {
+      const ahora = new Date();
+      const hoy = ahora.getFullYear() + '-' + dos(ahora.getMonth() + 1) + '-' + dos(ahora.getDate());
+      if (hoy === ultimo) return;
+      ultimo = hoy;
+      eventos.forEach((el) => {
+        const desde = el.getAttribute('data-desde');
+        const hasta = el.getAttribute('data-hasta');
+        const estado = hasta < hoy ? 'pasado' : (desde <= hoy ? 'en-curso' : 'proximo');
+        el.classList.remove('es-pasado', 'es-en-curso', 'es-proximo');
+        el.classList.add('es-' + estado);
+        const caja = el.querySelector('[data-evento-caja]');
+        if (!caja) return;
+        const mostrar = estado === 'en-curso' ? hasta : desde;
+        const partes = mostrar.split('-');
+        caja.setAttribute('datetime', mostrar);
+        const dia = caja.querySelector('.evento-dia');
+        const mes = caja.querySelector('.evento-mes');
+        if (dia) dia.textContent = String(parseInt(partes[2], 10));
+        if (mes) mes.textContent = MESES[parseInt(partes[1], 10) - 1] || '';
+      });
+      doc.querySelectorAll('[data-proximos]').forEach((lista) => {
+        const cantidad = parseInt(lista.getAttribute('data-cantidad'), 10) || 4;
+        const items = Array.from(lista.querySelectorAll('[data-evento]'));
+        const clave = (el) => (el.classList.contains('es-en-curso') ? el.getAttribute('data-hasta') : el.getAttribute('data-desde'));
+        const vigentes = items.filter((el) => !el.classList.contains('es-pasado')).sort((a, b) => (clave(a) < clave(b) ? -1 : clave(a) > clave(b) ? 1 : 0));
+        items.forEach((el) => { el.hidden = true; });
+        vigentes.slice(0, cantidad).forEach((el) => { el.hidden = false; lista.appendChild(el); });
+        const vacio = lista.parentElement ? lista.parentElement.querySelector('[data-proximos-vacio]') : null;
+        if (vacio) vacio.hidden = vigentes.length > 0;
+      });
+      const mesActual = hoy.slice(0, 7);
+      meses.forEach((sec) => sec.classList.toggle('es-actual', sec.getAttribute('data-mes') === mesActual));
+      marcaHoy.forEach((el) => {
+        el.setAttribute('datetime', hoy);
+        el.textContent = ahora.getDate() + ' de ' + MESES_LARGOS[ahora.getMonth()] + ' de ' + ahora.getFullYear();
+      });
+    };
+    actualizar();
+    window.setInterval(actualizar, 60000);
+    doc.addEventListener('visibilitychange', () => { if (!doc.hidden) actualizar(); });
+  };
+
   const iniciar = () => {
-    [precarga, tema, buscador, foco, imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar, comunicados].forEach((fn) => {
+    [precarga, tema, buscador, foco, calendarioVivo, imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar, comunicados].forEach((fn) => {
       try { fn(); } catch (error) { if (window.console) window.console.error(error); }
     });
   };

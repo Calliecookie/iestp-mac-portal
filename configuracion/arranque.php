@@ -15,3 +15,4 @@ require_once dirname(__DIR__) . '/componentes/documentos.php';
 require_once dirname(__DIR__) . '/componentes/personal.php';
 require_once dirname(__DIR__) . '/componentes/comunicados.php';
 require_once dirname(__DIR__) . '/componentes/calendario.php';
+require_once dirname(__DIR__) . '/componentes/estadisticas.php';
