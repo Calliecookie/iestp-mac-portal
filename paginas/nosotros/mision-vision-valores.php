@@ -46,5 +46,5 @@ $urlPatSec = mac_url('recursos/documentos/transparencia/vigentes/plan-trabajo-se
     <dd>«Ser el IES de referencia de Lima Norte, reconocido por su excelencia académica, formación técnica integral e inclusiva, innovación y emprendimiento, con alta pertinencia y aporte al desarrollo sostenible de la comunidad, la región y el país.»</dd>
   </div>
 </dl>
-<p class="fuente">Fuente: <a href="<?= $urlPatSec ?>" target="_blank" rel="noopener noreferrer">Plan de Trabajo de Secretaría Académica 2026, página 4<?= mac_externo() ?></a>. Puedes consultar todos los instrumentos vigentes en <a href="../transparencia/documentos-gestion.php">Documentos de gestión</a>.</p>
+<p class="fuente">Fuente: <a href="<?= $urlPatSec ?>" target="_blank" rel="noopener noreferrer">Plan de Trabajo de Secretaría Académica 2026, página 4<?= mac_externo() ?></a>. Puedes consultar todos los instrumentos vigentes en <a href="<?= mac_url('paginas/transparencia/documentos-gestion.php') ?>">Documentos de gestión</a>.</p>
 <?php mac_pagina_cerrar(); require dirname(__DIR__, 2) . '/plantillas/pie.php'; ?>

@@ -49,7 +49,7 @@ mac_pagina_abrir();
 <?php mac_documentos_mostrar('industria-alimentos', $raiz, ['titulo' => 'Convenios vigentes']); ?>
 <?= mac_programa_docentes('alimentos', 'Industria de Alimentos y Bebidas') ?>
 <div class="acciones">
-  <a class="boton" href="efsrt.php">Experiencias formativas (EFSRT)</a>
-  <a class="boton boton-contorno" href="../admision-y-matricula/admision.php">Requisitos de admisión</a>
+  <a class="boton" href="<?= mac_url('paginas/programas-de-estudio/efsrt.php') ?>">Experiencias formativas (EFSRT)</a>
+  <a class="boton boton-contorno" href="<?= mac_url('paginas/admision-y-matricula/admision.php') ?>">Requisitos de admisión</a>
 </div>
 <?php mac_pagina_cerrar(); require dirname(__DIR__, 2) . '/plantillas/pie.php'; ?>

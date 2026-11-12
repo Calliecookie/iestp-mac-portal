@@ -20,7 +20,7 @@ mac_pagina_abrir();
 <?php mac_documentos_mostrar('desarrollo-sistemas', $raiz, ['titulo' => 'Horarios publicados']); ?>
 <?= mac_programa_docentes('sistemas', 'Desarrollo de Sistemas de Información') ?>
 <div class="acciones">
-  <a class="boton" href="../admision-y-matricula/admision.php">Requisitos de admisión</a>
-  <a class="boton boton-contorno" href="efsrt.php">Experiencias formativas (EFSRT)</a>
+  <a class="boton" href="<?= mac_url('paginas/admision-y-matricula/admision.php') ?>">Requisitos de admisión</a>
+  <a class="boton boton-contorno" href="<?= mac_url('paginas/programas-de-estudio/efsrt.php') ?>">Experiencias formativas (EFSRT)</a>
 </div>
 <?php mac_pagina_cerrar(); require dirname(__DIR__, 2) . '/plantillas/pie.php'; ?>

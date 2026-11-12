@@ -8,7 +8,7 @@ $indice = [];
 $agregar = static function (string $titulo, string $detalle, string $url, string $grupo, bool $externo = false) use (&$indice): void {
     $titulo = trim($titulo);
     if ($titulo === '' || $url === '') return;
-    $indice[] = ['t' => $titulo, 'd' => trim($detalle), 'u' => $url, 'g' => $grupo, 'x' => $externo];
+    $indice[] = ['t' => $titulo, 'd' => trim($detalle), 'u' => mac_ruta($url), 'g' => $grupo, 'x' => $externo];
 };
 
 $agregar('Inicio', 'Portada del portal institucional', 'index.php', 'Páginas');

@@ -12,6 +12,7 @@ $macDefaults = [
     'facebook_page_id' => '',
     'facebook_page_access_token' => '',
     'meta_graph_api_version' => 'v26.0',
+    // AQUI AGREGAR NUEVOS VIDEOS: los videos se leen solos del canal de YouTube indicado aquí; para usar otro canal cambie estas dos líneas
     'youtube_channel_url' => 'https://www.youtube.com/@manuelarevalocaceres9047',
     'youtube_channel_id' => 'UCBA-mup6OyVOdByyVFDueQw',
     'contact_email_to' => 'informes@iestp-mac.edu.pe',

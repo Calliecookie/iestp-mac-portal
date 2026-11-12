@@ -24,7 +24,7 @@
         <li><a href="<?= mac_url('paginas/transparencia/documentos-gestion.php') ?>">Documentos de gestión</a></li>
         <li><a href="<?= mac_url('paginas/transparencia/tupa.php') ?>">TUPA y tasas</a></li>
         <li><a href="<?= mac_url('paginas/otros/archivos-oficiales.php') ?>">Archivos oficiales</a></li>
-        <li><a href="<?= mac_url('paginas/servicios/libro-reclamaciones.php') ?>">Atención y orientación ciudadana</a></li>
+        <li><a href="<?= mac_url('paginas/servicios/libro-reclamaciones.php') ?>">Libro de reclamaciones</a></li>
       </ul>
     </nav>
     <nav class="pie-columna" aria-labelledby="pie-enlaces">

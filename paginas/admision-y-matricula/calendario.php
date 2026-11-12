@@ -16,7 +16,7 @@ mac_pagina_abrir();
   <?= mac_calendario_proximos_html(4) ?>
   <div class="acciones">
     <a class="boton" href="<?= mac_url('api/calendario.php') ?>" download data-sin-carga><?= mac_icono('descarga') ?>Agregar a mi calendario (.ics)</a>
-    <a class="boton boton-contorno" href="matricula.php#calendario">Ver el calendario oficial en imagen</a>
+    <a class="boton boton-contorno" href="<?= mac_url('paginas/admision-y-matricula/matricula.php#calendario') ?>">Ver el calendario oficial en imagen</a>
   </div>
 </section>
 <?= mac_aviso('Confirma las fechas antes de un trámite', 'Las actividades provienen del calendario académico-administrativo 2026 publicado por el instituto. Si una fecha cambia, prevalece la que comunique Secretaría Académica.') ?>

@@ -34,7 +34,7 @@ mac_pagina_abrir();
   <?= mac_imagen('recursos/imagenes/infraestructura/fachada-3', [680], 680, 510, 'Puerta de ingreso y caseta de atención junto al muro del instituto', '(max-width: 679px) 100vw, 17rem') ?>
 </div>
 <div class="acciones">
-  <a class="boton" href="plana-jerarquica.php">Ver la plana jerárquica</a>
+  <a class="boton" href="<?= mac_url('paginas/nosotros/plana-jerarquica.php') ?>">Ver la plana jerárquica</a>
   <a class="boton boton-contorno" href="<?= mac_url(mac_dato('mapa')) ?>" target="_blank" rel="noopener noreferrer">Ver la ubicación en el mapa<?= mac_externo() ?></a>
 </div>
 <?php mac_pagina_cerrar(); require dirname(__DIR__, 2) . '/plantillas/pie.php'; ?>

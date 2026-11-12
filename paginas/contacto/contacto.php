@@ -26,7 +26,7 @@ mac_pagina_abrir();
 </div>
 <div>
 <h2 class="titulo-bloque">Déjanos tu mensaje</h2>
-<form class="formulario" id="form-contacto" action="contacto-envio.php" method="post" data-formulario data-correo="<?= mac_e(mac_dato('correo')) ?>">
+<form class="formulario" id="form-contacto" action="<?= mac_url('paginas/contacto/contacto-envio.php') ?>" method="post" data-formulario data-correo="<?= mac_e(mac_dato('correo')) ?>">
   <?= mac_escudo_html($csrfToken) ?>
   <input type="hidden" name="origen" value="contacto">
   <div class="formulario-fila">
@@ -34,7 +34,7 @@ mac_pagina_abrir();
     <div class="campo"><label for="contacto-correo">Correo electrónico</label><input id="contacto-correo" name="correo" type="email" autocomplete="email" required maxlength="180" inputmode="email"></div>
   </div>
   <div class="campo"><label for="contacto-mensaje">Mensaje</label><textarea id="contacto-mensaje" name="mensaje" rows="6" required maxlength="3000"></textarea><span class="campo-ayuda">Hasta 3000 caracteres. No incluyas datos sensibles que no sean necesarios para tu consulta.</span></div>
-  <label class="form-consentimiento"><input type="checkbox" name="acepta" value="1" required><span>Autorizo el uso de mis datos solo para responder esta consulta, según la <a href="../privacidad/politica-de-privacidad.php">política de privacidad</a>.</span></label>
+  <label class="form-consentimiento"><input type="checkbox" name="acepta" value="1" required><span>Autorizo el uso de mis datos solo para responder esta consulta, según la <a href="<?= mac_url('paginas/privacidad/politica-de-privacidad.php') ?>">política de privacidad</a>.</span></label>
   <div class="form-pie"><button class="boton" type="submit">Enviar mensaje</button></div>
   <p class="form-estado" role="status" aria-live="polite" data-form-estado></p>
 </form>

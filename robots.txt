@@ -7,6 +7,7 @@ Disallow: /almacenamiento/
 Disallow: /api/
 Disallow: /plantillas/
 Disallow: /recursos/datos/
-Disallow: /paginas/contacto/contacto-envio.php
+Disallow: /contacto/enviar
+Disallow: /paginas/
 
 Sitemap: https://iestp-mac.edu.pe/sitemap.xml

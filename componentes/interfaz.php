@@ -16,11 +16,25 @@ if (!function_exists('mac_e')) {
     }
 }
 
+if (!function_exists('mac_ruta')) {
+    function mac_ruta(string $ruta): string
+    {
+        if (preg_match('~^(https?:|mailto:|tel:|#)~', $ruta)) return $ruta;
+        $resto = '';
+        if (preg_match('~^([^?#]*)([?#].*)$~', $ruta, $m)) {
+            $ruta = $m[1];
+            $resto = $m[2];
+        }
+        $ruta = ltrim($ruta, '/');
+        $limpia = $GLOBALS['MAC_RUTAS'][$ruta] ?? null;
+        return '/' . ($limpia ?? $ruta) . $resto;
+    }
+}
+
 if (!function_exists('mac_url')) {
     function mac_url(string $ruta): string
     {
-        if (preg_match('~^(https?:|mailto:|tel:|#)~', $ruta)) return mac_e($ruta);
-        return mac_e(($GLOBALS['raiz'] ?? '') . $ruta);
+        return mac_e(mac_ruta($ruta));
     }
 }
 

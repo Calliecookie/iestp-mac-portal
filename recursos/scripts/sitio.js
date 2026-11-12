@@ -623,7 +623,8 @@
       try { destino = new URL(enlace.href, doc.baseURI); } catch (error) { return; }
       if (destino.origin !== window.location.origin || !/^https?:$/.test(destino.protocol)) return;
       if (destino.pathname === window.location.pathname && destino.search === window.location.search) return;
-      if (!/(?:\/|\.php|\.html?)$/i.test(destino.pathname)) return;
+      if (/\.[a-z0-9]+$/i.test(destino.pathname) && !/\.(?:php|html?)$/i.test(destino.pathname)) return;
+      if (/^\/(?:api|recursos)\//.test(destino.pathname)) return;
       mostrar(destino);
     });
     window.addEventListener('pageshow', limpiar);
@@ -906,8 +907,107 @@
     doc.addEventListener('visibilitychange', () => { if (!doc.hidden) actualizar(); });
   };
 
+  const carrusel = () => {
+    doc.querySelectorAll('[data-carrusel]').forEach((raiz) => {
+      const pista = raiz.querySelector('[data-carrusel-pista]');
+      const laminas = Array.from(raiz.querySelectorAll('[data-carrusel-lamina]'));
+      if (!pista || laminas.length < 2) return;
+      const minis = Array.from(raiz.querySelectorAll('[data-carrusel-ir]'));
+      const puntos = Array.from(raiz.querySelectorAll('[data-carrusel-punto]'));
+      const cuenta = raiz.querySelector('[data-carrusel-actual]');
+      const anterior = raiz.querySelector('[data-carrusel-anterior]');
+      const siguiente = raiz.querySelector('[data-carrusel-siguiente]');
+      let actual = 0;
+      const cargar = (i) => {
+        const img = laminas[i] ? laminas[i].querySelector('img[data-src]') : null;
+        if (!img) return;
+        img.src = img.getAttribute('data-src');
+        img.removeAttribute('data-src');
+      };
+      const marcar = (i) => {
+        actual = i;
+        if (i > 0) { cargar(i); cargar(i + 1); }
+        minis.forEach((m, n) => { if (n === i) m.setAttribute('aria-current', 'true'); else m.removeAttribute('aria-current'); });
+        puntos.forEach((pt, n) => pt.classList.toggle('es-activo', n === i));
+        if (cuenta) cuenta.textContent = String(i + 1);
+        if (anterior) anterior.disabled = i === 0;
+        if (siguiente) siguiente.disabled = i === laminas.length - 1;
+        const mini = minis[i];
+        if (mini && mini.parentElement && mini.parentElement.parentElement) {
+          const tira = mini.parentElement.parentElement;
+          tira.scrollTo({ left: mini.parentElement.offsetLeft - tira.clientWidth / 2 + mini.offsetWidth / 2, behavior: reducir.matches ? 'auto' : 'smooth' });
+        }
+      };
+      const ir = (i) => {
+        const destino = Math.max(0, Math.min(laminas.length - 1, i));
+        pista.scrollTo({ left: laminas[destino].offsetLeft, behavior: reducir.matches ? 'auto' : 'smooth' });
+      };
+      let pendiente = false;
+      pista.addEventListener('scroll', () => {
+        if (pendiente) return;
+        pendiente = true;
+        window.requestAnimationFrame(() => {
+          pendiente = false;
+          const ancho = pista.clientWidth || 1;
+          const i = Math.max(0, Math.min(laminas.length - 1, Math.round(pista.scrollLeft / ancho)));
+          if (i !== actual) marcar(i);
+        });
+      }, { passive: true });
+      if (anterior) anterior.addEventListener('click', () => ir(actual - 1));
+      if (siguiente) siguiente.addEventListener('click', () => ir(actual + 1));
+      minis.forEach((m, n) => m.addEventListener('click', () => ir(n)));
+      raiz.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); ir(actual + 1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); ir(actual - 1); }
+        else if (e.key === 'Home') { e.preventDefault(); ir(0); }
+        else if (e.key === 'End') { e.preventDefault(); ir(laminas.length - 1); }
+      });
+      marcar(0);
+      const primera = laminas[0].querySelector('img[data-src]');
+      if (primera) {
+        const gestos = ['pointermove', 'pointerdown', 'touchstart', 'keydown', 'wheel'];
+        const subir = () => { gestos.forEach((g) => window.removeEventListener(g, subir)); cargar(0); };
+        gestos.forEach((g) => window.addEventListener(g, subir, { passive: true }));
+      }
+    });
+  };
+
+  const movimiento = () => {
+    if (!animado()) return;
+    const fondo = doc.querySelector('.portada-fondo img');
+    if (fondo) {
+      let pendiente = false;
+      const mover = () => {
+        pendiente = false;
+        const y = window.scrollY || 0;
+        if (y > window.innerHeight) return;
+        fondo.style.transform = 'translate3d(0,' + Math.round(y * 0.14) + 'px,0) scale(' + (1 + Math.min(y, 600) / 9000).toFixed(4) + ')';
+      };
+      window.addEventListener('scroll', () => { if (!pendiente) { pendiente = true; window.requestAnimationFrame(mover); } }, { passive: true });
+    }
+    if (!puntero.matches) return;
+    doc.querySelectorAll('.programa > a, .persona').forEach((tarjeta) => {
+      let cuadro = 0;
+      tarjeta.addEventListener('pointermove', (e) => {
+        if (cuadro) return;
+        cuadro = window.requestAnimationFrame(() => {
+          cuadro = 0;
+          const caja = tarjeta.getBoundingClientRect();
+          const px = (e.clientX - caja.left) / caja.width - 0.5;
+          const py = (e.clientY - caja.top) / caja.height - 0.5;
+          tarjeta.style.setProperty('--gx', (py * -5).toFixed(2) + 'deg');
+          tarjeta.style.setProperty('--gy', (px * 6).toFixed(2) + 'deg');
+        });
+      }, { passive: true });
+      tarjeta.addEventListener('pointerleave', () => {
+        tarjeta.style.setProperty('--gx', '0deg');
+        tarjeta.style.setProperty('--gy', '0deg');
+      });
+    });
+  };
+
   const iniciar = () => {
-    [precarga, tema, buscador, foco, calendarioVivo, imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar, comunicados].forEach((fn) => {
+    [precarga, tema, buscador, foco, calendarioVivo, carrusel, movimiento, imagenes, navegacion, desplazamiento, menuSeccion, curiosidades, perfiles, visor, registros, formularios, ondas, cargaPagina, privacidad, revelar, comunicados].forEach((fn) => {
       try { fn(); } catch (error) { if (window.console) window.console.error(error); }
     });
   };

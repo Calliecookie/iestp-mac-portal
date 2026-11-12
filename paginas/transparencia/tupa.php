@@ -33,5 +33,5 @@ $procedimientos = [
   </div>
 <?php endforeach; ?>
 </dl>
-<p class="fuente">Consulta el índice completo de los 19 procedimientos académicos y descarga el Formato Único de Trámite (FUT) en <a href="../servicios/mesa-de-partes.php">Mesa de partes</a>.</p>
+<p class="fuente">Consulta el índice completo de los 19 procedimientos académicos y descarga el Formato Único de Trámite (FUT) en <a href="<?= mac_url('paginas/servicios/mesa-de-partes.php') ?>">Mesa de partes</a>.</p>
 <?php mac_pagina_cerrar(); require dirname(__DIR__, 2) . '/plantillas/pie.php'; ?>

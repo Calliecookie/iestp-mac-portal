@@ -265,7 +265,7 @@ $publicacionesRecientes = mac_publicaciones_html(4);
     </header>
     <p id="comunicados-descripcion" class="comunicados-intro">Avisos y actividades recientes del instituto.</p>
     <div class="comunicados-cuerpo">
-      <?= mac_comunicados_html(4) ?>
+      <?= mac_comunicados_carrusel_html(8) ?>
       <div class="fb-marco" data-fb data-fb-sin-plugin data-fb-cantidad="4"></div>
     </div>
     <div class="comunicados-pie">

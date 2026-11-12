@@ -1324,3 +1324,62 @@ html.precargando{overflow:hidden}
 }
 @media (prefers-reduced-motion:reduce){.grafico .g-barra,.grafico .g-punto,.grafico .g-valor{transition:none}}
 @media print{.g-tip{display:none!important}.grafico{break-inside:avoid}}
+.dialogo-comunicados{width:min(100% - 1.5rem,46rem)}
+.carrusel{display:grid;gap:.75rem;min-width:0}
+.carrusel-escena{position:relative;min-width:0}
+.carrusel-pista{display:flex;margin:0;padding:0;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:var(--r)}
+.carrusel-pista::-webkit-scrollbar{display:none}
+.carrusel-pista:focus-visible{outline:3px solid var(--verde-700);outline-offset:3px}
+.carrusel-lamina{flex:0 0 100%;min-width:0;display:grid;grid-template-rows:auto auto;scroll-snap-align:center;scroll-snap-stop:always}
+.carrusel-imagen{position:relative;display:grid;place-items:center;height:min(52vh,26rem);overflow:hidden;background:var(--verde-950);border-radius:var(--r)}
+.carrusel-imagen img{width:100%;height:100%;object-fit:contain;transition:transform .8s var(--curva)}
+.carrusel-ampliar{position:absolute;right:.75rem;bottom:.75rem;display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .7rem;background:rgba(11,46,38,.86);border:1px solid rgba(255,255,255,.25);border-radius:99px;font:700 var(--t-xs)/1 var(--f-texto);color:#fff;transition:transform .3s var(--curva),background-color .2s}
+.carrusel-ampliar .icono{width:.9rem;height:.9rem}
+.carrusel-pie{display:grid;gap:.3rem;padding:.9rem .15rem 0}
+.carrusel-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .7rem;margin:0;font:700 var(--t-xs)/1.3 var(--f-texto);color:var(--c-enlace)}
+.carrusel-titulo{font:700 clamp(1.5rem,1.25rem + 1vw,1.95rem)/1.02 var(--f-rotulo);color:var(--c-titulo)}
+.carrusel-texto{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:0;font:400 var(--t-s)/1.5 var(--f-texto);color:var(--tinta-2)}
+.carrusel-enlace{margin:0;font:700 var(--t-xs)/1.3 var(--f-texto)}
+.carrusel-enlace a{color:var(--c-enlace);text-underline-offset:.2em}
+.carrusel-flecha{position:absolute;top:min(26vh,13rem);display:grid;place-items:center;width:2.75rem;height:2.75rem;margin-top:-1.375rem;padding:0;background:rgba(255,255,255,.94);border:1px solid var(--linea);border-radius:50%;color:#0b2e26;box-shadow:var(--sombra);transition:transform .3s var(--curva),opacity .2s,background-color .2s}
+.carrusel-anterior{left:.6rem}
+.carrusel-siguiente{right:.6rem}
+.carrusel-flecha:disabled{opacity:0;pointer-events:none}
+.carrusel-flecha:active{transform:scale(.92)}
+.carrusel-control{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.carrusel-cuenta{margin:0;font:700 var(--t-s)/1 var(--f-texto);font-variant-numeric:tabular-nums;color:var(--tinta-2)}
+.carrusel-puntos{display:flex;gap:.35rem}
+.carrusel-punto{width:.45rem;height:.45rem;background:var(--linea-campo);border-radius:99px;transition:width .4s var(--curva),background-color .3s}
+.carrusel-punto.es-activo{width:1.5rem;background:var(--ocre)}
+.carrusel-minis{display:flex;gap:.5rem;margin:0;padding:.2rem;list-style:none;overflow-x:auto;scrollbar-width:thin}
+.carrusel-mini{display:block;width:3.75rem;height:3.75rem;padding:0;overflow:hidden;background:var(--verde-100);border:2px solid transparent;border-radius:var(--r);opacity:.6;transition:opacity .25s,border-color .25s,transform .3s var(--curva)}
+.carrusel-mini img{width:100%;height:100%;object-fit:cover;object-position:top}
+.carrusel-mini[aria-current="true"]{border-color:var(--ocre);opacity:1}
+@media (hover:hover){
+  .carrusel-imagen:hover img{transform:scale(1.03)}
+  .carrusel-imagen:hover .carrusel-ampliar{transform:translateY(-2px);background:var(--verde-900)}
+  .carrusel-flecha:hover{transform:scale(1.08);background:#fff}
+  .carrusel-mini:hover{opacity:1;transform:translateY(-2px)}
+}
+.anim .dialogo-comunicados[open] .comunicados-cabeza{animation:sube .5s var(--curva) .08s backwards}
+.anim .dialogo-comunicados[open] .carrusel-escena{animation:descubre .7s var(--curva) .14s backwards}
+.anim .dialogo-comunicados[open] .carrusel-minis li{--desde-y:10px;animation:sube .45s var(--curva) backwards}
+.anim .dialogo-comunicados[open] .carrusel-minis li:nth-child(1){animation-delay:.3s}
+.anim .dialogo-comunicados[open] .carrusel-minis li:nth-child(2){animation-delay:.35s}
+.anim .dialogo-comunicados[open] .carrusel-minis li:nth-child(3){animation-delay:.4s}
+.anim .dialogo-comunicados[open] .carrusel-minis li:nth-child(n+4){animation-delay:.45s}
+@media (max-width:679px){
+  .carrusel-imagen{height:min(46vh,20rem)}
+  .carrusel-flecha{top:min(23vh,10rem);width:2.4rem;height:2.4rem;margin-top:-1.2rem}
+  .carrusel-mini{width:3.1rem;height:3.1rem}
+}
+@media (prefers-reduced-motion:reduce){.carrusel-imagen img,.carrusel-punto,.carrusel-mini,.carrusel-flecha{transition:none}}
+.portada-fondo{overflow:hidden}
+.anim .portada-fondo img{will-change:transform;transform-origin:50% 0}
+@media (hover:hover) and (pointer:fine){
+  .anim .programas,.anim .personal-grid{perspective:1100px}
+  .anim .programa>a,.anim .persona{transform:rotateX(var(--gx,0deg)) rotateY(var(--gy,0deg));transform-style:preserve-3d;transition:transform .5s var(--curva),box-shadow .5s var(--curva),border-color .2s}
+  .anim .persona:hover{box-shadow:var(--sombra);border-top-color:var(--ocre)}
+}
+.anim .seccion-titulo{background:linear-gradient(var(--ocre),var(--ocre)) 0 100%/0 3px no-repeat;padding-bottom:.35rem;transition:background-size 1s var(--curva) .25s}
+.anim .seccion-cabeza.es-visible .seccion-titulo,.anim .seccion-cabeza:not(.revelar) .seccion-titulo{background-size:3.5rem 3px}

@@ -15,12 +15,12 @@ $macNoticias = mac_noticias_html(0, 'h3');
 <?php endif; ?>
 <h2>Últimos documentos publicados</h2>
 <?= mac_publicaciones_html(6) ?>
-<div class="acciones"><a class="boton boton-contorno" href="archivos-oficiales.php">Ver todos los documentos</a></div>
+<div class="acciones"><a class="boton boton-contorno" href="<?= mac_url('paginas/otros/archivos-oficiales.php') ?>">Ver todos los documentos</a></div>
 <h2>Actividades y comunicados</h2>
 <div class="panel">
   <p>El instituto difunde sus noticias, actividades y comunicados en su página oficial de Facebook. Este portal no reproduce noticias que no estén respaldadas por esa fuente.</p>
   <div class="acciones">
-    <a class="boton" href="comunicados.php">Ver publicaciones recientes</a>
+    <a class="boton" href="<?= mac_url('paginas/otros/comunicados.php') ?>">Ver publicaciones recientes</a>
     <a class="boton boton-contorno" href="<?= mac_e((string) mac_config('facebook_page_url')) ?>" target="_blank" rel="noopener noreferrer">Abrir Facebook<?= mac_externo() ?></a>
   </div>
 </div>

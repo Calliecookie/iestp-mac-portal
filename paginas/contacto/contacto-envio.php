@@ -123,8 +123,8 @@ require dirname(__DIR__, 2) . '/plantillas/cabecera.php';
 mac_pagina_abrir();
 ?>
 <div class="acciones">
-  <a class="boton" href="contacto.php">Volver al formulario de contacto</a>
-  <a class="boton boton-contorno" href="../../index.php">Ir a la página de inicio</a>
+  <a class="boton" href="<?= mac_url('paginas/contacto/contacto.php') ?>">Volver al formulario de contacto</a>
+  <a class="boton boton-contorno" href="<?= mac_url('index.php') ?>">Ir a la página de inicio</a>
 </div>
 <?php if ($status !== 'success'): ?>
 <?= mac_aviso('También puedes escribirnos directamente', 'Envía tu consulta a <a href="mailto:' . mac_e(mac_dato('correo')) . '">' . mac_e(mac_dato('correo')) . '</a> o llama al <a href="tel:' . mac_e(mac_dato('telefono_enlace')) . '">' . mac_e(mac_dato('telefono')) . '</a>.') ?>

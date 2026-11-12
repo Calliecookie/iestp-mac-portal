@@ -1,4 +1,5 @@
 {
+  "_AQUI": "AQUI ACTUALIZAR NUEVOS CONVENIOS · AQUI AGREGAR NUEVOS ARCHIVOS TUPA · AQUI AGREGAR NUEVAS RESOLUCIONES · AQUI ACTUALIZAR REGLAMENTOS: copie el PDF en recursos/documentos/<carpeta>/vigentes/, duplique un registro de «documentos», cambie id, titulo, categoria, fecha, archivo y destinos, y guarde. Guía: docs/GUIA_ACTUALIZACION.md",
   "categorias": {
     "gestion": "Instrumentos de gestión",
     "planes": "Planes de trabajo",

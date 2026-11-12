@@ -70,3 +70,54 @@ if (!function_exists('mac_comunicados_html')) {
         return $html . '</ul>' . ($conBuscador ? '</div>' : '');
     }
 }
+
+if (!function_exists('mac_comunicados_carrusel_html')) {
+    function mac_comunicados_carrusel_html(int $cantidad = 8): string
+    {
+        $lista = mac_comunicados($cantidad);
+        if (!$lista) return '';
+        $raizDir = dirname(__DIR__) . '/';
+        $categorias = mac_cargar_datos('comunicados.json')['categorias'] ?? [];
+        $categorias = is_array($categorias) ? $categorias : [];
+        $total = count($lista);
+        $laminas = '';
+        $miniaturas = '';
+        $puntos = '';
+        foreach ($lista as $i => $c) {
+            $titulo = trim((string) $c['titulo']);
+            $base = (string) $c['imagen'];
+            $grande = is_file($raizDir . $base . '.webp') ? $base . '.webp' : $base . '.jpg';
+            $mini = is_file($raizDir . $base . '-480.webp') ? $base . '-480.webp' : $grande;
+            $medidas = @getimagesize($raizDir . $grande);
+            $dim = is_array($medidas) ? ' width="' . (int) $medidas[0] . '" height="' . (int) $medidas[1] . '"' : '';
+            $fecha = mac_fecha_larga((string) ($c['fecha'] ?? ''));
+            $categoria = (string) ($c['categoria'] ?? '');
+            $enlace = trim((string) ($c['enlace'] ?? ''));
+            $laminas .= '<div class="carrusel-lamina" id="comunicado-lamina-' . $i . '" role="group" aria-roledescription="diapositiva" aria-label="' . ($i + 1) . ' de ' . $total . ': ' . mac_e($titulo) . '" data-carrusel-lamina>';
+            $laminas .= '<a class="carrusel-imagen" href="' . mac_url($grande) . '" data-zoom data-sin-carga aria-label="' . mac_e('Ampliar el comunicado: ' . $titulo) . '">';
+            $laminas .= '<img src="' . mac_url($mini) . '"' . ($mini === $grande ? '' : ' data-src="' . mac_url($grande) . '"') . $dim . ' alt="' . mac_e((string) ($c['alt'] ?? $titulo)) . '" loading="lazy" decoding="async">';
+            $laminas .= '<span class="carrusel-ampliar" aria-hidden="true">' . mac_icono('ampliar') . 'Ampliar</span></a>';
+            $laminas .= '<div class="carrusel-pie"><p class="carrusel-meta">';
+            if (isset($categorias[$categoria])) $laminas .= '<span class="comunicado-categoria">' . mac_e((string) $categorias[$categoria]) . '</span>';
+            if ($fecha !== '') $laminas .= '<time datetime="' . mac_e((string) $c['fecha']) . '">' . mac_e($fecha) . '</time>';
+            $laminas .= '</p><h3 class="carrusel-titulo">' . mac_e($titulo) . '</h3>';
+            if (!empty($c['resumen'])) $laminas .= '<p class="carrusel-texto">' . mac_e((string) $c['resumen']) . '</p>';
+            if (preg_match('~^https://~', $enlace)) $laminas .= '<p class="carrusel-enlace"><a href="' . mac_e($enlace) . '" target="_blank" rel="noopener noreferrer">Ver la publicación original' . mac_externo() . '</a></p>';
+            $laminas .= '</div></div>';
+            $miniaturas .= '<li><button type="button" class="carrusel-mini" data-carrusel-ir="' . $i . '" aria-label="' . mac_e('Ir al comunicado ' . ($i + 1) . ': ' . $titulo) . '"' . ($i === 0 ? ' aria-current="true"' : '') . '><img src="' . mac_url($mini) . '" alt="" width="96" height="96" loading="lazy" decoding="async"></button></li>';
+            $puntos .= '<span class="carrusel-punto' . ($i === 0 ? ' es-activo' : '') . '" data-carrusel-punto></span>';
+        }
+        $html = '<div class="carrusel" data-carrusel role="region" aria-roledescription="carrusel" aria-label="Comunicados recientes">';
+        $html .= '<div class="carrusel-escena"><div class="carrusel-pista" data-carrusel-pista tabindex="0" role="group" aria-label="Comunicados">' . $laminas . '</div>';
+        if ($total > 1) {
+            $html .= '<button type="button" class="carrusel-flecha carrusel-anterior" data-carrusel-anterior aria-label="Comunicado anterior">' . mac_icono('izquierda') . '</button>';
+            $html .= '<button type="button" class="carrusel-flecha carrusel-siguiente" data-carrusel-siguiente aria-label="Comunicado siguiente">' . mac_icono('derecha') . '</button>';
+        }
+        $html .= '</div>';
+        if ($total > 1) {
+            $html .= '<div class="carrusel-control"><p class="carrusel-cuenta" aria-live="polite"><span data-carrusel-actual>1</span> / ' . $total . '</p><div class="carrusel-puntos" aria-hidden="true">' . $puntos . '</div></div>';
+            $html .= '<ul class="carrusel-minis">' . $miniaturas . '</ul>';
+        }
+        return $html . '</div>';
+    }
+}

@@ -14,8 +14,8 @@ mac_pagina_abrir();
 ]) ?>
 <h2>Antes de registrarte</h2>
 <ol class="pasos">
-  <li><p>Revisa los <a href="matricula.php">requisitos de tu tipo de matrícula</a>: ingresante, ratificación, reincorporación o unidad de repitencia.</p></li>
-  <li><p>Consulta las fechas en el <a href="matricula.php#calendario">calendario académico 2026</a> y confírmalas con Secretaría Académica.</p></li>
+  <li><p>Revisa los <a href="<?= mac_url('paginas/admision-y-matricula/matricula.php') ?>">requisitos de tu tipo de matrícula</a>: ingresante, ratificación, reincorporación o unidad de repitencia.</p></li>
+  <li><p>Consulta las fechas en el <a href="<?= mac_url('paginas/admision-y-matricula/matricula.php#calendario') ?>">calendario académico 2026</a> y confírmalas con Secretaría Académica.</p></li>
   <li><p>Realiza el pago por derecho de matrícula según las indicaciones del Área de Administración y conserva el comprobante.</p></li>
   <li><p>Presenta los documentos y completa tu registro dentro del plazo establecido en la convocatoria.</p></li>
 </ol>

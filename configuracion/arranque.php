@@ -6,6 +6,7 @@ require_once dirname(__DIR__) . '/nucleo/http.php';
 require_once dirname(__DIR__) . '/nucleo/almacen.php';
 require_once dirname(__DIR__) . '/nucleo/formato.php';
 require_once dirname(__DIR__) . '/nucleo/seguridad.php';
+require_once __DIR__ . '/rutas.php';
 require_once __DIR__ . '/sitio.php';
 require_once dirname(__DIR__) . '/componentes/interfaz.php';
 require_once dirname(__DIR__) . '/componentes/pagina.php';

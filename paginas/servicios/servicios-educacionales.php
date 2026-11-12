@@ -13,7 +13,7 @@ $servicios = [
     ['Biblioteca virtual Digitalia', 'Plataforma de libros electrónicos Digitalia Hispánica.', mac_dato('digitalia'), true],
     ['Mesa de partes', 'Presentación de solicitudes y trámites académicos.', 'paginas/servicios/mesa-de-partes.php', false],
     ['Bolsa laboral', 'Planes de inserción laboral y seguimiento de egresados.', 'paginas/servicios/bolsa-laboral.php', false],
-    ['Atención y orientación ciudadana', 'Canales de consulta, horarios y teléfonos de atención.', 'paginas/servicios/libro-reclamaciones.php', false],
+    ['Libro de reclamaciones y atención', 'Canales de consulta, horarios y teléfonos de atención.', 'paginas/servicios/libro-reclamaciones.php', false],
 ];
 ?>
 <h2>Servicios en este portal</h2>
@@ -30,6 +30,6 @@ $servicios = [
   <li>Empleabilidad.</li>
   <li>Tópico.</li>
 </ul>
-<p class="fuente">Fuente: organigrama publicado en <a href="../nosotros/plana-jerarquica.php">Plana jerárquica</a>. Las actividades de la unidad para este año figuran en su plan de trabajo.</p>
+<p class="fuente">Fuente: organigrama publicado en <a href="<?= mac_url('paginas/nosotros/plana-jerarquica.php') ?>">Plana jerárquica</a>. Las actividades de la unidad para este año figuran en su plan de trabajo.</p>
 <?php mac_documentos_mostrar('servicios-educacionales', $raiz, ['titulo' => 'Plan de trabajo de la unidad']); ?>
 <?php mac_pagina_cerrar(); require dirname(__DIR__, 2) . '/plantillas/pie.php'; ?>
