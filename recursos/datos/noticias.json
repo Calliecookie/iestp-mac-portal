@@ -1,4 +1,4 @@
 {
-  "_AQUI": "AQUI ACTUALIZAR NOTICIAS: agregue registros a «noticias» con titulo, fecha (AAAA-MM-DD), resumen, imagen (archivo en recursos/imagenes/noticias/), imagen_alt, enlace y fuente. Ejemplo en docs/GUIA_ACTUALIZACION.md",
+  "_AQUI_NOTICIAS": "AQUI ACTUALIZAR NOTICIAS: agregue registros a «noticias» con titulo, fecha (AAAA-MM-DD), resumen, imagen (archivo en recursos/imagenes/noticias/), imagen_alt, enlace y fuente. Ejemplo en docs/GUIA_ACTUALIZACION.md",
   "noticias": []
 }

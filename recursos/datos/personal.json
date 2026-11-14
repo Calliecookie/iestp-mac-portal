@@ -1,5 +1,6 @@
 {
-  "_AQUI": "AQUI ACTUALIZAR DOCENTES · AQUI ACTUALIZAR FOTOGRAFIAS: duplique un registro de «personal», cambie id, grupo, nombre, grado, cargo, carrera y funcion; para la foto copie el archivo en recursos/imagenes/personal/ y escriba su ruta en fotoUrl",
+  "_AQUI_DOCENTES": "AQUI ACTUALIZAR DOCENTES: duplique un registro de «personal», cambie id, grupo, nombre, grado, cargo, carrera y funcion, y guarde",
+  "_AQUI_FOTOGRAFIAS": "AQUI ACTUALIZAR FOTOGRAFIAS: copie la foto (JPG o WEBP, 4:5, mínimo 480 × 600 px) en recursos/imagenes/personal/ y escriba su ruta en el campo fotoUrl de la persona",
   "_instrucciones": "Directorio del personal. Para publicar una fotografía, copie el archivo (JPG o WEBP, proporción 4:5, mínimo 480 x 600 px) en recursos/imagenes/personal/ y escriba su ruta en fotoUrl, por ejemplo \"recursos/imagenes/personal/nombre-apellido.jpg\". Si fotoUrl está vacío o el archivo no existe, se muestra la imagen provisional. Un nombre vacío muestra el cargo como «Por designar».",
   "actualizado": "2026-11-09",
   "fuente": "Estructura de ejemplo: los nombres y las fotografías se completan con los datos oficiales del instituto",

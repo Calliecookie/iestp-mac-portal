@@ -1,6 +1,25 @@
 # Guía de actualización
 
-Procedimiento general: 1) colocar el archivo en su carpeta, 2) copiar un registro de ejemplo, 3) cambiar sus datos, 4) guardar, 5) subir por cPanel los archivos modificados. La página muestra los registros nuevos automáticamente. Cada archivo de datos tiene una clave `_AQUI` que marca el punto de edición.
+Procedimiento general: 1) colocar el archivo en su carpeta, 2) copiar un registro de ejemplo, 3) cambiar sus datos, 4) guardar, 5) subir por cPanel los archivos modificados. La página muestra los registros nuevos automáticamente.
+
+Cada tarea tiene su propio marcador al inicio del archivo que se edita (el portal no lee estas claves):
+
+| Tarea | Marcador | Archivo |
+|---|---|---|
+| Convenios | `_AQUI_CONVENIOS` | `recursos/datos/documentos.json` |
+| TUPA y tasas | `_AQUI_TUPA` | `recursos/datos/documentos.json` |
+| Resoluciones e instrumentos | `_AQUI_RESOLUCIONES` | `recursos/datos/documentos.json` |
+| Reglamentos y manuales | `_AQUI_REGLAMENTOS` | `recursos/datos/documentos.json` |
+| Planes de estudio | `_AQUI_PLANES_DE_ESTUDIO` | `recursos/datos/documentos.json` |
+| Horarios | `_AQUI_HORARIOS` | `recursos/datos/documentos.json` |
+| Comunicados | `_AQUI_COMUNICADOS` | `recursos/datos/comunicados.json` |
+| Noticias | `_AQUI_NOTICIAS` | `recursos/datos/noticias.json` |
+| Docentes y autoridades | `_AQUI_DOCENTES` | `recursos/datos/personal.json` |
+| Fotografías del personal | `_AQUI_FOTOGRAFIAS` | `recursos/datos/personal.json` |
+| Calendario | `_AQUI_CALENDARIO` | `recursos/datos/calendario.json` |
+| Canal de YouTube | comentario `AQUI AGREGAR NUEVOS VIDEOS` | `nucleo/entorno.php` |
+
+Para encontrar uno: buscar su nombre en el editor de archivos de cPanel o con `grep -rn "_AQUI_TUPA" recursos/datos`.
 
 Valide el JSON antes de subirlo (una coma de más deja la sección vacía): `php -r 'json_decode(file_get_contents("recursos/datos/documentos.json"), false, 512, JSON_THROW_ON_ERROR);'`
 

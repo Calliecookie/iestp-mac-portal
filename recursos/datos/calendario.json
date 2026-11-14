@@ -1,4 +1,5 @@
 {
+  "_AQUI_CALENDARIO": "AQUI ACTUALIZAR CALENDARIO: agregue registros a «eventos» con id (AAAA-MM-DD-NN), fecha, hasta (vacío si es un solo día), tipo (una clave de «tipos») y titulo; cada año cambie «anio» y reemplace los eventos",
   "anio": 2026,
   "fuente": "Calendario académico-administrativo 2026 del instituto y feriados nacionales del Perú",
   "tipos": {

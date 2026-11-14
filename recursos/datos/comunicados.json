@@ -1,5 +1,5 @@
 {
-  "_AQUI": "AQUI AGREGAR NUEVOS COMUNICADOS: copie la imagen en recursos/imagenes/comunicados/, duplique el primer registro de «comunicados», cambie id, titulo, fecha, categoria, resumen, imagen y enlace, y déjelo al inicio de la lista",
+  "_AQUI_COMUNICADOS": "AQUI AGREGAR NUEVOS COMUNICADOS: copie la imagen en recursos/imagenes/comunicados/, duplique el primer registro de «comunicados», cambie id, titulo, fecha, categoria, resumen, imagen y enlace, y déjelo al inicio de la lista",
   "_instrucciones": "Comunicados de la ventana emergente de la portada y de la página Comunicados. Se muestran en el orden de esta lista: agregue los nuevos al inicio. Copie la imagen en recursos/imagenes/comunicados/ (JPG; opcionalmente una versión .webp y otra -480.webp) y escriba en «imagen» la ruta sin extensión. «fecha» (AAAA-MM-DD) es opcional; «enlace» puede apuntar a la publicación en Facebook.",
   "categorias": {
     "academico": "Académico",
