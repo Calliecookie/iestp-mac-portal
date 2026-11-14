@@ -77,7 +77,7 @@ Fotografía: JPG o WEBP en proporción 4:5 (mínimo 480 × 600 px) en `recursos/
 
 ## Videos
 
-Los videos se leen solos del canal de YouTube (caché de 15 minutos). Para cambiar de canal: `youtube_channel_url` y `youtube_channel_id` en `configuracion/local.php` (o en `nucleo/entorno.php`, marcador `AQUI AGREGAR NUEVOS VIDEOS`).
+Los videos se leen solos del canal de YouTube (caché de 15 minutos): primero del feed RSS público y, si YouTube no lo entrega (en noviembre de 2026 respondía 404 para todos los canales), de la página de videos del canal, en el mismo orden que muestra YouTube. Para cambiar de canal: `youtube_channel_url` y `youtube_channel_id` en `configuracion/local.php` (o en `nucleo/entorno.php`, marcador `AQUI AGREGAR NUEVOS VIDEOS`).
 
 ## Facebook
 

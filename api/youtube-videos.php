@@ -93,7 +93,44 @@ if ($response['status'] >= 200 && $response['status'] < 300 && $response['body']
 }
 
 if (!$videos) {
-    error_log('IESTP MAC: no se pudo recuperar el feed RSS público de YouTube.');
+    error_log('IESTP MAC: el feed RSS de YouTube no respondió (HTTP ' . $response['status'] . '); se lee la página de videos del canal.');
+    $pagina = mac_http_get('https://www.youtube.com/channel/' . rawurlencode($channelId) . '/videos', ['Accept-Language: es-PE,es;q=0.9'], 8);
+    if ($pagina['status'] === 200 && preg_match('/ytInitialData\s*=\s*(\{.+?\});\s*<\/script>/s', $pagina['body'], $datosMatch)) {
+        $datos = json_decode($datosMatch[1], true);
+        $vistos = [];
+        $recorrer = static function (mixed $nodo) use (&$recorrer, &$videos, &$vistos): void {
+            if (!is_array($nodo)) return;
+            foreach ($nodo as $clave => $valor) {
+                if (!is_array($valor)) continue;
+                $id = '';
+                $title = '';
+                if ($clave === 'lockupViewModel' && ($valor['contentType'] ?? '') === 'LOCKUP_CONTENT_TYPE_VIDEO') {
+                    $id = (string) ($valor['contentId'] ?? '');
+                    $title = (string) ($valor['metadata']['lockupMetadataViewModel']['title']['content'] ?? '');
+                } elseif ($clave === 'videoRenderer') {
+                    $id = (string) ($valor['videoId'] ?? '');
+                    $title = (string) ($valor['title']['runs'][0]['text'] ?? $valor['title']['simpleText'] ?? '');
+                } else {
+                    $recorrer($valor);
+                    continue;
+                }
+                if (!preg_match('/^[A-Za-z0-9_-]{11}$/', $id) || isset($vistos[$id])) continue;
+                $vistos[$id] = true;
+                $videos[] = [
+                    'id' => $id,
+                    'title' => trim($title),
+                    'url' => 'https://www.youtube.com/watch?v=' . $id,
+                    'thumbnail' => 'https://i.ytimg.com/vi/' . $id . '/hqdefault.jpg',
+                    'published_at' => '',
+                ];
+            }
+        };
+        $recorrer($datos);
+    }
+}
+
+if (!$videos) {
+    error_log('IESTP MAC: no se pudo recuperar la lista de videos de YouTube (feed RSS ni página del canal).');
     if ($cachedVideos) {
         mac_json_response(200, ['configured' => true, 'channelId' => $channelId, 'videos' => $cachedVideos, 'cached' => true, 'stale' => true]);
     }

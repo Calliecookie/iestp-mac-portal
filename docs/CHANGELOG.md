@@ -2,6 +2,7 @@
 
 | Versión | Cambios |
 |---|---|
+| 4.4 | Videos de YouTube: el feed RSS respondía 404 (también para otros canales); si falla, `api/youtube-videos.php` lee la lista de la página de videos del canal |
 | 4.3 | Libro de reclamaciones enlazado por HTTPS (`https://reclamaciones.iestp-mac.edu.pe/`, verificado con certificado válido y el mismo contenido que por HTTP); se retiran los avisos de «conexión no cifrada» del libro y de la bolsa laboral, que ya usaba HTTPS |
 | 4.2 | LCP de la portada: la ventana de comunicados se abre con la primera interacción del visitante (rueda, deslizamiento o tecla) en lugar de un temporizador, y el texto y el banner de la portada entran sin fundido de opacidad. Medido en Chromium con red y CPU limitadas: móvil de 5,06 s a 2,20 s; escritorio estable en 2,2 s |
 | 4.1 | Archivo de licencia |

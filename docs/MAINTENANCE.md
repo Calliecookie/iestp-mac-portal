@@ -24,7 +24,7 @@
 | Error 500 en todo el sitio | Directiva de `.htaccess` no permitida por el hosting; revisar el registro de errores de cPanel |
 | Una sección aparece vacía | JSON con error de sintaxis o archivo referenciado inexistente |
 | La página no tiene interactividad | El hash del script en línea no coincide con la CSP |
-| No aparecen los videos | El servidor no tiene `curl` o no alcanza youtube.com |
+| No aparecen los videos | El servidor no tiene `curl` o no alcanza youtube.com. El registro de errores indica si falló el feed RSS (se usa entonces la página de videos del canal) o ambas fuentes |
 | El formulario no envía | `mail()` deshabilitado o falta `contact_email_from` en `local.php` |
 | Una URL limpia da 404 | Falta la regla en `.htaccess` o la entrada en `rutas.php` |
 
