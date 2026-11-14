@@ -47,6 +47,33 @@ if (!function_exists('mac_recurso')) {
     }
 }
 
+if (!function_exists('mac_minificado')) {
+    function mac_minificado(string $ruta): string
+    {
+        static $vigentes = [];
+        $tipo = pathinfo($ruta, PATHINFO_EXTENSION);
+        if ($tipo !== 'css' && $tipo !== 'js') return $ruta;
+        if (!isset($vigentes[$tipo])) {
+            $raiz = dirname(__DIR__) . '/';
+            $archivoManifiesto = $raiz . 'configuracion/minificados.php';
+            $manifiesto = is_file($archivoManifiesto) ? require $archivoManifiesto : [];
+            $carpeta = $tipo === 'css' ? 'recursos/estilos/' : 'recursos/scripts/';
+            $fuentes = array_merge(glob($raiz . $carpeta . '*.' . $tipo) ?: [], glob($raiz . $carpeta . '*/*.' . $tipo) ?: []);
+            $vigente = is_array($manifiesto) && $fuentes !== [];
+            foreach ($fuentes as $fuente) {
+                if (!$vigente) break;
+                if (str_ends_with($fuente, '.min.' . $tipo)) continue;
+                $relativa = substr($fuente, strlen($raiz));
+                $vigente = isset($manifiesto[$relativa])
+                    && is_file(substr($fuente, 0, -strlen($tipo)) . 'min.' . $tipo)
+                    && hash_equals((string) $manifiesto[$relativa], (string) hash_file('sha256', $fuente));
+            }
+            $vigentes[$tipo] = $vigente;
+        }
+        return $vigentes[$tipo] ? substr($ruta, 0, -strlen($tipo)) . 'min.' . $tipo : $ruta;
+    }
+}
+
 if (!function_exists('mac_version_scripts')) {
     function mac_version_scripts(): string
     {

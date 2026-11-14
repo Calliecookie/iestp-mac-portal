@@ -1,6 +1,6 @@
 # Portal institucional del IESTP Manuel Arévalo Cáceres
 
-Portal web del Instituto de Educación Superior Tecnológico Público Manuel Arévalo Cáceres (Los Olivos, Lima). Versión 4.5.
+Portal web del Instituto de Educación Superior Tecnológico Público Manuel Arévalo Cáceres (Los Olivos, Lima). Versión 4.6.
 
 - **Tecnología:** PHP 8.1+ sin framework ni base de datos; HTML, CSS y JavaScript propios; Apache o LiteSpeed (cPanel).
 - **Contenido:** archivos JSON y CSV en `recursos/datos/`. No hay panel de administración: el programador edita esos archivos y los publica por cPanel.
@@ -30,6 +30,12 @@ Es una maqueta: no incluye PDF, nombres de personas, fotografías reales ni dato
 
 ```bash
 php -S 127.0.0.1:8080 -t .
+```
+
+Tras modificar CSS o JavaScript, regenerar las versiones minificadas:
+
+```bash
+php herramientas/minificar.php
 ```
 
 El servidor integrado de PHP no lee `.htaccess`: en local las páginas se abren por su ruta de archivo (`/paginas/admision-y-matricula/admision.php`). Las URL limpias y las cabeceras de seguridad solo funcionan en Apache o LiteSpeed.

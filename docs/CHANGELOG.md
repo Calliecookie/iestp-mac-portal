@@ -2,6 +2,7 @@
 
 | Versión | Cambios |
 |---|---|
+| 4.6 | Minificación de CSS y JavaScript con `herramientas/minificar.php` (PHP, sin dependencias): JS de 79 KB a 64 KB (−20 %); el CSS ya era compacto (−2 %). Se sirven los `.min` solo si coinciden con el manifiesto de hashes; si no, los legibles. Verificado: AST de cada JS idéntico al original y CSS equivalente |
 | 4.5 | Marcadores de mantenimiento individuales: una clave `_AQUI_…` por tarea (convenios, TUPA, resoluciones, reglamentos, planes de estudio, horarios, comunicados, noticias, docentes, fotografías y calendario) con su carpeta, categoría y destinos |
 | 4.4 | Videos de YouTube: el feed RSS respondía 404 (también para otros canales); si falla, `api/youtube-videos.php` lee la lista de la página de videos del canal |
 | 4.3 | Libro de reclamaciones enlazado por HTTPS (`https://reclamaciones.iestp-mac.edu.pe/`, verificado con certificado válido y el mismo contenido que por HTTP); se retiran los avisos de «conexión no cifrada» del libro y de la bolsa laboral, que ya usaba HTTPS |

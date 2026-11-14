@@ -14,6 +14,7 @@
 
 - Si se modifica el script en línea de `plantillas/cabecera.php`, recalcular su hash SHA-256 y actualizarlo en la `Content-Security-Policy` del `.htaccess`; de lo contrario el navegador lo bloquea.
 - No usar `innerHTML` en JavaScript (Trusted Types lo bloquea).
+- Después de modificar cualquier `.css` o `.js` de `recursos/`, ejecutar `php herramientas/minificar.php` y subir también los `.min` y `configuracion/minificados.php`. Si se olvida, el portal no se rompe: sirve los archivos legibles de ese tipo hasta que se regeneren. Nunca editar los `.min` a mano.
 - Los enlaces internos se escriben con `mac_url('paginas/…')`.
 - `configuracion/local.php` nunca se sube al repositorio.
 

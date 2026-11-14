@@ -8,6 +8,7 @@
   const puntero = window.matchMedia('(hover: hover) and (pointer: fine)');
 
   const raizScripts = new URL('./', urlScript).toString();
+  const variante = /\.min\.js$/.test(new URL(urlScript).pathname) ? (archivo) => archivo.replace(/\.js$/, '.min.js') : (archivo) => archivo;
   const politica = window.trustedTypes && typeof window.trustedTypes.createPolicy === 'function'
     ? window.trustedTypes.createPolicy('mac-recursos', {
       createScriptURL: (valor) => {
@@ -474,7 +475,7 @@
       if (doc.querySelector('[data-youtube-videos]')) archivos.push('integraciones/youtube.js');
       archivos.forEach((archivo) => {
         const script = doc.createElement('script');
-        const destino = new URL(archivo, urlScript);
+        const destino = new URL(variante(archivo), urlScript);
         destino.search = new URL(urlScript).search;
         script.src = urlSegura(destino.toString());
         script.async = true;
@@ -808,7 +809,7 @@
       if (!carga) {
         carga = new Promise((resolver, rechazar) => {
           const script = doc.createElement('script');
-          const destino = new URL('modulos/buscador.js', urlScript);
+          const destino = new URL(variante('modulos/buscador.js'), urlScript);
           destino.search = new URL(urlScript).search;
           script.src = urlSegura(destino.toString());
           script.addEventListener('load', resolver, { once: true });

@@ -17,6 +17,7 @@ Sitio PHP renderizado en el servidor, sin base de datos. Dependencias en un solo
 | `recursos/imagenes/`, `estilos/`, `scripts/`, `fuentes/` | Recursos estáticos | Público |
 | `almacenamiento/` | Caché temporal y secreto privado | Bloqueado |
 | `docs/` | Esta documentación | Bloqueado |
+| `herramientas/` | `minificar.php`, solo para línea de comandos | Bloqueado |
 
 ## Flujo de una solicitud
 
@@ -35,4 +36,5 @@ Sitio PHP renderizado en el servidor, sin base de datos. Dependencias en un solo
 - `recursos/scripts/sitio.js`: núcleo (navegación, precarga, tema, carrusel, calendario, animaciones).
 - `recursos/scripts/modulos/`: se cargan por página (`$scripts` en la página) o bajo demanda (buscador).
 - `recursos/scripts/integraciones/`: Facebook y YouTube, solo tras el consentimiento del visitante.
+- Cada `.css` y `.js` tiene su versión `.min` generada por `php herramientas/minificar.php`, que también escribe `configuracion/minificados.php` con el hash SHA-256 de cada fuente. `mac_minificado()` sirve los `.min` solo si todas las fuentes de ese tipo coinciden con el manifiesto; si no, sirve los legibles. `sitio.js` carga módulos e integraciones con la misma variante que él.
 - La CSP exige Trusted Types: no usar `innerHTML`; crear nodos con `window.macNodo` o `createElement`.

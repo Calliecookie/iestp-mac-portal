@@ -14,7 +14,7 @@ AddDefaultCharset UTF-8
 
 <IfModule mod_alias.c>
     RedirectMatch 404 (?i)(^|/)\.(?!well-known(/|$))
-    RedirectMatch 403 (?i)^/(almacenamiento|configuracion|nucleo|componentes|plantillas|recursos/datos|documentacion|docs)(/.*)?$
+    RedirectMatch 403 (?i)^/(almacenamiento|configuracion|nucleo|componentes|plantillas|recursos/datos|documentacion|docs|herramientas)(/.*)?$
 </IfModule>
 
 <IfModule mod_rewrite.c>

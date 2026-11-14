@@ -19,7 +19,7 @@ Ningún sitio es invulnerable. Estas son las medidas aplicadas y sus límites.
 ## Límites conocidos
 
 - El HTML, CSS y JavaScript enviados al navegador siempre se pueden inspeccionar; no se usan bloqueos de F12 ni de clic derecho. La protección consiste en no publicar secretos.
-- No hay proceso de minificación: los archivos se sirven legibles y comprimidos con Brotli o Gzip. Pendiente si se desea.
+- La minificación solo quita comentarios y espacios (no renombra variables): el código servido sigue siendo legible con el formateador del navegador. No es una medida de seguridad.
 - `TRACE` lo responde el núcleo de Apache; requiere `TraceEnable Off` en el servidor.
 - El portal del instituto en la DRELM es un sistema externo sin HTTPS.
 - No se ha hecho una prueba de penetración externa.

@@ -144,11 +144,11 @@ if ($activo !== '' && $activo !== 'inicio' && empty($macNoIndex)) {
 <?php endif; ?>
     <link rel="preload" href="<?= mac_url('recursos/fuentes/rotulo_negrita.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="<?= mac_url('recursos/fuentes/texto_regular.woff2') ?>" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="<?= mac_recurso('recursos/estilos/sitio.css') ?>">
+    <link rel="stylesheet" href="<?= mac_recurso(mac_minificado('recursos/estilos/sitio.css')) ?>">
     <script>(function(h){h.classList.add('js');try{if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches)h.classList.add('anim');if(!('CSSViewTransitionRule' in window))h.classList.add('sin-vt');}catch(e){}try{var t=window.localStorage.getItem('mac_tema_v1');if(t==='oscuro'||t==='claro')h.setAttribute('data-tema',t);}catch(e){}try{if(!window.sessionStorage.getItem('mac_precarga_v1')){h.classList.add('precargando');window.setTimeout(function(){h.classList.remove('precargando');},9000);}}catch(e){}})(document.documentElement);</script>
-    <script src="<?= mac_url('recursos/scripts/sitio.js') ?>?v=<?= mac_version_scripts() ?>" defer></script>
+    <script src="<?= mac_url(mac_minificado('recursos/scripts/sitio.js')) ?>?v=<?= mac_version_scripts() ?>" defer></script>
 <?php foreach ((array) ($scripts ?? []) as $macModulo): if (!preg_match('~^modulos/[a-z-]+\.js$~', (string) $macModulo)) continue; ?>
-    <script src="<?= mac_url('recursos/scripts/' . $macModulo) ?>?v=<?= mac_version_scripts() ?>" defer></script>
+    <script src="<?= mac_url(mac_minificado('recursos/scripts/' . $macModulo)) ?>?v=<?= mac_version_scripts() ?>" defer></script>
 <?php endforeach; ?>
     <script type="application/ld+json"><?= json_encode($macStructuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
   </head>
