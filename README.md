@@ -1,6 +1,6 @@
 # Portal institucional del IESTP Manuel Arévalo Cáceres
 
-Portal web del Instituto de Educación Superior Tecnológico Público Manuel Arévalo Cáceres (Los Olivos, Lima). Versión 4.0.
+Portal web del Instituto de Educación Superior Tecnológico Público Manuel Arévalo Cáceres (Los Olivos, Lima). Versión 4.2.
 
 - **Tecnología:** PHP 8.1+ sin framework ni base de datos; HTML, CSS y JavaScript propios; Apache o LiteSpeed (cPanel).
 - **Contenido:** archivos JSON y CSV en `recursos/datos/`. No hay panel de administración: el programador edita esos archivos y los publica por cPanel.

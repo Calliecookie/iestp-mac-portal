@@ -753,9 +753,14 @@
     let visto = null;
     try { visto = window.sessionStorage.getItem(CLAVE); } catch (error) { visto = null; }
     if (visto) return;
-    const lanzar = () => window.setTimeout(abrir, reducir.matches ? 0 : 280);
-    if (window.macPrecargaLista) lanzar();
-    else doc.addEventListener('mac:precarga-lista', lanzar, { once: true });
+    const EVENTOS = ['wheel', 'touchmove', 'keydown'];
+    const alInteractuar = () => {
+      EVENTOS.forEach((tipo) => window.removeEventListener(tipo, alInteractuar, true));
+      window.setTimeout(abrir, reducir.matches ? 0 : 280);
+    };
+    const esperar = () => EVENTOS.forEach((tipo) => window.addEventListener(tipo, alInteractuar, { capture: true, passive: true }));
+    if (window.macPrecargaLista) esperar();
+    else doc.addEventListener('mac:precarga-lista', esperar, { once: true });
   };
 
   const tema = () => {

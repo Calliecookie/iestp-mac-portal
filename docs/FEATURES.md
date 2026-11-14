@@ -3,7 +3,7 @@
 | Funcionalidad | Dónde | Datos |
 |---|---|---|
 | Pantalla de carga (logo de gris a color según la carga real) | `plantillas/cabecera.php`, `precarga` en `sitio.js` | — |
-| Ventana de comunicados: carrusel con flechas, puntos, miniaturas y visor ampliado; una vez por sesión | `index.php`, `mac_comunicados_carrusel_html` | `comunicados.json` |
+| Ventana de comunicados: carrusel con flechas, puntos, miniaturas y visor ampliado; una vez por sesión, al primer desplazamiento o tecla del visitante (así no compite con el LCP de la portada) | `index.php`, `mac_comunicados_carrusel_html` | `comunicados.json` |
 | Buscador universal (Ctrl+K o /) | `api/buscar.php`, `modulos/buscador.js` | Todos los datos |
 | Servicios en línea (rejilla bento con agenda) | `mac_accesos_html` | `calendario.json`, `sitio.php` |
 | Calendario cívico-académico con filtros, estados en tiempo real y exportación .ics | `/calendario`, `api/calendario.php` | `calendario.json` |

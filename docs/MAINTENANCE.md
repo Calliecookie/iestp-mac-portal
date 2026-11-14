@@ -27,3 +27,8 @@
 | No aparecen los videos | El servidor no tiene `curl` o no alcanza youtube.com |
 | El formulario no envía | `mail()` deshabilitado o falta `contact_email_from` en `local.php` |
 | Una URL limpia da 404 | Falta la regla en `.htaccess` o la entrada en `rutas.php` |
+
+## Rendimiento de la portada (LCP)
+
+- Los elementos visibles al cargar la portada (texto, botones y banner) no deben animarse con `opacity`: Chrome no los cuenta para el LCP hasta que dejan de ser transparentes. Sus entradas usan `asoma`, que solo desplaza.
+- La ventana de comunicados no debe abrirse con un temporizador: su imagen pasaría a ser el LCP. Se abre con la primera interacción (`wheel`, `touchmove`, `keydown`), que es cuando el navegador deja de medir el LCP.
