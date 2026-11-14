@@ -13,7 +13,7 @@ mac_pagina_abrir();
 <?= mac_aviso('Importante', 'Este formulario es un canal de consulta por correo. No constituye un Libro de Reclamaciones oficial ni genera un código o constancia de reclamo.', 'alerta') ?>
 <div class="panel">
   <h2 class="panel-titulo">Libro de reclamaciones virtual</h2>
-  <p>El instituto recibe reclamos y quejas en su sistema de libro de reclamaciones, externo a este portal. Su conexión no está cifrada (HTTP): revisa la dirección antes de enviar tus datos.</p>
+  <p>El instituto recibe reclamos y quejas en su sistema de libro de reclamaciones, externo a este portal.</p>
   <div class="acciones"><a class="boton" href="<?= mac_e(mac_dato('reclamaciones')) ?>" target="_blank" rel="noopener noreferrer"><?= mac_icono('documento') ?>Abrir el libro de reclamaciones<?= mac_externo() ?></a></div>
 </div>
 <h2>Canales de atención</h2>
